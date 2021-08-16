@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import json
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -151,3 +152,22 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Secret JSON 불러오기
+SECRET_FILE = os.path.join(BASE_DIR, 'dicelab/secret.json')
+with open(SECRET_FILE) as token:
+    secrets = json.loads(token.read())
+
+# Secret.json 데이터 가공
+
+
+def get_secret(setting, secrets=secrets):
+    try:
+        return secrets[setting]
+    except KeyError:
+        error_msg = 'Set the {} Environment variable'.format(setting)
+        raise ImproperlyConfigured(error_msg)
+
+
+DATABASES_ID = get_secret('Database_ID')
+INTERNAL_INTEGRATION_TOKEN = get_secret('Internal_Integration_Token')

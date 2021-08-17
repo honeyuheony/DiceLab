@@ -1,13 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>🎲DiceLab</title>
 </head>
+
 <body>
-    project
-    {{data}}
+    <br>
+    <div class="Projects">
+        <div style="background-color: aquamarine;">
+            <h2>Projects</h2>
+        </div>
+        <ol reversed>
+            {% for project in projects %}
+            <li>
+                {% if project.status == 'Doing'  %}
+                <p>
+                    <span>
+                        <strong>{{project.title}}</strong>
+                    </span>
+                    - ongoing
+                </p>
+                <ul>
+                    <li>
+                        <p>{{project.date}}, {{project.label}}, {{project.area}}</p>
+                    </li>
+                </ul>
+                {% else %}
+                <p>
+                    <span>
+                        <strong>{{project.title}}</strong>
+                    </span>
+                </p>
+                <ul>
+                    <li>
+                        <p>{{project.date}}, {{project.label}}, {{project.area}}</p>
+                    </li>
+                </ul>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ol>
+    </div>
+    <br>
+    <div class="AI Challenge">
+        <div style="background-color: aquamarine;">
+            <h2>AI Challenge</h2>
+        </div>
+        <ol reversed>
+            {% for ai in ai_challenges %}
+            <li>
+                {% if ai.status != 'To Do' %}
+                {% if ai.link == 'None'%}
+                <p>
+                    <span>
+                        <strong>{{ai.title}}</strong>
+                    </span>
+
+                </p>
+                {% else %}
+                <p>
+                    <span>
+                        <strong>{{ai.title}}</strong>
+                        <a href={{ ai.link }} target="_blank"> [Link]</a>
+                    </span>
+
+                </p>
+                {% endif %}
+                <ul>
+                    <li>
+                        <p>{{ ai.assign }}</p>
+                    </li>
+                    <li>
+                        <p>[{{ai.label}}] {{ai.area}}</p>
+                        <ul>
+                            <li>{{ ai.award }}</li>
+                        </ul>
+                    </li>
+                </ul>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ol>
+    </div>
+
 </body>
+
 </html>

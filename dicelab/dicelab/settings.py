@@ -170,5 +170,6 @@ def get_secret(setting, secrets=secrets):
         raise ImproperlyConfigured(error_msg)
 
 
-DATABASES_ID = get_secret('Database_ID')
+PROJECTS_DATABASES_ID = get_secret('Projects_Database_ID')
+AI_CHALLENGE_DATABASES_ID = get_secret('AI_Challenge_Database_ID')
 INTERNAL_INTEGRATION_TOKEN = get_secret('Internal_Integration_Token')

@@ -21,8 +21,8 @@ urlpatterns = [
     # path('news/', include('news.urls')),
     # path('professor/', include('professor.urls')),
     # path('course/', include('course.urls')),
-    path('project/', include('project.urls')),
+    # path('project/', include('project.urls')),
     # path('publication/', include('publication.urls')),
-    # path('school/', include('school.urls')),
+    path('school/', include('school.urls')),
     # path('seminal/', include('seminal.urls')),
 ]

@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-import os   
+import os
 import json
 from django.core.exceptions import ImproperlyConfigured
 
@@ -171,5 +171,16 @@ def get_secret(setting, secrets=secrets):
         raise ImproperlyConfigured(error_msg)
 
 
+PAGE_ID = get_secret('Page_ID')
+COURSE_DATABASE_ID = get_secret('course_database_ID')
 SCHOOL_DATABASE_ID = get_secret('School_Database_ID')
+MEMBER_GRADUATE_DATABASE_ID = get_secret('member_graduate_database_ID')
+MEMBER_UNGRADUATE_DATABASE_ID = get_secret('member_ungraduate_database_ID')
+MEMBER_URP_DATABASE_ID = get_secret('member_urp_database_ID')
+MEMBER_ALUMNI_DATABASE_ID = get_secret('member_alumni_database_ID')
+PUBLICATION_DATABASE_ID = get_secret('Publication_Database_ID')
+PATENTS_DATABASE_ID = get_secret('Patents_Database_ID')
+PROJECTS_DATABASES_ID = get_secret('Projects_Database_ID')
+AI_CHALLENGE_DATABASES_ID = get_secret('AI_Challenge_Database_ID')
+
 INTERNAL_INTEGRATION_TOKEN = get_secret('Internal_Integration_Token')

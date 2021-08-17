@@ -70,7 +70,8 @@ def load_notionAPI_ai_challenge():
                             ['people']]) if 'assign' in r['properties'] else 'None'
         date = r['properties']['date']['date']['start'] + \
             " ~ " + r['properties']['date']['date']['end']
-        link = r['properties']['link']['url']
+        link = "http://" + \
+            r['properties']['link']['url'] if 'link' in r['properties'] else 'None'
         award = r['properties']['award']['rich_text'][0]['plain_text']
         area = r['properties']['area']['rich_text'][0]['plain_text']
 

@@ -46,7 +46,7 @@
         </ol>
     </div>
     <br>
-    <div class = "AI Challenge">
+    <div class="AI Challenge">
         <div style="background-color: aquamarine;">
             <h2>AI Challenge</h2>
         </div>
@@ -54,12 +54,22 @@
             {% for ai in ai_challenges %}
             <li>
                 {% if ai.status != 'To Do' %}
+                {% if ai.link == 'None'%}
                 <p>
                     <span>
                         <strong>{{ai.title}}</strong>
                     </span>
-                    
+
                 </p>
+                {% else %}
+                <p>
+                    <span>
+                        <strong>{{ai.title}}</strong>
+                        <a href={{ ai.link }} target="_blank"> [Link]</a>
+                    </span>
+
+                </p>
+                {% endif %}
                 <ul>
                     <li>
                         <p>{{ ai.assign }}</p>

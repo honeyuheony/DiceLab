@@ -230,4 +230,7 @@ cython_debug/
 .history
 .ionide
 
+# Json Secret 제외
+*.json
+
 # End of https://www.toptal.com/developers/gitignore/api/python,visualstudiocode,django

@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 import json
+from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -169,5 +170,9 @@ def get_secret(setting, secrets=secrets):
         raise ImproperlyConfigured(error_msg)
 
 
-DATABASES_ID = get_secret('Database_ID')
 INTERNAL_INTEGRATION_TOKEN = get_secret('Internal_Integration_Token')
+
+MEMBER_GRADUATE_DATABASE_ID = get_secret('member_graduate_database_ID')
+MEMBER_UNGRADUATE_DATABASE_ID = get_secret('member_ungraduate_database_ID')
+MEMBER_URP_DATABASE_ID = get_secret('member_urp_database_ID')
+MEMBER_ALUMNI_DATABASE_ID = get_secret('member_alumni_database_ID')

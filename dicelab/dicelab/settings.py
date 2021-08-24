@@ -153,6 +153,15 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
+# Cache
+CASHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379',
+    },
+}
+
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Secret JSON 불러오기

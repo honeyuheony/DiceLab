@@ -4,6 +4,7 @@ from typing import Dict
 import urllib3
 from django.shortcuts import render
 from django.conf import settings
+from django.core.cache import cache
 
 
 # 환경 변수 가져오기
@@ -18,8 +19,9 @@ Notion = getattr(settings, 'NOTION_VERSION', 'Notion-version')
 
 
 def project(request):
-    projects = load_notionAPI_project()['body']
-    ai_challenges = load_notionAPI_ai_challenge()['body']
+    projects = cache.get_or_set('projects', load_notionAPI_project()['body'])
+    ai_challenges = cache.get_or_set(
+        'ai_challenges', load_notionAPI_ai_challenge()['body'])
     return render(request, 'project.html', {'projects': projects, 'ai_challenges': ai_challenges})
 
 

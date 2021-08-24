@@ -16,7 +16,7 @@ def project(request):
         load_init_data = True
         cache.set('project', load_notionAPI_project()['body'])
         cache.set(
-            'ai_challege', load_notionAPI_ai_challenge()['body'])
+            'ai_challenge', load_notionAPI_ai_challenge()['body'])
         projects = cache.get('project')
         ai_challenges = cache.get('ai_challenge')
 

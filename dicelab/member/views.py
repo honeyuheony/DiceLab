@@ -18,15 +18,15 @@ def member(request):
         set_cache.delay()
     else:
         load_init_data = True
-        graduate = cache.set(
+        cache.set(
             'graduate', load_notionAPI_member_graduate()['body'])
         graduate = cache.get('graduate')
-        ungraduate = cache.set(
+        cache.set(
             'ungraduate', load_notionAPI_member_ungraduate()['body'])
         ungraduate = cache.get('ungraduate')
-        urp = cache.set('urp', load_notionAPI_member_urp()['body'])
+        cache.set('urp', load_notionAPI_member_urp()['body'])
         urp = cache.get('urp')
-        alumni = cache.set('alumni', load_notionAPI_member_alumni()['body'])
+        cache.set('alumni', load_notionAPI_member_alumni()['body'])
         alumni = cache.get('alumni')
 
     return render(request, 'member.html', {

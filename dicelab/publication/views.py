@@ -14,6 +14,7 @@ Patents_Database_ID = getattr(
     settings, 'PATENTS_DATABASE_ID', 'Database_ID')
 Internal_Integration_Token = getattr(
     settings, 'INTERNAL_INTEGRATION_TOKEN', 'Internal_Integration_Token')
+Notion = getattr(settings, 'NOTION_VERSION', 'Notion-version')
 
 
 def publication(request):
@@ -26,7 +27,7 @@ def load_notionAPI_publication():
     url = f"https://api.notion.com/v1/databases/{Publication_Database_ID}/query"
     headers = {
         'Authorization': f'Bearer {Internal_Integration_Token}',
-        'Notion-Version': '2021-07-27',
+        'Notion-Version': Notion,
         "Content-Type": "application/json"
     }
     filter = {
@@ -86,7 +87,7 @@ def load_notionAPI_patents():
     url = f"https://api.notion.com/v1/databases/{Patents_Database_ID}/query"
     headers = {
         'Authorization': f'Bearer {Internal_Integration_Token}',
-        'Notion-Version': '2021-07-27',
+        'Notion-Version': Notion,
         "Content-Type": "application/json"
     }
     filter = {

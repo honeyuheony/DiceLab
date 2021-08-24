@@ -1,6 +1,4 @@
 import json
-import re
-from datetime import datetime
 from json import loads
 from typing import Dict
 import urllib3
@@ -16,6 +14,7 @@ AI_Challenge_Database_ID = getattr(
     settings, 'AI_CHALLENGE_DATABASES_ID', 'Database_ID')
 Internal_Integration_Token = getattr(
     settings, 'INTERNAL_INTEGRATION_TOKEN', 'Internal_Integration_Token')
+Notion = getattr(settings, 'NOTION_VERSION', 'Notion-version')
 
 
 def project(request):
@@ -28,7 +27,7 @@ def load_notionAPI_ai_challenge():
     url = f"https://api.notion.com/v1/databases/{AI_Challenge_Database_ID}/query"
     headers = {
         'Authorization': f'Bearer {Internal_Integration_Token}',
-        'Notion-Version': '2021-07-27',
+        'Notion-Version': Notion,
         "Content-Type": "application/json"
     }
     filter = {
@@ -69,8 +68,7 @@ def load_notionAPI_ai_challenge():
                             ['people']]) if 'assign' in r['properties'] else 'None'
         date = r['properties']['date']['date']['start'] + \
             " ~ " + r['properties']['date']['date']['end']
-        link = "http://" + \
-            r['properties']['link']['url'] if 'link' in r['properties'] else 'None'
+        link = r['properties']['link']['url'] if 'link' in r['properties'] else 'None'
         award = r['properties']['award']['rich_text'][0]['plain_text']
         area = r['properties']['area']['rich_text'][0]['plain_text']
 
@@ -96,7 +94,7 @@ def load_notionAPI_project():
     url = f"https://api.notion.com/v1/databases/{Projects_Database_ID}/query"
     headers = {
         'Authorization': f'Bearer {Internal_Integration_Token}',
-        'Notion-Version': '2021-07-27',
+        'Notion-Version': Notion,
         "Content-Type": "application/json"
     }
     filter = {

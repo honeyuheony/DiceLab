@@ -3,8 +3,6 @@ import json
 import urllib3
 from typing import Dict
 from json import loads
-from datetime import datetime
-import re
 from django.conf import settings
 
 import os
@@ -19,12 +17,13 @@ Member_Urp_Database_ID = getattr(
     settings, 'MEMBER_URP_DATABASE_ID', 'member_urp_database_ID')
 Member_Alumni_Database_ID = getattr(
     settings, 'MEMBER_ALUMNI_DATABASE_ID', 'member_alumni_database_ID')
+Notion = getattr(settings, 'NOTION_VERSION', 'Notion-version')
 Internal_Integration_Token = getattr(
     settings, 'INTERNAL_INTEGRATION_TOKEN', 'Internal_Integration_Token')
 
 headers = {
     'Authorization': f'Bearer {Internal_Integration_Token}',
-    'Notion-Version': '2021-07-27',
+    'Notion-Version': Notion,
     "Content-Type": "application/json"
 }
 

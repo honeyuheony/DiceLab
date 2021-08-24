@@ -14,10 +14,10 @@ School_Database_ID = getattr(
     settings, 'SCHOOL_DATABASE_ID', 'School_Database_ID')
 Internal_Integration_Token = getattr(
     settings, 'INTERNAL_INTEGRATION_TOKEN', 'Internal_Integration_Token')
-
+Notion = getattr(settings, 'NOTION_VERSION', 'Notion-version')
 headers = {
     'Authorization': f'Bearer {Internal_Integration_Token}',
-    'Notion-Version': '2021-07-27',
+    'Notion-Version': Notion,
     "Content-Type": "application/json"
 }
 

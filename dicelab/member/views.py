@@ -1,14 +1,5 @@
 from django.shortcuts import render
-import json
-import urllib3
-from typing import Dict
-from json import loads
-from django.conf import settings
-from .tasks import set_cache
-from .tasks import load_notionAPI_member_graduate
-from .tasks import load_notionAPI_member_ungraduate
-from .tasks import load_notionAPI_member_urp
-from .tasks import load_notionAPI_member_alumni
+from .tasks import *
 from django.core.cache import cache
 
 

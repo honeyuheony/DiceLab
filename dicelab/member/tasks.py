@@ -28,13 +28,10 @@ headers = {
 
 @shared_task
 def set_cache():
-    graduate = cache.set(
-        'graduate', load_notionAPI_member_graduate()['body'])
-    ungraduate = cache.set(
-        'ungraduate', load_notionAPI_member_ungraduate()['body'])
-    urp = cache.set('urp', load_notionAPI_member_urp()['body'])
-    alumni = cache.set(
-        'alumni', load_notionAPI_member_alumni()['body'])
+    cache.set('graduate', load_notionAPI_member_graduate()['body'])
+    cache.set('ungraduate', load_notionAPI_member_ungraduate()['body'])
+    cache.set('urp', load_notionAPI_member_urp()['body'])
+    cache.set('alumni', load_notionAPI_member_alumni()['body'])
 
 
 def load_notionAPI_member_graduate():

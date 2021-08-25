@@ -4,7 +4,6 @@ from django.core.cache import cache
 
 load_init_data = False
 
-
 def project(request):
     global load_init_data
     if load_init_data:
@@ -19,5 +18,4 @@ def project(request):
             'ai_challenge', load_notionAPI_ai_challenge()['body'])
         projects = cache.get('project')
         ai_challenges = cache.get('ai_challenge')
-
     return render(request, 'project.html', {'projects': projects, 'ai_challenges': ai_challenges})

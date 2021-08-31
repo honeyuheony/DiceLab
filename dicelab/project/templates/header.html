@@ -1,17 +1,14 @@
+{% load static %}
 <!-- Main Header -->
 
 <!-- Header-bottom -->
-<div class='header-bottom'>
-    <div class='container'>
-        <div class='nav-outer'>
-            <div class='logo-box'>
-                <figure><a href=""><img src="" alt=""></a></figure>
-            </div>
-            <div class='menu-area'>
-
-            </div>
-        </div>
+<div class='header-bottom' style="display: table;">
+    <div class='logo-box'>
+        <figure><a href="{% url 'project' %}"><img src="{% static 'image/EmbeddedImage.png'%}" alt=""></a></figure>
     </div>
+    <nav class='menu-area'>
+        
+    </nav>
 </div>
 <!-- Header-bottom end -->
 

@@ -1,13 +1,42 @@
 {% load static %}
 <!-- Main Header -->
 
-<!-- Header-bottom --> 
+<!-- Header-bottom -->
 <nav class="navbar navbar-light sticky-top">
     <div class="container-fluid">
-      <a class="navbar-brand" href="{% url 'main'%}">
-        <img src="{% static 'image/EmbeddedImage.png'%}" alt="Dice_Logo" width="56" height="56" class="">
-        <span class="logo-text">DICE LAB</span>
-      </a>
+        <a class="navbar-brand" href="{% url 'main'%}">
+            <img src="{% static 'image/EmbeddedImage.png'%}" alt="Dice_Logo" width="56" height="56" class="">
+            <span class="logo-text">DICE LAB</span>
+        </a>
+        <ul class="nav justify-content-end text-dark">
+            <li class="nav-item">
+                <a class="nav-link text-dark" aria-current="page" href="{% url 'main'%}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="{% url 'main'%}">News</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="{% url 'professor'%}">Professor</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="{% url 'member'%}">Members</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="{% url 'course'%}">Course</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="{% url 'project'%}">Project</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="{% url 'publication'%}">Publication</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="{% url 'school'%}">School</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="{% url 'main'%}">Seminar</a>
+            </li>
+        </ul>
     </div>
-  </nav>
+</nav>
 <!-- Header-bottom end -->

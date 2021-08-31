@@ -1,96 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-    <h2>Graduate Students</h2>
-    {% for s in graduate %}
-    <ul>
-        <li>
-            <p>{{s.name}},{{s.course}} course,{{s.admission_date}}</p>
-            <ul>
-                <li>
-                    <p>Research Interests</p>
-                    <ul>
-                        {% for r in s.research_interests %}
-                        <li>{{r}}</li>
-                        {% endfor %}
-                    </ul>
-                </li>
-                <li>
-                    <p>Email: {{s.email}}</p>
-                </li>
-            </ul>
-        </li>
-    </ul>
-    {% endfor %}
-    <h2>Undergraduate Students</h2>
-    {% for s in ungraduate %}
-    <ul>
-        <li>
-            <p>{{s.name}},{{s.course}}</p>
-            <ul>
-                <li>
-                    <p>Research Interests</p>
-                    <ul>
-                        {% for r in s.research_interests %}
-                        <li>{{r}}</li>
-                        {% endfor %}
-                    </ul>
-                </li>
-                <li>
-                    <p>Email: {{s.email}}</p>
-                </li>
-            </ul>
-        </li>
-    </ul>
-    {% endfor %}
-    <br>
-    <ul>
-        <li>
-            <p>Undergraduate Research Program (URP)</p>
-            <ul>
-                <li>
-                    <p>4th grade: {{urp.4_1}} / {{urp.4_2}}</p>
-                </li>
-                <li>
-                    <p>3th grade: {{urp.3_1}}</p>
-                </li>
-            </ul>
-        </li>
-    </ul>
-    <br>
-    <h2>Alumni</h2>
-    <ul>
-        <li>
-            <p>Graduate Students</p>
-            <ul>
-                <li>
-                    <p>Coming in 2022!</p>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <p>URP Students</p>
-            <ul>
-                <li>
-                    <p>2022: {{alumni.2022_1}} / {{alumni.2022_2}} / {{alumni.2022_3}}</p>
-                </li>
-                <li>
-                    <p>2021: {{alumni.2021_1}} / {{alumni.2021_2}}</p>
-                </li>
-                <li>
-                    <p>2020: {{alumni.2020_1}} / {{alumni.2020_2}} / {{alumni.2020_3}}</p>
-                </li>
-            </ul>
-        </li>
-    </ul>
-</body>
-
-</html>
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<h2>Graduate Students</h2>
+{% for s in graduate %}
+<ul>
+    <li>
+        <p>{{s.name}},{{s.course}} course,{{s.admission_date}}</p>
+        <ul>
+            <li>
+                <p>Research Interests</p>
+                <ul>
+                    {% for r in s.research_interests %}
+                    <li>{{r}}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+            <li>
+                <p>Email: {{s.email}}</p>
+            </li>
+        </ul>
+    </li>
+</ul>
+{% endfor %}
+<h2>Undergraduate Students</h2>
+{% for s in ungraduate %}
+<ul>
+    <li>
+        <p>{{s.name}},{{s.course}}</p>
+        <ul>
+            <li>
+                <p>Research Interests</p>
+                <ul>
+                    {% for r in s.research_interests %}
+                    <li>{{r}}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+            <li>
+                <p>Email: {{s.email}}</p>
+            </li>
+        </ul>
+    </li>
+</ul>
+{% endfor %}
+<br>
+<ul>
+    <li>
+        <p>Undergraduate Research Program (URP)</p>
+        <ul>
+            <li>
+                <p>4th grade: {{urp.4_1}} / {{urp.4_2}}</p>
+            </li>
+            <li>
+                <p>3th grade: {{urp.3_1}}</p>
+            </li>
+        </ul>
+    </li>
+</ul>
+<br>
+<h2>Alumni</h2>
+<ul>
+    <li>
+        <p>Graduate Students</p>
+        <ul>
+            <li>
+                <p>Coming in 2022!</p>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <p>URP Students</p>
+        <ul>
+            <li>
+                <p>2022: {{alumni.2022_1}} / {{alumni.2022_2}} / {{alumni.2022_3}}</p>
+            </li>
+            <li>
+                <p>2021: {{alumni.2021_1}} / {{alumni.2021_2}}</p>
+            </li>
+            <li>
+                <p>2020: {{alumni.2020_1}} / {{alumni.2020_2}} / {{alumni.2020_3}}</p>
+            </li>
+        </ul>
+    </li>
+</ul>
+{% endblock %}

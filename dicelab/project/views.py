@@ -4,6 +4,7 @@ from django.core.cache import cache
 
 load_init_data = False
 
+
 def project(request):
     global load_init_data
     if load_init_data:

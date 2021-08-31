@@ -26,4 +26,5 @@ urlpatterns = [
     path('publication/', include('publication.urls')),
     path('school/', include('school.urls')),
     # path('seminal/', include('seminal.urls')),
+    path('', include('main.urls')),
 ]

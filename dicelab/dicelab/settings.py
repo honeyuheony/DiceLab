@@ -57,6 +57,8 @@ INSTALLED_APPS = [
     'school.apps.SchoolConfig',
     # Seminal
     'seminal.apps.SeminalConfig',
+    # Main
+    'main.apps.MainConfig',
 ]
 
 MIDDLEWARE = [
@@ -147,6 +149,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'publication', 'static'),
     os.path.join(BASE_DIR, 'school', 'static'),
     os.path.join(BASE_DIR, 'seminal', 'static'),
+    os.path.join(BASE_DIR, 'main', 'static'),
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 

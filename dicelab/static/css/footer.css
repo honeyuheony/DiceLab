@@ -1,0 +1,9 @@
+footer {
+  margin-top: 100px;
+  text-align: center;
+  width: 100%;
+  background-color: rgba(131, 2, 22, 1);
+  left: 0;
+  bottom: 0;
+  color: white;
+}

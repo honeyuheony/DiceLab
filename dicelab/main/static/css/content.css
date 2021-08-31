@@ -1,13 +1,13 @@
 .Category {
     background-color: rgba(131, 2, 22, 1);
     line-height: 12px;
-    padding: 32px 0px 32px 0px;
+    padding: 32px 0px;
     margin: 0px;
     color: white;
 }
 
 h4 {
-    margin: 3% 5%;
+    margin: 0% 5%;
 }
 
 h5 {

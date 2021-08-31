@@ -1,12 +1,11 @@
 {% extends 'index.html' %}
 {% load static %}
 {% block content %}
-<link rel="stylesheet" type='text/css' href="{% static 'css/index.css' %}">
 <div>
-    <div class="catagory">
+    <div class="Category">
         <h4>Graduate Students</h4>
     </div>
-    <div class="contents row">
+    <div class="row Contents">
         {% for s in graduate %}
         <div class="col-lg-1 col-md-1 col-sm-1">
             사진
@@ -37,10 +36,10 @@
 </div>
 
 <div>
-    <div class="catagory">
+    <div class="Category">
         <h4>Ungraduate Students</h4>
     </div>
-    <div class="contents row">
+    <div class="Contents row">
         {% for s in ungraduate %}
         <div class="col-lg-1 col-md-1 col-sm-1">
             사진
@@ -86,10 +85,10 @@
 </div>
 
 <div>
-    <div class="catagory">
+    <div class="Category">
         <h4>Alumni</h4>
     </div>
-    <div class="contents">
+    <div class="Contents">
         <ul>
             <li>
                 <p>Graduate Students</p>

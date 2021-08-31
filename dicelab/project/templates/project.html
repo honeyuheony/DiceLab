@@ -1,11 +1,11 @@
 {% extends 'index.html' %}
 {% load static %}
 {% block content %}
-    <br>
-    <div class="Projects">
-        <div class="Category text-white">
-            <h3>Projects</h3>
-        </div>
+<div class="Project">
+    <div class="Category">
+            <h4>Projects</h4>
+    </div>
+    <div class="Contents">
         <ol reversed>
             {% for project in projects %}
             <li>
@@ -37,45 +37,49 @@
             {% endfor %}
         </ol>
     </div>
-    <br>
-    <div class="AI Challenge">
-        <div class="Category text-white">
-            <h2>AI Challenge</h2>
-        </div>
-        <ol reversed>
-            {% for ai in ai_challenges %}
-            <li>
-                {% if ai.status != 'To Do' %}
-                {% if ai.link == 'None'%}
-                <p>
-                    <span>
-                        <strong>{{ai.title}}</strong>
-                    </span>
-
-                </p>
-                {% else %}
-                <p>
-                    <span>
-                        <strong>{{ai.title}}</strong>
-                        <a href={{ ai.link }} target="_blank"> [Link]</a>
-                    </span>
-
-                </p>
-                {% endif %}
-                <ul>
-                    <li>
-                        <p>{{ ai.assign }}</p>
-                    </li>
-                    <li>
-                        <p>[{{ai.label}}] {{ai.area}}</p>
-                        <ul>
-                            <li>{{ ai.award }}</li>
-                        </ul>
-                    </li>
-                </ul>
-                {% endif %}
-            </li>
-            {% endfor %}
-        </ol>
+</div>
+<div class="AI Challenge">
+    <div class="Category ">
+            <h4>AI Challenge</h4>
     </div>
+    <div class="Contents">
+            <ol reversed>
+                {% for ai in ai_challenges %}
+                <li>
+                    {% if ai.status != 'To Do' %}
+                    {% if ai.link == 'None'%}
+                    <p>
+                        <span>
+                            <strong>{{ai.title}}</strong>
+                        </span>
+
+                    </p>
+                    {% else %}
+                    <p>
+                        <span>
+                            <strong>{{ai.title}}</strong>
+                            <a href={{ ai.link }} target="_blank"> [Link]</a>
+                        </span>
+
+                    </p>
+                    {% endif %}
+                    <ul>
+                        <li>
+                            <p>{{ ai.assign }}</p>
+                        </li>
+                        <li>
+                            <p>[{{ai.label}}] {{ai.area}}</p>
+                            <ul>
+                                <li>{{ ai.award }}</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ol>
+    </div>
+
+</div>
+
 {% endblock %}

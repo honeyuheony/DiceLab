@@ -3,82 +3,89 @@
 {% block content %}
 <br>
 <div class="International Papers">
-    <div style="background-color: aquamarine;">
-        <h2>International Papers</h2>
+    <div class="Category">
+        <h4>International Papers</h4>
     </div>
-    <ol reversed>
-        {% for pub in publication %}
-        {% if pub.label == "International Papers" %}
-        <li>
-            <p>
-                <span>
-                    <strong>{{pub.title}}</strong>
-                </span>
-                <a href={{ pub.link }}>[paper]</a>
-            </p>
-            <ul>
-                <li>
-                    <p>{{pub.assign}}</p>
-                </li>
-                <li>
-                    <p>{{pub.thesis}}, {{pub.year}}</p>
-                </li>
-            </ul>
-        </li>
-        {% endif %}
-        {% endfor %}
-    </ol>
+    <div class="Contents">
+        <ol reversed>
+            {% for pub in publication %}
+            {% if pub.label == "International Papers" %}
+            <li>
+                <p>
+                    <span>
+                        <strong>{{pub.title}}</strong>
+                    </span>
+                    <a href={{ pub.link }}>[paper]</a>
+                </p>
+                <ul>
+                    <li>
+                        <p>{{pub.assign}}</p>
+                    </li>
+                    <li>
+                        <p>{{pub.thesis}}, {{pub.year}}</p>
+                    </li>
+                </ul>
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ol>
+    </div>
+
 </div>
 <div class="Domestic Papers">
-    <div style="background-color: aquamarine;">
-        <h2>Domestic Papers</h2>
+    <div class="Category">
+        <h4>Domestic Papers</h4>
     </div>
-    <ol reversed>
-        {% for pub in publication %}
-        {% if pub.label == "Domestic Papers" %}
-        <li>
-            <p>
-                <span>
-                    <strong>{{pub.title}}</strong>
-                </span>
-                <a href={{ pub.link }}>[paper]</a>
-            </p>
-            <ul>
-                <li>
-                    <p>{{pub.assign}}</p>
-                </li>
-                <li>
-                    <p>{{pub.thesis}}, {{pub.year}}</p>
-                </li>
-            </ul>
-        </li>
-        {% endif %}
-        {% endfor %}
-    </ol>
+    <div class="Contents">
+        <ol reversed>
+            {% for pub in publication %}
+            {% if pub.label == "Domestic Papers" %}
+            <li>
+                <p>
+                    <span>
+                        <strong>{{pub.title}}</strong>
+                    </span>
+                    <a href={{ pub.link }}>[paper]</a>
+                </p>
+                <ul>
+                    <li>
+                        <p>{{pub.assign}}</p>
+                    </li>
+                    <li>
+                        <p>{{pub.thesis}}, {{pub.year}}</p>
+                    </li>
+                </ul>
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ol>
+    </div>
 </div>
 <br>
 <div class="Patents">
-    <div style="background-color: aquamarine;">
-        <h2>Patents</h2>
+    <div class="Category">
+        <h4>Patents</h4>
     </div>
-    <h3 style="color: aquamarine;">Granted</h3>
-    <ol reversed>
-        {% for patent in patents %}
-        <li>
-            <p>
-                <span>
-                    <strong>{{patent.title}}</strong>
-                </span>
-                , {{patent.num}}
-            </p>
-            <ul>
-                <li>
-                    <p>{{patent.assign}}, {{patent.country}}, {{patent.year}}</p>
-                </li>
-            </ul>
-        </li>
-        {% endfor %}
-    </ol>
+    <div class="Contents">
+        <h5>Granted</h5>
+        <ol reversed>
+            {% for patent in patents %}
+            <li>
+                <p>
+                    <span>
+                        <strong>{{patent.title}}</strong>
+                    </span>
+                    , {{patent.num}}
+                </p>
+                <ul>
+                    <li>
+                        <p>{{patent.assign}}, {{patent.country}}, {{patent.year}}</p>
+                    </li>
+                </ul>
+            </li>
+            {% endfor %}
+        </ol>
+    </div>
 </div>
 <br>
 {% endblock %}

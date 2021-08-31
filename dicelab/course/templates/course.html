@@ -1,19 +1,25 @@
 {% extends 'index.html' %}
 {% load static %}
 {% block content %}
-<h2>Course</h2>
-<ul>
-    {% for key, value in semester.items %}
-    <li>
-        <p>{{key}}</p>
+<div class="Course">
+    <div class="Category">
+        <h4>Course</h4>
+    </div>
+    <div class="Contents">
         <ul>
-            {% for i in value %}
+            {% for key, value in semester.items %}
             <li>
-                <p>{{i}}</p>
+                <p>{{key}}</p>
+                <ul>
+                    {% for i in value %}
+                    <li>
+                        <p>{{i}}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
             </li>
             {% endfor %}
         </ul>
-    </li>
-    {% endfor %}
-</ul>
+    </div>
+</div>
 {% endblock %}

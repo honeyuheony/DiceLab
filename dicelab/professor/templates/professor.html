@@ -1,15 +1,22 @@
 {% extends 'index.html' %}
 {% load static %}
 {% block content %}
-<ul>
-    {% for line in page %}
-        {% if line.is_paragraph %}
-            </ul>
-            <h2>{{line.text}}</h2>
-            <ul>
-        {% else %}
+<div class="Professor">
+    <div class="Category">
+        <h4>Professor</h4>
+    </div>
+    <div class="Contents">
+        <ul>
+            {% for line in page %}
+            {% if line.is_paragraph %}
+        </ul>
+        <strong>{{line.text}}</strong>
+        <ul>
+            {% else %}
             <li>{{line.text}}</li>
-        {% endif %}
-    {% endfor %}
-    </ul>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+</div>
 {% endblock %}

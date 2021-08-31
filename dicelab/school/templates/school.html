@@ -1,20 +1,35 @@
 {% extends 'index.html' %}
 {% load static %}
 {% block content %}
-<h2>Seasonal Schools</h2>
-    {% for s in school %}
-    <ul>
-        <li>
-            <p>{{s.title}}</p>
+<link rel="stylesheet" type='text/css' href="{% static 'css/index.css' %}">
+<div>
+    <div class="catagory">
+        <h4>Seasonal Schools</h4>
+    </div>
+    <div class="contents row">
+        {% for s in school %}
+        
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <div>
+                사진
+            </div>
             <ul>
-                {% for l, u in s.lecture %}
                 <li>
-                    <p>{{l}}<a href="{{u}}">[link]</a></p>
+                    <p>{{s.title}}</p>
+                    <ul>
+                        {% for l, u in s.lecture %}
+                        <li>
+                            <p>{{l}}<a href="{{u}}">[link]</a></p>
+                        </li>
+                        {% endfor %}
+                    </ul>
                 </li>
-                {% endfor %}
             </ul>
-        </li>
-    </ul>
-    {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+    
 
 {% endblock %}

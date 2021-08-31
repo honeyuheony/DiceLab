@@ -11,16 +11,11 @@ body {
 }
 
 footer {
+  margin-top: 100px;
   text-align: center;
-  position: fixed;
   width: 100%;
   background-color: rgba(131, 2, 22, 1);
-
-  position: absolute;
-
   left: 0;
-
   bottom: 0;
-
   color: white;
 }

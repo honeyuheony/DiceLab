@@ -2,90 +2,118 @@
 {% load static %}
 {% block content %}
 <link rel="stylesheet" type='text/css' href="{% static 'css/index.css' %}">
-<div class="title">
-    <h2>Graduate Students</h2>
+<div>
+    <div class="catagory">
+        <h4>Graduate Students</h4>
+    </div>
+    <div class="contents row">
+        {% for s in graduate %}
+        <div class="col-lg-1 col-md-1 col-sm-1">
+            사진
+        </div>
+        <div class="col-lg-5 col-md-5 col-sm-5">
+            <ul>
+                <li>
+                    <p>{{s.name}},{{s.course}} course,{{s.admission_date}}</p>
+                    <ul>
+                        <li>
+                            <p>Research Interests</p>
+                            <ul>
+                                {% for r in s.research_interests %}
+                                <li>{{r}}</li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        <li>
+                            <p>Email: {{s.email}}</p>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br><br>
+        </div>
+        {% endfor %} 
+    </div>
 </div>
 
-    {% for s in graduate %}
-    <ul>
-        <li>
-            <p>{{s.name}},{{s.course}} course,{{s.admission_date}}</p>
+<div>
+    <div class="catagory">
+        <h4>Ungraduate Students</h4>
+    </div>
+    <div class="contents row">
+        {% for s in ungraduate %}
+        <div class="col-lg-1 col-md-1 col-sm-1">
+            사진
+        </div>
+        <div class="col-lg-5 col-md-5 col-sm-5">
             <ul>
                 <li>
-                    <p>Research Interests</p>
+                    <p>{{s.name}},{{s.course}}</p>
                     <ul>
-                        {% for r in s.research_interests %}
-                        <li>{{r}}</li>
-                        {% endfor %}
+                        <li>
+                            <p>Research Interests</p>
+                            <ul>
+                                {% for r in s.research_interests %}
+                                <li>{{r}}</li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        <li>
+                            <p>Email: {{s.email}}</p>
+                        </li>
                     </ul>
                 </li>
-                <li>
-                    <p>Email: {{s.email}}</p>
-                </li>
             </ul>
-        </li>
-    </ul>
-    {% endfor %}
-    <h2>Undergraduate Students</h2>
-    {% for s in ungraduate %}
-    <ul>
-        <li>
-            <p>{{s.name}},{{s.course}}</p>
-            <ul>
-                <li>
-                    <p>Research Interests</p>
-                    <ul>
-                        {% for r in s.research_interests %}
-                        <li>{{r}}</li>
-                        {% endfor %}
-                    </ul>
-                </li>
-                <li>
-                    <p>Email: {{s.email}}</p>
-                </li>
-            </ul>
-        </li>
-    </ul>
-    {% endfor %}
-    <br>
-    <ul>
-        <li>
-            <p>Undergraduate Research Program (URP)</p>
-            <ul>
-                <li>
-                    <p>4th grade: {{urp.4_1}} / {{urp.4_2}}</p>
-                </li>
-                <li>
-                    <p>3th grade: {{urp.3_1}}</p>
-                </li>
-            </ul>
-        </li>
-    </ul>
-    <br>
-    <h2>Alumni</h2>
-    <ul>
-        <li>
-            <p>Graduate Students</p>
-            <ul>
-                <li>
-                    <p>Coming in 2022!</p>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <p>URP Students</p>
-            <ul>
-                <li>
-                    <p>2022: {{alumni.2022_1}} / {{alumni.2022_2}} / {{alumni.2022_3}}</p>
-                </li>
-                <li>
-                    <p>2021: {{alumni.2021_1}} / {{alumni.2021_2}}</p>
-                </li>
-                <li>
-                    <p>2020: {{alumni.2020_1}} / {{alumni.2020_2}} / {{alumni.2020_3}}</p>
-                </li>
-            </ul>
-        </li>
-    </ul>
+            <br><br>
+        </div>
+        {% endfor %}
+        <br>
+        <ul>
+            <li>
+                <p>Undergraduate Research Program (URP)</p>
+                <ul>
+                    <li>
+                        <p>4th grade: {{urp.4_1}} / {{urp.4_2}}</p>
+                    </li>
+                    <li>
+                        <p>3th grade: {{urp.3_1}}</p>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <br>
+    </div>
+</div>
+
+<div>
+    <div class="catagory">
+        <h4>Alumni</h4>
+    </div>
+    <div class="contents">
+        <ul>
+            <li>
+                <p>Graduate Students</p>
+                <ul>
+                    <li>
+                        <p>Coming in 2022!</p>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p>URP Students</p>
+                <ul>
+                    <li>
+                        <p>2022: {{alumni.2022_1}} / {{alumni.2022_2}} / {{alumni.2022_3}}</p>
+                    </li>
+                    <li>
+                        <p>2021: {{alumni.2021_1}} / {{alumni.2021_2}}</p>
+                    </li>
+                    <li>
+                        <p>2020: {{alumni.2020_1}} / {{alumni.2020_2}} / {{alumni.2020_3}}</p>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
 {% endblock %}
-</html>

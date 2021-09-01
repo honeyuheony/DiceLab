@@ -17,6 +17,10 @@ h5 {
 .Contents {
   margin: 3% 5%;
 }
+.Contents li {
+  list-style-type: square;
+  line-height: 2;
+}
 p {
   margin-bottom: 0px;
 }

@@ -5,32 +5,38 @@
     <div class="Category">
         <h4>Graduate Students</h4>
     </div>
-    <div class="row Contents">
+    <div class="Contents">
         {% for s in graduate %}
-        <div class="col-lg-1 col-md-1 col-sm-1">
-            사진
-        </div>
-        <div class="col-lg-5 col-md-5 col-sm-5">
-            <ul>
-                <li>
-                    <p>{{s.name}},{{s.course}} course,{{s.admission_date}}</p>
-                    <ul>
-                        <li>
-                            <p>Research Interests</p>
-                            <ul>
-                                {% for r in s.research_interests %}
-                                <li>{{r}}</li>
-                                {% endfor %}
-                            </ul>
-                        </li>
-                        <li>
-                            <p>Email: {{s.email}}</p>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <br><br>
-        </div>
+            {% cycle '<div class="row">' '' %}
+            <div class="col-lg-2 col-md-2 col-sm-2">
+                <img src="{% get_static_prefix %}image/{{s.name}}.jpg" alt="loading" width="100%" class="">
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <ul>
+                    <li>
+                        <p>{{s.name}},{{s.course}} course,{{s.admission_date}}</p>
+                        <ul>
+                            <li>
+                                <p>Research Interests</p>
+                                <ul>
+                                    {% for r in s.research_interests %}
+                                    <li>{{r}}</li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                            <li>
+                                <p>Email: {{s.email}}</p>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <br><br>
+            </div>
+            {% if forloop.last %}
+                </div>
+            {% else %}
+                {% cycle '' '</div>' %}
+            {% endif %}
         {% endfor %} 
     </div>
 </div>
@@ -39,32 +45,39 @@
     <div class="Category">
         <h4>Ungraduate Students</h4>
     </div>
-    <div class="Contents row">
+    <div class="Contents">
         {% for s in ungraduate %}
-        <div class="col-lg-1 col-md-1 col-sm-1">
-            사진
-        </div>
-        <div class="col-lg-5 col-md-5 col-sm-5">
-            <ul>
-                <li>
-                    <p>{{s.name}},{{s.course}}</p>
-                    <ul>
-                        <li>
-                            <p>Research Interests</p>
-                            <ul>
-                                {% for r in s.research_interests %}
-                                <li>{{r}}</li>
-                                {% endfor %}
-                            </ul>
-                        </li>
-                        <li>
-                            <p>Email: {{s.email}}</p>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <br><br>
-        </div>
+            {% cycle '<div class="row">' '' %}
+            <div class="col-lg-2 col-md-2 col-sm-2">
+                <img src="{% get_static_prefix %}image/{{s.name}}.jpg" alt="loading" width="100%" height="100%" class="">
+                
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <ul>
+                    <li>
+                        <p>{{s.name}},{{s.course}}</p>
+                        <ul>
+                            <li>
+                                <p>Research Interests</p>
+                                <ul>
+                                    {% for r in s.research_interests %}
+                                    <li>{{r}}</li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                            <li>
+                                <p>Email: {{s.email}}</p>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <br><br>
+            </div>
+            {% if forloop.last %}
+                </div>
+            {% else %}
+                {% cycle '' '</div>' %}
+            {% endif %}
         {% endfor %}
         <br>
         <ul>

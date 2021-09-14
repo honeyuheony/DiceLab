@@ -76,9 +76,8 @@ def load_notionAPI_course():
         source2: Dict = loads(response.data.decode('utf-8'))  # 자료형 명시
         page = []
         for r2 in source2['results']:
-            text = r2['bulleted_list_item']['text'][0]['plain_text']
-            for t in text:
-                print(t["plain_text"])
+            if 'bulleted_list_item' in r2:
+                text = r2['bulleted_list_item']['text'][0]['plain_text']
     return {
         'statusCode': 200,
         'body': semester

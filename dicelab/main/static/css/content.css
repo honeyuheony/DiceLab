@@ -1,19 +1,29 @@
 .Category {
-    background-color: rgba(131, 2, 22, 1);
-    line-height: 12px;
-    padding: 32px 0px;
-    margin: 0px;
-    color: white;
+  background-color: rgba(131, 2, 22, 1);
+  line-height: 12px;
+  padding: 32px 0px;
+  margin: 0px;
+  color: white;
 }
 
 h4 {
-    margin: 0% 5%;
+  margin: 0% 5%;
 }
 
 h5 {
-    color: rgba(131, 2, 22, 1);
+  color: rgba(131, 2, 22, 1);
 }
 
 .Contents {
-    margin: 3% 5%;
+  margin: 3% 5%;
+}
+.Contents li {
+  list-style-type: square;
+  line-height: 2;
+}
+p {
+  margin-bottom: 0px;
+}
+.row {
+  padding: 24px 0px;
 }

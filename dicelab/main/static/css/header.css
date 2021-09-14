@@ -1,10 +1,36 @@
-.logo-text {
+/* .logo-text {
     text-align: middle;
     font-weight: bold;
+    display: inline-block;
+} */
+.logo-text {
+    display: inline-block;
+    line-height: 1;
+    max-width: 380px;
+    outline: none;
+    overflow: hidden;
+    padding: 16px 12px;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+}
+
+.category {
+    /* display: table-cell; */
+    text-align: right;
+    vertical-align: middle;
 }
 
 .navbar {
     padding-top: 0px;
     padding-bottom: 0px;
     margin: 0px;
+}
+
+.logo {
+    display: inline-block;
+    max-height: 56px;
+    max-width: 225px;
+    padding: 8px 4px 8px 12px;
+    vertical-align: middle;
 }

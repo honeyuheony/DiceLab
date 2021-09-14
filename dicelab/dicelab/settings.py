@@ -178,6 +178,7 @@ def get_secret(setting, secrets=secrets):
 NOTION_VERSION = '2021-08-16'
 
 PAGE_ID = get_secret('Page_ID')
+NEWS_DATABASE_ID = get_secret('news_database_ID')
 COURSE_DATABASE_ID = get_secret('course_database_ID')
 SCHOOL_DATABASE_ID = get_secret('School_Database_ID')
 MEMBER_GRADUATE_DATABASE_ID = get_secret('member_graduate_database_ID')

@@ -4,11 +4,13 @@
 <!-- Header-bottom -->
 <nav class="navbar navbar-light sticky-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'main'%}">
-            <img src="{% static 'image/EmbeddedImage.png'%}" alt="Dice_Logo" width="56" height="56" class="">
-            <span class="logo-text">DICE LAB</span>
-        </a>
-        <ul class="nav justify-content-end text-dark">
+        <div style="display: table-cell;">
+            <a class="navbar-brand" href="{% url 'main'%}">
+                <img src="{% static 'image/EmbeddedImage.png'%}" alt="Dice_Logo" class="logo">
+                <span class="logo-text"> DICE LAB</span>
+            </a>
+        </div>
+        <ul class="nav justify-content-end text-dark category">
             <li class="nav-item">
                 <a class="nav-link text-dark" aria-current="page" href="{% url 'main'%}">Home</a>
             </li>

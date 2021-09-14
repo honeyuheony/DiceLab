@@ -5,26 +5,27 @@
     <div class="Category">
         <h4>Seasonal Schools</h4>
     </div>
-    <div class="Contents row">
+    <div class="Contents">
         {% for s in school %}
-        
-        <div class="col-lg-6 col-md-6 col-sm-6">
-            <div>
-                사진
+            {% cycle '<div class="row">' '' %}
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div>
+                    <img src="{% get_static_prefix %}image/{{s.title}}.jpg" alt="loading" width="100%" class="">
+                </div>
+                <p style="color: rgba(131,2,22,1); font-size: 13pt; font-weight: 700; letter-spacing: 1px; line-height: 1.63;">{{s.title}}</p>
+                <ul>
+                    {% for l, u in s.lecture %}
+                    <li>
+                        <p>{{l}}<a href="{{u}}">[link]</a></p>
+                    </li>
+                    {% endfor %}
+                </ul>
             </div>
-            <ul>
-                <li>
-                    <p>{{s.title}}</p>
-                    <ul>
-                        {% for l, u in s.lecture %}
-                        <li>
-                            <p>{{l}}<a href="{{u}}">[link]</a></p>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </li>
-            </ul>
-        </div>
+            {% if forloop.last %}
+                </div>
+            {% else %}
+                {% cycle '' '</div>' %}
+            {% endif %}
         {% endfor %}
     </div>
 </div>

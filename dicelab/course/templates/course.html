@@ -7,19 +7,24 @@
     </div>
     <div class="Contents">
         <ul>
-            {% for key, value in semester.items %}
+            {% for course in courses %}
             <li>
-                <p>{{key}}</p>
-                <ul>
-                    {% for i in value %}
-                    <li>
-                        <p>{{i}}</p>
-                    </li>
-                    {% endfor %}
-                </ul>
+                <p>{{course.code}}</p>
+                <p>{{course.name}}</p>
+                <ol>
+                    {% for semester in course.semester %}
+                    <li>{{semester}}</li>
+                    {% endfor%}
+                    <li></li>
+                </ol>
             </li>
             {% endfor %}
         </ul>
     </div>
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit"></button>
+    </form>
 </div>
 {% endblock %}

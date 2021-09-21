@@ -4,7 +4,7 @@ import urllib3
 from typing import Dict
 import json
 from json import loads
-from django.core.cache import cache
+from .models import Patents, Publication
 
 # 환경 변수 가져오기
 http = urllib3.PoolManager()
@@ -18,9 +18,15 @@ Notion = getattr(settings, 'NOTION_VERSION', 'Notion-version')
 
 
 @shared_task
-def set_cache():
-    cache.set('publication', load_notionAPI_publication()['body'])
-    cache.set('patent', load_notionAPI_patents()['body'])
+def set_data():
+    pub_data = load_notionAPI_publication()['body']
+    pat_data = load_notionAPI_patents()['body']
+    for d in pub_data:
+        Publication.objects.update_or_create(
+            title=d['title'], label=d['label'], paper_link=d['paper_link'], assign=d['assign'], thesis=d['thesis'], year=d['year'])
+    for d in pat_data:
+        Patents.objects.update_or_create(
+            title=d['title'], country=d['country'], num=d['num'], year=d['year'], assign=d['assign'])
 
 
 def load_notionAPI_publication():

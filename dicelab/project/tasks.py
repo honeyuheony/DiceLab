@@ -2,10 +2,9 @@ import json
 from json import loads
 from typing import Dict
 import urllib3
-from django.core.cache import cache
-from django.shortcuts import render
 from django.conf import settings
 from celery import shared_task
+from .models import Project, AI_challenge
 
 
 # 환경 변수 가져오기
@@ -19,10 +18,22 @@ Internal_Integration_Token = getattr(
 Notion = getattr(settings, 'NOTION_VERSION', 'Notion-version')
 
 
+# @shared_task
+# def set_cache():
+#     cache.set('project', load_notionAPI_project()['body'])
+#     cache.set('ai_challenge', load_notionAPI_ai_challenge()['body'])
+
+
 @shared_task
-def set_cache():
-    cache.set('project', load_notionAPI_project()['body'])
-    cache.set('ai_challenge', load_notionAPI_ai_challenge()['body'])
+def set_data():
+    p_data = load_notionAPI_project()['body']
+    ai_data = load_notionAPI_ai_challenge()['body']
+    for d in p_data:
+        p, created = Project.objects.update_or_create(
+            title=d['title'], date=d['date'], status=d['status'], assign=d['assign'], area=d['area'], label=d['label'])
+    for d in ai_data:
+        ai, created = AI_challenge.objects.update_or_create(
+            title=d['title'], date=d['date'], status=d['status'], assign=d['assign'], area=d['area'], label=d['label'], award=d['award'], link=d['link'])
 
 
 def load_notionAPI_ai_challenge():
@@ -83,7 +94,6 @@ def load_notionAPI_ai_challenge():
             'label': label,
             'assign': assign,
             'date': date,
-            'area': area
         })
         # TODO implement
     return {

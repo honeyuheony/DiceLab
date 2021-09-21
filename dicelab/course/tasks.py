@@ -5,7 +5,8 @@ import json
 import urllib3
 from typing import Dict
 from json import loads
-from .forms import CoursesCreationForm
+from .forms import CoursesCreationForm, SemesterCreationForm
+from .models import Semester, Course
 
 
 http = urllib3.PoolManager()
@@ -32,17 +33,12 @@ def set_cache():
 def set_data():
     data = load_notionAPI_course()['body']
     for d in data:
-        value = {'code': [d['code']], 'name': [
-            d['name']], 'semester': d['semester']}
-        form = CoursesCreationForm(value)
-        print(value)
-        if form.is_valid():
-            form.save()
-            print('success')
-        else:
-            print(form.errors)
-
-# Create your views here.
+        c, created = Course.objects.update_or_create(
+            code=d['code'], name=d['name'])
+        for s in d['semester']:
+            obj, created = Semester.objects.get_or_create(title=s)
+            c.semester.add(obj)
+            c.save()
 
 
 def load_notionAPI_course():
@@ -79,7 +75,7 @@ def load_notionAPI_course():
         code = r['properties']['code']['title'][0]['plain_text']
         name = r['properties']['name']['rich_text'][0]['plain_text']
         semester = ([l['name']
-                    for l in r['properties']['period']['multi_select']]) if 'period' in r['properties'] else 'None'
+                    for l in r['properties']['semester']['multi_select']]) if 'semester' in r['properties'] else 'None'
         data.append(
             {
                 'code': code,

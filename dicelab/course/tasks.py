@@ -1,11 +1,9 @@
 from celery import shared_task
 from django.conf import settings
-from django.core.cache import cache
 import json
 import urllib3
 from typing import Dict
 from json import loads
-from .forms import CoursesCreationForm, SemesterCreationForm
 from .models import Semester, Course
 
 
@@ -25,11 +23,6 @@ headers = {
 
 
 @shared_task
-def set_cache():
-    cache.set('semester', load_notionAPI_course()['body'])
-
-
-# @shared_task
 def set_data():
     data = load_notionAPI_course()['body']
     for d in data:

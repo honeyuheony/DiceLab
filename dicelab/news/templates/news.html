@@ -1,94 +1,31 @@
 {% extends 'index.html' %}
 {% load static %}
 {% block content %}
-<div class="Course">
+<div class="News">
     <div class="Category">
         <h4>News</h4>
     </div>
     <div class="Contents">
         <ul>
-            <li>
-                <p>DICE Lab의 논문이 accept 되었습니다. (2021. 07. 16)</p>
-                <ul>
-                    <li>
-                        <p>반도체 불량원인 분석을 위한 딥뉴럴네트워크 기반의 패치 이미지 병합 시스템</p>
-                    </li>
-                    <li>
-                        <p>손성빈, 이선훈, 박주찬, 정준욱, 박용준, 오흥선</p>
-                    </li>
-                    <li>
-                        <p>제어로봇시스템학회 논문지 (Journal of Institute of Control, Robotics and Systems)</p>
-                    </li>
-                </ul>
-            </li>
-
-            <li>
-                <p>DICE Lab의 특허가등록 되었습니다. (2021. 07. 09)</p>
-                <ul>
-                    <li>
-                        <p>계층적 다중 레이블 분류를 위한 데이터 분류 방법 및 장치 (DATA CLASSIFICATION METHOD AND APPARATUS FOR HIERARCHICAL MULTI-LABLE CLASSIFICATION)</p>
-                    </li>
-                    <li>
-                        <p>오흥선, 임상훈, 조성웅</p>
-                    </li>
-                </ul>
-            </li>
-
-            <li>
-                <p>DICE Lab에서 여름학교(Summer School)를 진행합니다. (2021.06.27)</p>
-                <ul>
-                    <li>
-                        <p>Courses</p>
-                        <ul>
-                            <li>
-                                <p>Deep Learning for NLP</p>
-                            </li>
-                            <li>
-                                <p>CNNs for Visual Recognition</p>
-                            </li>
-                            <li>
-                                <p>Machine Learning with Graphs</p>
-                            </li>
-                            <li>
-                                <p>Computer Vision, From 3D Reconstruction to Recognition</p>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <p>기간: 2021.07 ~ 2021.08</p>
-                    </li>
-                </ul>
-            </li>
-
-            <li>
-                <p>DICE Lab에서 신규과제를 수행합니다. (2021.06.03) </p>
-                <ul>
-                    <li>
-                        <p>과제명: 안전주행을 위한 딥러닝 기반의 실시간 위협객체 탐지 및 경로예측 기술 연구</p>
-                    </li>
-                    <li>
-                        <p>기간: 2021.06.01 ~ 2026.05.31</p>
-                    </li>
-                    <li>
-                        <p>지원:  한국연구재단(NRF)</p>
-                    </li>
-                </ul>
-            </li>
-
-            <li>
-                <p>DICE Lab의 논문이 accept 되었습니다. (2021. 05. 12)</p>
-                <ul>
-                    <li>
-                        <p>Wav2KWS: Transfer Learning from Speech Representations for Keyword Spotting</p>
-                    </li>
-                    <li>
-                        <p>DEOKJIN SEO, HEUNG-SEON OH, and YUCHUL JUNG</p>
-                    </li>
-                    <li>
-                        <p>IEEE Access</p>
-                    </li>
-                </ul>
-            </li>
+            {% for n in news %}
+                <li>
+                    <h6>{{n.title}}</h6>
+                    {% for card in n.content %}
+                    <ul>
+                        <li>{{card.parent}}
+                            {% if card.child %}
+                            <ul>
+                                {% for c in card.child %}
+                                <li>{{c}}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </li>
+                {% endfor %}
+                <br><br>
+            {% endfor %}
         </ul>
     </div>
 </div>

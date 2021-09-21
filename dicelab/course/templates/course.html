@@ -7,24 +7,26 @@
     </div>
     <div class="Contents">
         <ul>
-            {% for course in courses %}
+            {% for semester in semesters %}
             <li>
-                <p>{{course.code}}</p>
-                <p>{{course.name}}</p>
+                <strong>{{semester}}</strong>
+                {% for course in courses %}
+                    {% for s in course.semester.all%}
                 <ol>
-                    {% for semester in course.semester %}
-                    <li>{{semester}}</li>
-                    {% endfor%}
-                    <li></li>
+                    {% if semester == s %}
+                    <li>{{course.code}},<strong>{{course.name}}</strong></li>
+                    {% endif %}
                 </ol>
+                    {% endfor%}
+                {% endfor %}
             </li>
             {% endfor %}
         </ul>
     </div>
-    <form method="POST">
+    <!-- <form method="POST">
         {% csrf_token %}
         {{form.as_p}}
         <button type="submit"></button>
-    </form>
+    </form> -->
 </div>
 {% endblock %}

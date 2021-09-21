@@ -1,14 +1,5 @@
 from django import forms
-from .models import Course
-
-MY_CHOICES = (('2018_Spring', '2018_Spring'),
-              ('2019_Spring', '2019_Spring'),
-              ('2020_Spring', '2020_Spring'),
-              ('2021_Spring', '2021_Spring'),
-              ('2018_Fall', '2018_Fall'),
-              ('2019_Fall', '2019_Fall'),
-              ('2020_Fall', '2020_Fall'),
-              ('2021_Fall', '2021_Fall'),)
+from .models import Course, Semester
 
 
 class CoursesCreationForm(forms.ModelForm):
@@ -20,8 +11,8 @@ class CoursesCreationForm(forms.ModelForm):
         max_length=200,
         label=('코스 이름')
     )
-    semester = forms.MultipleChoiceField(
-        choices=MY_CHOICES
+    semester = forms.ModelMultipleChoiceField(
+        Semester.objects.all(),
     )
 
     class Meta:
@@ -30,4 +21,17 @@ class CoursesCreationForm(forms.ModelForm):
             'code',
             'name',
             'semester',
+        )
+
+
+class SemesterCreationForm(forms.ModelForm):
+    title = forms.CharField(
+        max_length=20,
+        required=True
+    )
+
+    class Meta:
+        model = Semester
+        fields = (
+            'title',
         )

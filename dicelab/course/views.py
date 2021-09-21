@@ -23,8 +23,6 @@ load_init_data = False
 
 def course(request):
     set_data()
+    semesters = Semester.objects.order_by('-title')
     courses = Course.objects.all()
-    form = CoursesCreationForm()
-    if request.method == "POST":
-        print(request.POST)
-    return render(request, 'course.html', {'form': form, 'course': course})
+    return render(request, 'course.html', {'semesters': semesters, 'courses': courses})

@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 import json
 from django.core.exceptions import ImproperlyConfigured
+from celery.schedules import crontab
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -197,17 +198,55 @@ NEWS_RESEARCHER_DATABASE_ID = get_secret('news_researcher_database_ID')
 NEWS_ETC_DATABASE_ID = get_secret('news_etc_database_ID')
 
 # celery
-CELERY_BROKER_URL = 'redis://127.0.0.1:6379/'
-CELERY_ACCEPT_CONTENT = ['json']
+# CELERY_BROKER_URL = 'redis://127.0.0.1:6379/'
+# CELERY_ACCEPT_CONTENT = ['json']
+# CELERY_TASK_SERIALIZER = 'json'
+# CELERY_TIMEZONE = 'Asia/Seoul'
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = TIME_ZONE
+
+CELERY_BEAT_SCHEDULE = {
+    'news_load': {
+        'task': 'news.tasks.set_data',
+        'schedule': crontab(hour='*/1')
+    },
+    'news_load': {
+        'task': 'course.tasks.set_data',
+        'schedule': crontab(hour='*/1')
+    },
+    'news_load': {
+        'task': 'member.tasks.set_data',
+        'schedule': crontab(hour='*/1')
+    },
+    'news_load': {
+        'task': 'professor.tasks.set_data',
+        'schedule': crontab(hour='*/1')
+    },
+    'news_load': {
+        'task': 'project.tasks.set_data',
+        'schedule': crontab(hour='*/1')
+    },
+    'news_load': {
+        'task': 'publication.tasks.set_data',
+        'schedule': crontab(hour='*/1')
+    },
+    'news_load': {
+        'task': 'school.tasks.set_data',
+        'schedule': crontab(hour='*/1')
+    }
+}
 
 # cashes
-CACHES = {
-    'default': {
-        'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://127.0.0.1:6379',
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        }
-    },
-}
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django_redis.cache.RedisCache',
+#         'LOCATION': 'redis://127.0.0.1:6379',
+#         "OPTIONS": {
+#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
+#         }
+#     },
+# }

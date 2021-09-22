@@ -59,8 +59,6 @@ def load_notionAPI_school():
                             headers=headers,
                             retries=False)
     source: Dict = loads(response.data.decode('utf-8'))  # 자료형 명시
-    with open("data.json", "w") as f:
-        json.dump(source['results'], f)
     data = []
     for r in source['results']:
         title = r['properties']['Title']['title'][0]['plain_text']

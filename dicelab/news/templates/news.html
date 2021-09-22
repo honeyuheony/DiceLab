@@ -8,23 +8,7 @@
     <div class="Contents">
         <ul>
             {% for n in news %}
-                <li>
-                    <h6>{{n.title}}</h6>
-                    {% for card in n.content %}
-                    <ul>
-                        <li>{{card.parent}}
-                            {% if card.child %}
-                            <ul>
-                                {% for c in card.child %}
-                                <li>{{c}}</li>
-                                {% endfor %}
-                            </ul>
-                            {% endif %}
-                        </li>
-                    </ul>
-                </li>
-
-                {% endfor %}
+                {{n.htmldata|safe}}
                 <br><br>
             {% endfor %}
         </ul>

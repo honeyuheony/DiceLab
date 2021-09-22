@@ -213,37 +213,46 @@ CELERY_TIMEZONE = TIME_ZONE
 CELERY_BEAT_SCHEDULE = {
     'news_load': {
         'task': 'news.tasks.set_data',
-        'schedule': crontab(hour='*/1')
+        'schedule': crontab(hour='*/1'),
+        'args': ()
     },
-    'news_load': {
+    'course_load': {
         'task': 'course.tasks.set_data',
-        'schedule': crontab(hour='*/1')
+        'schedule': crontab(hour='*/1'),
+        'args': ()
     },
-    'news_load': {
+    'member_load': {
         'task': 'member.tasks.set_data',
-        'schedule': crontab(hour='*/1')
+        'schedule': crontab(hour='*/1'),
+        'args': ()
     },
-    'news_load': {
+    'professor_load': {
         'task': 'professor.tasks.set_data',
-        'schedule': crontab(hour='*/1')
+        'schedule': crontab(hour='*/1'),
+        'args': ()
     },
-    'news_load': {
+    'project_load': {
         'task': 'project.tasks.set_data',
-        'schedule': crontab(hour='*/1')
+        'schedule': crontab(hour='*/1'),
+        'args': ()
     },
-    'news_load': {
+    'publication_load': {
         'task': 'publication.tasks.set_data',
-        'schedule': crontab(hour='*/1')
+        'schedule': crontab(hour='*/1'),
+        'args': ()
     },
-    'news_load': {
+    'school_load': {
         'task': 'school.tasks.set_data',
-        'schedule': crontab(hour='*/1')
+        'schedule': crontab(hour='*/1'),
+        'args': ()
     },
-    'news_load': {
+    'seminal_load': {
         'task': 'seminal.tasks.set_data',
-        'schedule': crontab(hour='*/1')
+        'schedule': crontab(hour='*/1'),
+        'args': ()
     }
 }
+# 
 
 # cashes
 # CACHES = {

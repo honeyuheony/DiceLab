@@ -8,7 +8,7 @@ load_init_data = False
 
 
 def member(request):
-    set_data()
+    # set_data()
     # research_interests = Research_interests.objects.all.order_by('-title')
     # linked = Linked.objects.all()
     graduated = Graduated.objects.all()

@@ -194,7 +194,7 @@ NEWS_AI_DATABASE_ID = get_secret('news_ai_database_ID')
 NEWS_SCHOOL_DATABASE_ID = get_secret('news_school_database_ID')
 NEWS_THESIS_DATABASE_ID = get_secret('news_thesis_database_ID')
 NEWS_WORK_DATABASE_ID = get_secret('news_work_database_ID')
-NEWS__RESEARCHER_DATABASE_ID = get_secret('news_researcher_database_ID')
+NEWS_RESEARCHER_DATABASE_ID = get_secret('news_researcher_database_ID')
 NEWS_ETC_DATABASE_ID = get_secret('news_etc_database_ID')
 
 # celery

@@ -516,6 +516,8 @@ def load_notionAPI_news_etc():
             temp = r['properties']['participant']['multi_select']
             for t in temp:
                 participant.append(t['name'])
+            if len(participant) == 0 :
+                participant = None
         except:
             participant = None
         try:

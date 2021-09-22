@@ -18,21 +18,15 @@ Internal_Integration_Token = getattr(
 Notion = getattr(settings, 'NOTION_VERSION', 'Notion-version')
 
 
-# @shared_task
-# def set_cache():
-#     cache.set('project', load_notionAPI_project()['body'])
-#     cache.set('ai_challenge', load_notionAPI_ai_challenge()['body'])
-
-
 @shared_task
 def set_data():
     p_data = load_notionAPI_project()['body']
     ai_data = load_notionAPI_ai_challenge()['body']
     for d in p_data:
-        p, created = Project.objects.update_or_create(
+        Project.objects.update_or_create(
             title=d['title'], date=d['date'], status=d['status'], assign=d['assign'], area=d['area'], label=d['label'])
     for d in ai_data:
-        ai, created = AI_challenge.objects.update_or_create(
+        AI_challenge.objects.update_or_create(
             title=d['title'], date=d['date'], status=d['status'], assign=d['assign'], area=d['area'], label=d['label'], award=d['award'], link=d['link'])
 
 

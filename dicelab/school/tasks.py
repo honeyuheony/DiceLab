@@ -4,7 +4,7 @@ from typing import Dict
 from json import loads
 from django.conf import settings
 from celery import shared_task
-from django.core.cache import cache
+from .models import School, Lecture
 
 http = urllib3.PoolManager()
 School_Database_ID = getattr(
@@ -20,8 +20,15 @@ headers = {
 
 
 @shared_task
-def set_cache():
-    cache.set('school', load_notionAPI_school()['body'])
+def set_data():
+    data = load_notionAPI_school()['body']
+    for d in data:
+        school, created = School.objects.update_or_create(title=d['title'])
+        for l, u in d['lecture']:
+            lecture, created = Lecture.objects.update_or_create(
+                name=l, url=u)
+            school.lecture.add(lecture)
+            school.save()
 
 
 def load_notionAPI_school():
@@ -62,10 +69,9 @@ def load_notionAPI_school():
         url = [l['url']
                for l in r['properties']['url']['rollup']['array']]
         lecture = zip(lecture, url)
-
         data.append({
             'title': title,
-            'lecture': lecture
+            'lecture': lecture,
         })
     return {
         'statusCode': 200,

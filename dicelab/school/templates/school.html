@@ -14,9 +14,9 @@
                 </div>
                 <p style="color: rgba(131,2,22,1); font-size: 13pt; font-weight: 700; letter-spacing: 1px; line-height: 1.63;">{{s.title}}</p>
                 <ul>
-                    {% for l, u in s.lecture %}
+                    {% for l in s.lecture.all %}
                     <li>
-                        <p>{{l}}<a href="{{u}}">[link]</a></p>
+                        <p>{{l.name}}<a href="{{l.url}}">[link]</a></p>
                     </li>
                     {% endfor %}
                 </ul>

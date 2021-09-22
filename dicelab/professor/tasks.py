@@ -1,6 +1,5 @@
 from celery import shared_task
 from django.conf import settings
-from django.core.cache import cache
 import urllib3
 from typing import Dict
 from json import loads
@@ -18,12 +17,10 @@ headers = {
     "Content-Type": "application/json"
 }
 
-# Create your views here.
-
 
 @shared_task
-def set_cache():
-    cache.set('page', load_notionAPI_professor()['body'])
+def set_data():
+    return load_notionAPI_professor()['body']
 
 
 def load_notionAPI_professor():

@@ -238,6 +238,10 @@ CELERY_BEAT_SCHEDULE = {
     'news_load': {
         'task': 'school.tasks.set_data',
         'schedule': crontab(hour='*/1')
+    },
+    'news_load': {
+        'task': 'seminal.tasks.set_data',
+        'schedule': crontab(hour='*/1')
     }
 }
 

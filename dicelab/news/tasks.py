@@ -31,18 +31,19 @@ headers = {
 }
 
 
-@shared_task
-def set_cache():
-    cache.set('news', load_notionAPI_news()['body'])
+# @shared_task
+# def set_cache():
+#     cache.set('news', load_notionAPI_news()['body'])
+# def set_database():
+#     print(load_notionAPI_news_ai()['body'])
+#     print(load_notionAPI_news_school()['body'])
+#     print(load_notionAPI_news_thesis()['body'])
+#     print(load_notionAPI_news_work()['body'])
+#     print(load_notionAPI_news_researcher()['body'])
+#     print(load_notionAPI_news_etc()['body'])
 
-def set_database():
-    print(load_notionAPI_news_ai()['body'])
-    print(load_notionAPI_news_school()['body'])
-    print(load_notionAPI_news_thesis()['body'])
-    print(load_notionAPI_news_work()['body'])
-    print(load_notionAPI_news_researcher()['body'])
-    print(load_notionAPI_news_etc()['body'])
-set_database()
+
+# set_database()
 # Create your views here.
 
 
@@ -78,7 +79,7 @@ def load_notionAPI_news_ai():
 
     data = {}
     for r in source['results']:
-        try :
+        try:
             temp = r['properties']['title']['title']
             title = ''
             for t in temp:
@@ -88,21 +89,21 @@ def load_notionAPI_news_ai():
         except:
             title = None
 
-        try :
+        try:
             where = r['properties']['where']['rich_text'][0]['plain_text']
         except:
             where = None
 
         try:
             subject = r['properties']['subject']['rich_text'][0]['plain_text']
-            if '\n' in subject :
+            if '\n' in subject:
                 subject = subject.split('\n')
         except:
             subject = None
 
         try:
             result = r['properties']['result']['rich_text'][0]['plain_text']
-            if '\n' in result :
+            if '\n' in result:
                 result = result.split('\n')
         except:
             result = None
@@ -110,7 +111,7 @@ def load_notionAPI_news_ai():
         try:
             participant = []
             temp = r['properties']['participant']['multi_select']
-            for t in temp :
+            for t in temp:
                 participant.append(t['name'])
         except:
             participant = None
@@ -118,34 +119,36 @@ def load_notionAPI_news_ai():
         try:
             pic = []
             temp = r['properties']['pic']['files']
-            for t in temp :
+            for t in temp:
                 pic.append(t['name'])
         except:
             pic = None
 
         data_to_html = '<li><h6>' + title + '</h6><ul>'
-        if where != None :
+        if where != None:
             data_to_html += '<li>' + where + '</li>'
-        if participant != None :
+        if participant != None:
             data_to_html += '<li>' + ",".join(participant) + '</li>'
-        if subject == None :
+        if subject == None:
             data_to_html += '<li>' + result + '</li>'
-        else :
-            for s, r in zip(subject, result) :
+        else:
+            for s, r in zip(subject, result):
                 data_to_html += '<li>' + s + ' - ' + r + '</li>'
-        if pic != None :
-            for p in pic :
-                data_to_html += '<div><img src="{% get_static_prefix %}image/news/ai/' + p + '" alt="loading"></div>'
+        if pic != None:
+            for p in pic:
+                data_to_html += '<div><img src="{% get_static_prefix %}image/news/ai/' + \
+                    p + '" alt="loading"></div>'
         data_to_html += '</ul></li>'
-        data.append({'date' : date, 'code' : data_to_html})
+        data.append({'date': date, 'code': data_to_html})
     return {
         'statusCode': 200,
         'body': data
     }
 
+
 def load_notionAPI_news_school():
     url = f"https://api.notion.com/v1/databases/{Database_ID}/query"
-    
+
     filter = {  # 가져올 데이터 필터
         "or": [
             {
@@ -177,7 +180,7 @@ def load_notionAPI_news_school():
         json.dump(source['results'], f)
 
     for r in source['results']:
-        try :
+        try:
             temp = r['properties']['title']['title']
             title = ''
             for t in temp:
@@ -189,43 +192,45 @@ def load_notionAPI_news_school():
         try:
             course = []
             temp = r['properties']['course']['multi_select']
-            for t in temp :
+            for t in temp:
                 course.append(t['name'])
         except:
             course = None
-        try :
+        try:
             period = r['properties']['period']['rich_text'][0]['plain_text']
         except:
             period = None
         try:
             pic = []
             temp = r['properties']['pic']['files']
-            for t in temp :
+            for t in temp:
                 pic.append(t['name'])
         except:
             pic = None
 
         data_to_html = '<li><h6>' + title + '</h6><ul>'
-        if course != None :
+        if course != None:
             data_to_html += '<li>Courses<ul>'
-            for c in course :
+            for c in course:
                 data_to_html += '<li>' + c + '</li>'
             data_to_html += '</ul></li>'
-        if period != None :
+        if period != None:
             data_to_html += '<li>기간: ' + period + '</li>'
-        if pic != None :
-            for p in pic :
-                data_to_html += '<div><img src="{% get_static_prefix %}image/news/ai/' + p + '" alt="loading"></div>'
+        if pic != None:
+            for p in pic:
+                data_to_html += '<div><img src="{% get_static_prefix %}image/news/ai/' + \
+                    p + '" alt="loading"></div>'
         data_to_html += '</ul></li>'
-        data.append({'date' : date, 'code' : data_to_html})
+        data.append({'date': date, 'code': data_to_html})
     return {
         'statusCode': 200,
         'body': data
     }
 
+
 def load_notionAPI_news_thesis():
     url = f"https://api.notion.com/v1/databases/{Database_ID}/query"
-    
+
     filter = {  # 가져올 데이터 필터
         "or": [
             {
@@ -257,7 +262,7 @@ def load_notionAPI_news_thesis():
         json.dump(source['results'], f)
 
     for r in source['results']:
-        try :
+        try:
             temp = r['properties']['title']['title']
             title = ''
             for t in temp:
@@ -266,42 +271,44 @@ def load_notionAPI_news_thesis():
             title = title + ' (' + date + ')'
         except:
             title = None
-        try :
+        try:
             thesis_name = r['properties']['thesis_name']['rich_text'][0]['plain_text']
         except:
             thesis_name = None
-        try :
+        try:
             publication = r['properties']['publication']['rich_text'][0]['plain_text']
         except:
             publication = None
         try:
             participant = []
             temp = r['properties']['participant']['multi_select']
-            for t in temp :
+            for t in temp:
                 participant.append(t['name'])
         except:
             participant = None
 
         data_to_html = '<li><h6>' + title + '</h6><ul>'
-        if thesis_name != None :
+        if thesis_name != None:
             data_to_html += '<li>' + thesis_name + '</li>'
-        if participant != None :
+        if participant != None:
             data_to_html += '<li>' + ','.join(participant) + '</li>'
-        if participant != None :
+        if participant != None:
             data_to_html += '<li>' + publication + '</li>'
-        if pic != None :
-            for p in pic :
-                data_to_html += '<div><img src="{% get_static_prefix %}image/news/ai/' + p + '" alt="loading"></div>'
+        if pic != None:
+            for p in pic:
+                data_to_html += '<div><img src="{% get_static_prefix %}image/news/ai/' + \
+                    p + '" alt="loading"></div>'
         data_to_html += '</ul></li>'
-        data.append({'date' : date, 'code' : data_to_html})
+        data.append({'date': date, 'code': data_to_html})
     return {
         'statusCode': 200,
         'body': data
     }
 
+
 def load_notionAPI_news_work():
-        url = f"https://api.notion.com/v1/databases/{Database_ID}/query"
-    
+    url = f"https://api.notion.com/v1/databases/{Database_ID}/query"
+
     filter = {  # 가져올 데이터 필터
         "or": [
             {
@@ -333,7 +340,7 @@ def load_notionAPI_news_work():
         json.dump(source['results'], f)
 
     for r in source['results']:
-        try :
+        try:
             temp = r['properties']['title']['title']
             title = ''
             for t in temp:
@@ -342,39 +349,41 @@ def load_notionAPI_news_work():
             title = title + ' (' + date + ')'
         except:
             title = None
-        try :
+        try:
             work_name = r['properties']['work_name']['rich_text'][0]['plain_text']
         except:
             work_name = None
-        try :
+        try:
             period = r['properties']['period']['rich_text'][0]['plain_text']
         except:
             period = None
-        try :
+        try:
             support = r['properties']['support']['rich_text'][0]['plain_text']
         except:
             support = None
 
         data_to_html = '<li><h6>' + title + '</h6><ul>'
-        if work_name != None :
+        if work_name != None:
             data_to_html += '<li>과제명: ' + work_name + '</li>'
-        if period != None :
+        if period != None:
             data_to_html += '<li>기간: ' + period + '</li>'
-        if support != None :
+        if support != None:
             data_to_html += '<li>지원: ' + support + '</li>'
-        if pic != None :
-            for p in pic :
-                data_to_html += '<div><img src="{% get_static_prefix %}image/news/ai/' + p + '" alt="loading"></div>'
+        if pic != None:
+            for p in pic:
+                data_to_html += '<div><img src="{% get_static_prefix %}image/news/ai/' + \
+                    p + '" alt="loading"></div>'
         data_to_html += '</ul></li>'
-        data.append({'date' : date, 'code' : data_to_html})
+        data.append({'date': date, 'code': data_to_html})
     return {
         'statusCode': 200,
         'body': data
     }
 
+
 def load_notionAPI_news_researcher():
     url = f"https://api.notion.com/v1/databases/{Database_ID}/query"
-    
+
     filter = {  # 가져올 데이터 필터
         "or": [
             {
@@ -406,7 +415,7 @@ def load_notionAPI_news_researcher():
         json.dump(source['results'], f)
 
     for r in source['results']:
-        try :
+        try:
             temp = r['properties']['title']['title']
             title = ''
             for t in temp:
@@ -418,35 +427,37 @@ def load_notionAPI_news_researcher():
         try:
             researcher = []
             temp = r['properties']['researcher']['multi_select']
-            for t in temp :
+            for t in temp:
                 researcher.append(t['name'])
         except:
             researcher = None
-        try :
+        try:
             info = r['properties']['info']['rich_text'][0]['plain_text']
         except:
             info = None
 
         data_to_html = '<li><h6>' + title + '</h6><ul>'
-        if researcher != None :
+        if researcher != None:
             data_to_html += '<li>' + ','.join(researcher)
-            if info != None :
+            if info != None:
                 data_to_html += info + '</li>'
-            else :
+            else:
                 data_to_html += '</li>'
-        if pic != None :
-            for p in pic :
-                data_to_html += '<div><img src="{% get_static_prefix %}image/news/ai/' + p + '" alt="loading"></div>'
+        if pic != None:
+            for p in pic:
+                data_to_html += '<div><img src="{% get_static_prefix %}image/news/ai/' + \
+                    p + '" alt="loading"></div>'
         data_to_html += '</ul></li>'
-        data.append({'date' : date, 'code' : data_to_html})
+        data.append({'date': date, 'code': data_to_html})
     return {
         'statusCode': 200,
         'body': data
     }
 
+
 def load_notionAPI_news_etc():
     url = f"https://api.notion.com/v1/databases/{Database_ID}/query"
-    
+
     filter = {  # 가져올 데이터 필터
         "or": [
             {
@@ -478,7 +489,7 @@ def load_notionAPI_news_etc():
         json.dump(source['results'], f)
 
     for r in source['results']:
-        try :
+        try:
             temp = r['properties']['title']['title']
             title = ''
             for t in temp:
@@ -487,35 +498,36 @@ def load_notionAPI_news_etc():
             title = title + ' (' + date + ')'
         except:
             title = None
-        try :
+        try:
             info = r['properties']['info']['rich_text'][0]['plain_text']
         except:
             info = None
         try:
             participant = []
             temp = r['properties']['participant']['multi_select']
-            for t in temp :
+            for t in temp:
                 participant.append(t['name'])
         except:
             participant = None
         try:
             pic = []
             temp = r['properties']['pic']['files']
-            for t in temp :
+            for t in temp:
                 pic.append(t['name'])
         except:
             pic = None
 
         data_to_html = '<li><h6>' + title + '</h6><ul>'
-        if info != None :
+        if info != None:
             data_to_html += '<li>' + info + '</li>'
-        if participant != None :
+        if participant != None:
             data_to_html += '<li>' + ','.join(participant) + '</li>'
-        if pic != None :
-            for p in pic :
-                data_to_html += '<div><img src="{% get_static_prefix %}image/news/ai/' + p + '" alt="loading"></div>'
+        if pic != None:
+            for p in pic:
+                data_to_html += '<div><img src="{% get_static_prefix %}image/news/ai/' + \
+                    p + '" alt="loading"></div>'
         data_to_html += '</ul></li>'
-        data.append({'date' : date, 'code' : data_to_html})
+        data.append({'date': date, 'code': data_to_html})
     return {
         'statusCode': 200,
         'body': data

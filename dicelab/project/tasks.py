@@ -22,6 +22,7 @@ Notion = getattr(settings, 'NOTION_VERSION', 'Notion-version')
 def set_data():
     p_data = load_notionAPI_project()['body']
     ai_data = load_notionAPI_ai_challenge()['body']
+    # 타이틀 기준으로 해서 SomeModel.objects.filter(id=id).delete() 로 객체삭제하기
     for d in p_data:
         Project.objects.update_or_create(
             title=d['title'], date=d['date'], status=d['status'], assign=d['assign'], area=d['area'], label=d['label'])

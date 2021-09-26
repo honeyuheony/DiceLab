@@ -6,27 +6,35 @@
         <h4>Graduate Students</h4>
     </div>
     <div class="Contents">
-        {% for s in graduate %}
+        {% for g in graduated %}
+        {% if g.admission_date|length %}
             {% cycle '<div class="row">' '' %}
             <div class="col-lg-2 col-md-2 col-sm-2">
-                <img src="{% get_static_prefix %}image/{{s.name}}.jpg" alt="loading" width="100%" class="">
+                <img src="{% get_static_prefix %}image/{{g.pic}}" alt="loading" width="100%" class="">
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4">
                 <ul>
                     <li>
-                        <p>{{s.name}},{{s.course}} course,{{s.admission_date}}</p>
+                        <p><strong>{{g.name}}</strong>, {{g.course}} course,{{g.admission_date}}</p>
                         <ul>
                             <li>
                                 <p>Research Interests</p>
                                 <ul>
-                                    {% for r in s.research_interests %}
+                                    {% for r in g.research_interests.all %}
                                     <li>{{r}}</li>
                                     {% endfor %}
                                 </ul>
                             </li>
                             <li>
-                                <p>Email: {{s.email}}</p>
+                                <p>Email: {{g.email}}</p>
                             </li>
+                            {% if g.linked.all|length %}
+                            <li><p>
+                                {% for l in g.linked.all %}
+                                <a href="{{l.link}}">[{{l.title}}]</a>
+                                {% endfor %}
+                            </p></li>
+                            {% endif %}
                         </ul>
                     </li>
                 </ul>
@@ -37,6 +45,7 @@
             {% else %}
                 {% cycle '' '</div>' %}
             {% endif %}
+        {% endif %}
         {% endfor %} 
     </div>
 </div>
@@ -46,28 +55,35 @@
         <h4>Ungraduate Students</h4>
     </div>
     <div class="Contents">
-        {% for s in ungraduate %}
+        {% for g in graduated %}
+        {% if not g.admission_date|length %}
             {% cycle '<div class="row">' '' %}
             <div class="col-lg-2 col-md-2 col-sm-2">
-                <img src="{% get_static_prefix %}image/{{s.name}}.jpg" alt="loading" width="100%" height="100%" class="">
-                
+                <img src="{% get_static_prefix %}image/{{g.pic}}" alt="loading" width="100%" class="">
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4">
                 <ul>
                     <li>
-                        <p>{{s.name}},{{s.course}}</p>
+                        <p><strong>{{g.name}}</strong>, {{g.course}} course,{{g.admission_date}}</p>
                         <ul>
                             <li>
                                 <p>Research Interests</p>
                                 <ul>
-                                    {% for r in s.research_interests %}
+                                    {% for r in g.research_interests.all %}
                                     <li>{{r}}</li>
                                     {% endfor %}
                                 </ul>
                             </li>
                             <li>
-                                <p>Email: {{s.email}}</p>
+                                <p>Email: {{g.email}}</p>
                             </li>
+                            {% if g.linked.all|length %}
+                            <li><p>
+                                {% for l in g.linked.all %}
+                                <a href="{{l.link}}">[{{l.title}}]</a>
+                                {% endfor %}
+                            </p></li>
+                            {% endif %}
                         </ul>
                     </li>
                 </ul>
@@ -78,6 +94,7 @@
             {% else %}
                 {% cycle '' '</div>' %}
             {% endif %}
+        {% endif %}
         {% endfor %}
         <br>
         <ul>
@@ -85,15 +102,30 @@
                 <p>Undergraduate Research Program (URP)</p>
                 <ul>
                     <li>
-                        <p>4th grade: {{urp.4_1}} / {{urp.4_2}}</p>
+                        <p>
+                            4th grade:
+                            {% for a in alumni %}
+                            {% if a.course == '4th grade' %}
+                                {{a}} 
+                            {% endif %}
+                            {% endfor %}
+                        </p>
                     </li>
                     <li>
-                        <p>3th grade: {{urp.3_1}}</p>
+                        <p>
+                        3th grade:
+                        {% for a in alumni %}
+                        {% if a.course == '3rd grade' %}
+                            {{a}} 
+                        {% endif %}
+                        {% endfor %}
+                        </p>
                     </li>
                 </ul>
             </li>
         </ul>
         <br>
+
     </div>
 </div>
 
@@ -115,13 +147,34 @@
                 <p>URP Students</p>
                 <ul>
                     <li>
-                        <p>2022: {{alumni.2022_1}} / {{alumni.2022_2}} / {{alumni.2022_3}}</p>
+                        <p>
+                            2022: 
+                            {% for a in alumni %}
+                            {% if a.graduate_year == '2022' %}
+                                {{a}} 
+                            {% endif %}
+                            {% endfor %}
+                        </p>
                     </li>
                     <li>
-                        <p>2021: {{alumni.2021_1}} / {{alumni.2021_2}}</p>
+                        <p>
+                            2021: 
+                            {% for a in alumni %}
+                            {% if a.graduate_year == '2021' %}
+                                {{a}} 
+                            {% endif %}
+                            {% endfor %}
+                        </p>
                     </li>
                     <li>
-                        <p>2020: {{alumni.2020_1}} / {{alumni.2020_2}} / {{alumni.2020_3}}</p>
+                        <p>
+                            2020: 
+                            {% for a in alumni %}
+                            {% if a.graduate_year == '2020' %}
+                                {{a}} 
+                            {% endif %}
+                            {% endfor %}
+                        </p>
                     </li>
                 </ul>
             </li>

@@ -29,7 +29,8 @@ def set_data():
         c, created = Course.objects.update_or_create(
             code=d['code'], name=d['name'])
         for s in d['semester']:
-            obj, created = Semester.objects.get_or_create(title=s)
+            obj, created = Semester.objects.get_or_create(
+                year=s[0:4], title=s[5:])
             c.semester.add(obj)
             c.save()
 

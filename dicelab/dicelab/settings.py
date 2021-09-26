@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-3&gq5bmx*t^=x-5u*0u)9yr^^8het2($ijf##z5vt(zzef6up8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -165,8 +165,6 @@ with open(SECRET_FILE) as token:
     secrets = json.loads(token.read())
 
 # Secret.json 데이터 가공
-
-
 def get_secret(setting, secrets=secrets):
     try:
         return secrets[setting]
@@ -199,68 +197,53 @@ NEWS_RESEARCHER_DATABASE_ID = get_secret('news_researcher_database_ID')
 NEWS_ETC_DATABASE_ID = get_secret('news_etc_database_ID')
 
 # celery
-# CELERY_BROKER_URL = 'redis://127.0.0.1:6379/'
-# CELERY_ACCEPT_CONTENT = ['json']
-# CELERY_TASK_SERIALIZER = 'json'
-# CELERY_TIMEZONE = 'Asia/Seoul'
 CELERY_BROKER_URL = 'redis://localhost:6379'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = TIME_ZONE
+CELERY_TIMEZONE = TIME_ZONE
 
 CELERY_BEAT_SCHEDULE = {
     'news_load': {
         'task': 'news.tasks.set_data',
-        'schedule': crontab(hour='*/1'),
+        'schedule': crontab(minute = 1, hour='*/1'),
         'args': ()
     },
     'course_load': {
         'task': 'course.tasks.set_data',
-        'schedule': crontab(hour='*/1'),
+        'schedule': crontab(minute = 3, hour='*/1'),
         'args': ()
     },
     'member_load': {
         'task': 'member.tasks.set_data',
-        'schedule': crontab(hour='*/1'),
+        'schedule': crontab(minute = 5, hour='*/1'),
         'args': ()
     },
     'professor_load': {
         'task': 'professor.tasks.set_data',
-        'schedule': crontab(hour='*/1'),
+        'schedule': crontab(minute = 7, hour='*/1'),
         'args': ()
     },
     'project_load': {
         'task': 'project.tasks.set_data',
-        'schedule': crontab(hour='*/1'),
+        'schedule': crontab(minute = 9, hour='*/1'),
         'args': ()
     },
     'publication_load': {
         'task': 'publication.tasks.set_data',
-        'schedule': crontab(hour='*/1'),
+        'schedule': crontab(minute = 11, hour='*/1'),
         'args': ()
     },
     'school_load': {
         'task': 'school.tasks.set_data',
-        'schedule': crontab(hour='*/1'),
+        'schedule': crontab(minute = 13, hour='*/1'),
         'args': ()
     },
     'seminal_load': {
         'task': 'seminal.tasks.set_data',
-        'schedule': crontab(hour='*/1'),
+        'schedule': crontab(minute = 15, hour='*/1'),
         'args': ()
     }
 }
-# 
-
-# cashes
-# CACHES = {
-#     'default': {
-#         'BACKEND': 'django_redis.cache.RedisCache',
-#         'LOCATION': 'redis://127.0.0.1:6379',
-#         "OPTIONS": {
-#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
-#         }
-#     },
-# }

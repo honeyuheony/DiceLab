@@ -22,13 +22,34 @@ Notion = getattr(settings, 'NOTION_VERSION', 'Notion-version')
 def set_data():
     p_data = load_notionAPI_project()['body']
     ai_data = load_notionAPI_ai_challenge()['body']
-    # 타이틀 기준으로 해서 SomeModel.objects.filter(id=id).delete() 로 객체삭제하기
+    temp = []
     for d in p_data:
-        Project.objects.update_or_create(
-            title=d['title'], date=d['date'], status=d['status'], assign=d['assign'], area=d['area'], label=d['label'])
+        p, created = Project.objects.update_or_create(title=d['title'])
+        p.date = d['date']
+        p.status = d['status']
+        p.assign = d['assign']
+        p.area = d['area']
+        p.label = d['label']
+        p.save()
+        temp.append(d['title'])
     for d in ai_data:
-        AI_challenge.objects.update_or_create(
-            title=d['title'], date=d['date'], status=d['status'], assign=d['assign'], area=d['area'], label=d['label'], award=d['award'], link=d['link'])
+        a, created = AI_challenge.objects.update_or_create(title=d['title'])
+        a.date = d['date']
+        a.status = d['status']
+        a.assign = d['assign']
+        a.area = d['area']
+        a.label = d['label']
+        a.award = d['award']
+        a.link = d['link']
+        a.save()
+        temp.append(d['title'])
+    # Data Delete
+    for db in Project.objects.all():
+        if not db.title in temp:
+            Project.objects.get(title=db.title).delete()
+    for db in AI_challenge.objects.all():
+        if not db.title in temp:
+            AI_challenge.objects.get(title=db.title).delete()
 
 
 def load_notionAPI_ai_challenge():

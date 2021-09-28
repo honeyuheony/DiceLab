@@ -22,13 +22,22 @@ headers = {
 @shared_task
 def set_data():
     data = load_notionAPI_school()['body']
+    # Data Create or Update
+    temp = []
     for d in data:
         school, created = School.objects.update_or_create(title=d['title'])
         for l, u in d['lecture']:
             lecture, created = Lecture.objects.update_or_create(
-                name=l, url=u)
+                name=l)
+            lecture.url = u
+            lecture.save()
             school.lecture.add(lecture)
             school.save()
+        temp.append(d['title'])
+    # Data Delete
+    for db in School.objects.all():
+        if not db.title in temp:
+            School.objects.get(title=db.title).delete()
 
 
 def load_notionAPI_school():

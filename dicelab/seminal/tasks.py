@@ -23,9 +23,22 @@ headers = {
 @shared_task
 def set_data():
     data = load_notionAPI_seminal()['body']
+    temp = []
     for d in data:
-        Seminal.objects.update_or_create(
-            title=d['title'], date=d['date'], speaker=d['speaker'], source=d['source'], year=d['year'], area=d['area'], paper=d['paper'])
+        s, created = Seminal.objects.update_or_create(
+            title=d['title'])
+        s.date = d['date']
+        s.speaker = d['speaker']
+        s.source = d['source']
+        s.year = d['year']
+        s.area = d['area']
+        s.paper = d['paper']
+        s.save()
+        temp.append(d['title'])
+    # Data Delete
+    for db in Seminal.objects.all():
+        if not db.title in temp:
+            Seminal.objects.get(title=db.title).delete()
 
 
 def load_notionAPI_seminal():
@@ -43,7 +56,7 @@ def load_notionAPI_seminal():
                     "select": {
                         "equals": "To Review"
                     }
-            }
+                }
         ]
     }
     sorts = [  # 정렬

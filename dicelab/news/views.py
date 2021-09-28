@@ -4,6 +4,7 @@ from .models import News
 
 # Create your views here.
 
+
 def news(request):
     # set_data()
     news = News.objects.all().order_by('-date')

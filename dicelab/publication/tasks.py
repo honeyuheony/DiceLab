@@ -21,12 +21,36 @@ Notion = getattr(settings, 'NOTION_VERSION', 'Notion-version')
 def set_data():
     pub_data = load_notionAPI_publication()['body']
     pat_data = load_notionAPI_patents()['body']
+    # Data Create or Update
+    temp = []
     for d in pub_data:
-        Publication.objects.update_or_create(
-            title=d['title'], label=d['label'], paper_link=d['paper_link'], assign=d['assign'], thesis=d['thesis'], year=d['year'])
+        pub, created = Publication.objects.update_or_create(
+            title=d['title'])
+        pub.label = d['label']
+        pub.paper_link = d['paper_link']
+        pub.assign = d['assign']
+        pub.thesis = d['thesis']
+        pub.year = d['year']
+        pub.save()
+        temp.append(d['title'])
+
     for d in pat_data:
-        Patents.objects.update_or_create(
-            title=d['title'], country=d['country'], num=d['num'], year=d['year'], assign=d['assign'])
+        pat, created = Patents.objects.update_or_create(
+            title=d['title'])
+        pat.country = d['country']
+        pat.num = d['num']
+        pat.assign = d['assign']
+        pat.year = d['year']
+        pat.save()
+        temp.append(d['title'])
+
+    # Data Delete
+    for db in Publication.objects.all():
+        if not db.title in temp:
+            Publication.objects.get(title=db.title).delete()
+    for db in Patents.objects.all():
+        if not db.title in temp:
+            Patents.objects.get(title=db.title).delete()
 
 
 def load_notionAPI_publication():

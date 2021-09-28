@@ -25,14 +25,23 @@ headers = {
 @shared_task
 def set_data():
     data = load_notionAPI_course()['body']
+    temp = []
+    # Data Create or Update
     for d in data:
         c, created = Course.objects.update_or_create(
-            code=d['code'], name=d['name'])
+            code=d['code'])
+        c.name = (d['name'])
+        c.save()
         for s in d['semester']:
             obj, created = Semester.objects.get_or_create(
                 year=s[0:4], title=s[5:])
             c.semester.add(obj)
             c.save()
+        temp.append(d['code'])
+    # Data Delete
+    for db in Course.objects.all():
+        if not db.code in temp:
+            Course.objects.get(code=db.code).delete()
 
 
 def load_notionAPI_course():

@@ -37,12 +37,19 @@ def set_data():
     datas = [load_notionAPI_news_ai()['body'], load_notionAPI_news_school()['body'],
     load_notionAPI_news_thesis()['body'], load_notionAPI_news_work()['body'],
     load_notionAPI_news_researcher()['body'], load_notionAPI_news_etc()['body']]
+    temp = []
     for data in datas:
         for d in data :
             c, created = News.objects.update_or_create(
-                date=d['date'], htmldata=d['code'])
-
-# Create your views here.
+                title=d['title'])
+            c.date = d['date']
+            c.htmldata = d['htmldata']
+            c.save()
+            temp.append(d['title'])
+    # Data Delete
+    for db in News.objects.all():
+        if not db.title in temp:
+            News.objects.get(title=db.title).delete()
 
 
 def load_notionAPI_news_ai():
@@ -137,7 +144,7 @@ def load_notionAPI_news_ai():
             for p in pic :
                 data_to_html += '<div><img src="../static/image/' + p + '" alt="loading"></div>'
         data_to_html += '</ul></li>'
-        data.append({'date': date, 'code': data_to_html})
+        data.append({'title' : title, 'date': date, 'htmldata': data_to_html})
     return {
         'statusCode': 200,
         'body': data
@@ -217,7 +224,7 @@ def load_notionAPI_news_school():
             for p in pic :
                 data_to_html += '<div><img src="../static/image/' + p + '" alt="loading"></div>'
         data_to_html += '</ul></li>'
-        data.append({'date': date, 'code': data_to_html})
+        data.append({'title' : title, 'date': date, 'htmldata': data_to_html})
     return {
         'statusCode': 200,
         'body': data
@@ -300,7 +307,7 @@ def load_notionAPI_news_thesis():
             for p in pic :
                 data_to_html += '<div><img src="../static/image/' + p + '" alt="loading"></div>'
         data_to_html += '</ul></li>'
-        data.append({'date': date, 'code': data_to_html})
+        data.append({'title' : title, 'date': date, 'htmldata': data_to_html})
     return {
         'statusCode': 200,
         'body': data
@@ -380,7 +387,7 @@ def load_notionAPI_news_work():
             for p in pic :
                 data_to_html += '<div><img src="../static/image/' + p + '" alt="loading"></div>'
         data_to_html += '</ul></li>'
-        data.append({'date': date, 'code': data_to_html})
+        data.append({'title' : title, 'date': date, 'htmldata': data_to_html})
     return {
         'statusCode': 200,
         'body': data
@@ -458,7 +465,7 @@ def load_notionAPI_news_researcher():
             for p in pic :
                 data_to_html += '<div><img src="../static/image/' + p + '" alt="loading"></div>'
         data_to_html += '</ul></li>'
-        data.append({'date': date, 'code': data_to_html})
+        data.append({'title' : title, 'date': date, 'htmldata': data_to_html})
     return {
         'statusCode': 200,
         'body': data
@@ -537,7 +544,7 @@ def load_notionAPI_news_etc():
             for p in pic :
                 data_to_html += '<div><img src="../static/image/' + p + '" alt="loading"></div>'
         data_to_html += '</ul></li>'
-        data.append({'date': date, 'code': data_to_html})
+        data.append({'title' : title, 'date': date, 'htmldata': data_to_html})
     return {
         'statusCode': 200,
         'body': data

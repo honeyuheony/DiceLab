@@ -15,8 +15,19 @@
             <div class="col-lg-4 col-md-4 col-sm-4">
                 <ul>
                     <li>
-                        <p><strong>{{g.name}}</strong>, {{g.course}} course,{{g.admission_date}}</p>
+                        <p>
+                            {% if g.course|length and g.admission_date|length %}
+                            <strong>{{g.name}}</strong>, {{g.course}} course, {{g.admission_date}}
+                            {% elif g.course|length %}
+                            <strong>{{g.name}}</strong>, {{g.course}} course
+                            {% elif g.admission_date|length %}
+                            <strong>{{g.name}}</strong>, {{g.admission_date}}
+                            {% else %}
+                            <strong>{{g.name}}</strong>
+                            {% endif %}
+                        </p>
                         <ul>
+                            {% if g.research_interests.all|length %}
                             <li>
                                 <p>Research Interests</p>
                                 <ul>
@@ -25,6 +36,7 @@
                                     {% endfor %}
                                 </ul>
                             </li>
+                            {% endif %}
                             <li>
                                 <p>Email: {{g.email}}</p>
                             </li>
@@ -64,8 +76,15 @@
             <div class="col-lg-4 col-md-4 col-sm-4">
                 <ul>
                     <li>
-                        <p><strong>{{g.name}}</strong>, {{g.course}} course,{{g.admission_date}}</p>
+                        <p>
+                            {% if g.course|length %}
+                            <strong>{{g.name}}</strong>, {{g.course}}
+                            {% else %}
+                            <strong>{{g.name}}</strong>
+                            {% endif %}
+                        </p>
                         <ul>
+                            {% if g.research_interests.all|length %}
                             <li>
                                 <p>Research Interests</p>
                                 <ul>
@@ -74,6 +93,7 @@
                                     {% endfor %}
                                 </ul>
                             </li>
+                            {% endif %}
                             <li>
                                 <p>Email: {{g.email}}</p>
                             </li>

@@ -35,12 +35,9 @@ def set_data():
         g, created = Graduated.objects.update_or_create(
             name=d['name'])
         g.course = d['course']
-        if d['admission_date'] != None:
-            g.admission_date = d['admission_date']
-        if d['email'] != None:
-            g.email = d['email']
-        if d['pic'] != None:
-            g.pic = d['pic']
+        g.admission_date = d['admission_date']
+        g.email = d['email']
+        g.pic = d['pic']
         for r in d['research_interests']:
             obj, created = Research_interests.objects.get_or_create(title=r)
             g.research_interests.add(obj)
@@ -79,8 +76,8 @@ def load_notionAPI_member_graduate():
     filter = {  # 가져올 데이터 필터
         "or": [
             {
-                "property": "course",
-                "select": {
+                "property": "name",
+                "text": {
                     "is_not_empty": True
                 }
             }
@@ -113,17 +110,23 @@ def load_notionAPI_member_graduate():
             name = r['properties']['name']['title'][0]['plain_text']
         except:
             continue
-        course = r['properties']['course']['select']['name']
+        try:
+            course = r['properties']['course']['select']['name']
+        except:
+            course = ''
         try:
             admission_date = r['properties']['admission_date']['select']['name']
         except:
-            admission_date = None
-        research_interests = [l['name']
+            admission_date = ''
+        try:
+            research_interests = [l['name']
                               for l in r['properties']['research_interests']['multi_select']]
+        except:
+            research_interests = []
         try:
             email = r['properties']['email']['email'].replace("@", "'at'")
         except:
-            email = None
+            email = ''
         links = ''
         try:
             temp = r['properties']['linked']['rich_text']
@@ -139,11 +142,11 @@ def load_notionAPI_member_graduate():
                     link_content.append(link)
             linked = dict(zip(link_title, link_content))
         except:
-            linked = None
+            linked = {}
         try:
             pic = r['properties']['pic']['files'][0]['name']
         except:
-            pic = None
+            pic = ''
 
         data.append({
             'name': name,

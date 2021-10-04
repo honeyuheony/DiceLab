@@ -9,16 +9,17 @@
     max-width: 380px;
     outline: none;
     overflow: hidden;
-    padding: 16px 12px;
     text-decoration: none;
     text-overflow: ellipsis;
     vertical-align: middle;
+    font-size: 20px;
+    font-weight: 600;
 }
 
 .category {
-    /* display: table-cell; */
     text-align: right;
     vertical-align: middle;
+    margin-left: auto;
 }
 
 .navbar {
@@ -27,10 +28,23 @@
     margin: 0px;
 }
 
+.offcanvas-start {
+    width: 250px;
+}
+
 .logo {
     display: inline-block;
     max-height: 56px;
     max-width: 225px;
-    padding: 8px 4px 8px 12px;
+    padding: 9px 0px;
     vertical-align: middle;
+}
+
+.navbar-toggler {
+    padding: 2px 3px;
+    font-size: 1rem;
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 .1rem;
 }

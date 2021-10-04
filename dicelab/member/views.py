@@ -4,7 +4,7 @@ from .models import *
 
 
 def member(request):
-    # set_data()
+    set_data()
     graduated = Graduated.objects.all()
     alumni = Alumni.objects.all()
     return render(request, 'member.html', {'graduated': graduated, 'alumni': alumni})

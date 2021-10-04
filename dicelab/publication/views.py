@@ -4,7 +4,7 @@ from .models import Patents, Publication
 
 
 def publication(request):
-    # set_data()
+    set_data()
     publication = Publication.objects.all()
     patents = Patents.objects.all()
     return render(request, 'publication.html', {'publication': publication, 'patents': patents})

@@ -120,7 +120,7 @@ def load_notionAPI_member_graduate():
             admission_date = ''
         try:
             research_interests = [l['name']
-                              for l in r['properties']['research_interests']['multi_select']]
+                                  for l in r['properties']['research_interests']['multi_select']]
         except:
             research_interests = []
         try:

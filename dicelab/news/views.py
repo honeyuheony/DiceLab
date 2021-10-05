@@ -2,8 +2,6 @@ from django.shortcuts import render
 from .tasks import *
 from .models import News
 
-# Create your views here.
-
 
 def news(request):
     set_data()

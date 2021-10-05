@@ -11,181 +11,191 @@
 {% endblock %}
 
 {% block content %}
+<Style>
+    div.carousel-inner img{
+        margin: auto;
+        top: -100%;
+        bottom: -100%;
+        height: 400px;
+        overflow: hidden;
+    }
+    div.carousel-inner h5{
+        color:azure;
+    }
+</Style>
 
 <div style="padding: 0px 48px;">
     <hr style="width: 100%;">
 </div>
 
-<!-- Introduction -->
-<section style="padding: 24px 0px;">
-    <div style="width: 60%; vertical-align:middle; padding:0px 48px;" class="text-left">
-        <div>
-            <h3 style="color: rgb(131,2,22);">Introduction</h3>
-            <p>
-                We aim at developing deep intelligence systems by understanding various cognitive environments based on
-                language and vision technologies. Our research interests are topics with deep learning, machine
-                learning, natural language processing, computer vision, information retrieval, etc.
-            </p>
-            <br>
-            <ul>
-                <li>
-                    <p>Current Research Topics</p>
-                    <ul>
-                        <li>Text Summarization (NLP)</li>
-                        <li>Text Classification (NLP)</li>
-                        <li>Dialog System (NLP)</li>
-                        <li>Question Answering (NLP)</li>
-                        <li>Visual Question Answering (NLP + CV)</li>
-                        <li>Object Detection & Tracking (CV)</li>
-                        <li>Face Recognition & Masking (CV)</li>
-                        <li>Medical Image Segmentation (CV)</li>
-                        <li>Activity Recognition (CV)</li>
-                        <li>Super-Resolution (CV)</li>
-                    </ul>
-                </li>
-            </ul>
+<div style="display:block">
+    <!-- Introduction -->
+    <section style="padding: 24px 0px;">
+        <div style="vertical-align:middle; width:70%" class="mx-auto">
+            <div>
+                <h3 style="color: rgb(131,2,22);">Introduction</h3>
+                <p style="font-size: 13pt; vertical-align:baseline">
+                    We aim at developing deep intelligence systems by understanding various cognitive environments based
+                    on
+                    language and vision technologies. Our research interests are topics with deep learning, machine
+                    learning, natural language processing, computer vision, information retrieval, etc.
+                </p>
+                <ul>
+                    <li>
+                        <p>Current Research Topics</p>
+                        <ul>
+                            <li>Text Summarization (NLP)</li>
+                            <li>Text Classification (NLP)</li>
+                            <li>Dialog System (NLP)</li>
+                            <li>Question Answering (NLP)</li>
+                            <li>Visual Question Answering (NLP + CV)</li>
+                            <li>Object Detection & Tracking (CV)</li>
+                            <li>Face Recognition & Masking (CV)</li>
+                            <li>Medical Image Segmentation (CV)</li>
+                            <li>Activity Recognition (CV)</li>
+                            <li>Super-Resolution (CV)</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Area Image -->
-<section style="padding: 24px 0px;">
-    <div class="text-center">
-        <img src="{% static 'image/area.png' %}" class="img-fluid" style="width:60%;">
-    </div>
-</section>
+    <!-- Area Image -->
+    <section style="padding: 24px 0px;">
+        <div class="text-center">
+            <img src="{% static 'image/area.png' %}" class="img-fluid" style="width:70%;">
+        </div>
+    </section>
 
-<div style="padding: 0px 48px;">
-    <hr style="width: 100%;">
+    <div style="padding: 0px 48px;">
+        <hr style="width: 100%;">
+    </div>
+
+    <!-- Image Slide -->
+    <section style="padding : 24px 0px;">
+        <div id="carouselExampleDark" class="carousel carousel-dark slide mx-auto" style="width: 70%; height:400px; overflow: hidden;"
+            data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3"
+                    aria-label="Slide 4"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="4"
+                    aria-label="Slide 5"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="5"
+                    aria-label="Slide 6"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="6"
+                    aria-label="Slide 7"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="7"
+                    aria-label="Slide 8"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="8"
+                    aria-label="Slide 9"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{% static 'image/winterschool2020.jpg'%}" class="d-block img-fluid w-100" alt="...">
+                    <div class="carousel-caption d-md-block">
+                        <h5>Winter School 2020</h5>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'image/summerschool2020.png'%}" class="d-block img-fluid w-100" alt="..." style="-ms-interpolation-mode: bicubic;">
+                    <div class="carousel-caption d-md-block">
+                        <h5>Summer School 2020</h5>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'image/미래도전기술경진대회2020.png'%}" class="d-block img-fluid w-100" alt="...">
+                    <div class="carousel-caption d-md-block">
+                        <h5>미래도전기술 경진대회 2020</h5>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'image/winterschool2019.jpg'%}" class="d-block img-fluid w-100" alt="...">
+                    <div class="carousel-caption d-md-block">
+                        <h5>Winter School 2019</h5>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'image/summerschool2019.jpg'%}" class="d-block img-fluid w-100" alt="...">
+                    <div class="carousel-caption d-md-block">
+                        <h5>Summer School 2019</h5>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'image/aigrandchallenge2019.jpg'%}" class="d-block img-fluid w-100" alt="...">
+                    <div class="carousel-caption d-md-block">
+                        <h5>AI Grand Challenge 2019</h5>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'image/acl2019.jpg'%}" class="d-block img-fluid w-100" alt="...">
+                    <div class="carousel-caption d-md-block">
+                        <h5>ACL 2019</h5>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'image/winterschool2018.jpg'%}" class="d-block img-fluid w-100" alt="...">
+                    <div class="carousel-caption d-md-block">
+                        <h5>Winter School 2018</h5>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'image/summerschool2018.jpg'%}" class="d-block img-fluid w-100" alt="...">
+                    <div class="carousel-caption d-md-block">
+                        <h5>Summer School 2018</h5>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Recruit -->
+    <section style="padding : 24px 0px;">
+        <div style="width: 70%; vertical-align:middle;" class="text-left mx-auto">
+            <div>
+                <h3 style="color: rgb(131,2,22); padding : 10px 0px;">Recruiting</h3>
+                <span>I'm seeking self-motivated MS and PhD students who will perform research for deep learning,
+                    machine
+                    learning, natural language processing, computer vision, information retrieval, etc. Please feel free
+                    to
+                    contact me if you are interested in those areas ^o^. </span>
+            </div>
+        </div>
+    </section>
+
+    <div style="padding: 0px 48px;">
+        <hr style="width: 100%;">
+    </div>
+
+    <!-- Location -->
+    <section style="padding : 24px 0px; display:inline-block">
+        <div style="width: 70%; vertical-align:middle;" class="text-left mx-auto">
+            <div>
+                <h3 style="color: rgb(131,2,22); padding : 10px 0px;">Location</h3>
+                <ul>
+                    <li>Professor office: Room 434</li>
+                    <li>Student office: Room 412 </li>
+                    <li>Address: Engineering building 2, 1600, Chungjeol-ro, Byeongcheon-myeon, Dongnam-gu, Cheonan-si,
+                        Chungcheongnam-do 31253 Republic of Korea </li>
+                </ul>
+            </div>
+        </div>
+    </section>
 </div>
-
-<!-- Image Slide -->
-<section style="padding : 24px 0px;">
-    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
-                aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
-                aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
-                aria-label="Slide 3"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3"
-                aria-label="Slide 4"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="4"
-                aria-label="Slide 5"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="5"
-                aria-label="Slide 6"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="6"
-                aria-label="Slide 7"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="7"
-                aria-label="Slide 8"></button>
-        </div>
-        <div class="carousel-inner text-center">
-            <div class="carousel-item active">
-                <img src="{% static 'image/winterschool2020.jpg'%}" class="d-block img-fluid" style="width: 80%;"
-                    alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5 style="color: antiquewhite;">Winter School 2020</h5>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="{% static 'image/summerschool2020.png'%}" class="d-block img-fluid"
-                    style="width: 80%; height: 400px;" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5 style="color: antiquewhite;">Summer School 2020</h5>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="{% static 'image/미래도전기술경진대회2020.png'%}" class="d-block img-fluid" style="width: 80%;"
-                    alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5 style="color: antiquewhite;">미래도전기술 경진대회 2020</h5>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="{% static 'image/winterschool2019.jpg'%}" class="d-block img-fluid" style="width: 80%;"
-                    alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5 style="color: antiquewhite;">Winter School 2019</h5>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="{% static 'image/summerschool2019.jpg'%}" class="d-block img-fluid" style="width: 80%;"
-                    alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5 style="color: antiquewhite;">Summer School 2019</h5>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="{% static 'image/aigrandchallenge2019.jpg'%}" class="d-block img-fluid" style="width: 80%;"
-                    alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5 style="color: antiquewhite;">AI Grand Challenge 2019</h5>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="{% static 'image/acl2019.jpg'%}" class="d-block img-fluid" style="width: 80%;" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5 style="color: antiquewhite;">ACL 2019</h5>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="{% static 'image/winterschool2018.jpg'%}" class="d-block img-fluid" style="width: 80%;"
-                    alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5 style="color: antiquewhite;">Winter School 2018</h5>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="{% static 'image/summerschool2018.jpg'%}" class="d-block img-fluid" style="width: 80%;"
-                    alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5 style="color: antiquewhite;">Summer School 2018</h5>
-                </div>
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-</section>
-
-<!-- Recruit -->
-<section style="padding : 24px 0px;">
-    <div style="width: 80%; vertical-align:middle; padding:0px 48px;" class="text-left">
-        <div>
-            <h3 style="color: rgb(131,2,22); padding : 10px 0px;">Recruiting</h3>
-            <span>I'm seeking self-motivated MS and PhD students who will perform research for deep learning, machine
-                learning, natural language processing, computer vision, information retrieval, etc. Please feel free to
-                contact me if you are interested in those areas ^o^. </span>
-        </div>
-    </div>
-</section>
-
-<div style="padding: 0px 48px;">
-    <hr style="width: 100%;">   
-</div>
-
-<!-- Location -->
-<section style="padding : 24px 0px; display:inline-block">
-    <div style="width: 80%; vertical-align:middle; padding:0px 48px;" class="text-left">
-        <div>
-            <h3 style="color: rgb(131,2,22); padding : 10px 0px;">Location</h3>
-            <ul>
-                <li>Professor office: Room 434</li>
-                <li>Student office: Room 412 </li>
-                <li>Address: Engineering building 2, 1600, Chungjeol-ro, Byeongcheon-myeon, Dongnam-gu, Cheonan-si, Chungcheongnam-do 31253 Republic of Korea </li>
-            </ul>
-        </div>
-    </div>
-</section>
-
-
-
-
 {% endblock %}

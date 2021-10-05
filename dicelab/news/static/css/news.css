@@ -1,0 +1,22 @@
+.news_img {
+    display: block;
+    width: 100%;
+    margin-left: 10%;
+}
+.news_img img {
+    width: 100%;
+}
+.news_have_pic {
+    display: block;
+}
+@media (min-width: 768px) {
+    .news_img {
+        display: inline-block;
+        width: 40%;
+        margin-left: 0%;
+    }
+    .news_have_pic {
+        display: inline-block;
+        width: 40%;
+    }
+}

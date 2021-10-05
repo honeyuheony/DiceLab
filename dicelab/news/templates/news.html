@@ -1,6 +1,7 @@
 {% extends 'index.html' %}
 {% load static %}
 {% block content %}
+<link rel="stylesheet" type='text/css' href="{% static 'css/news.css' %}">
 <div class="News">
     <div class="Category">
         <h4>News</h4>
@@ -8,8 +9,10 @@
     <div class="Contents">
         <ul>
             {% for n in news %}
+            <section style="background-size: cover; display: table; position: relative; table-layout: fixed; width: 100%;">
                 {{n.htmldata|safe}}
                 <br><br>
+            </section>
             {% endfor %}
         </ul>
     </div>

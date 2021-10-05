@@ -83,7 +83,7 @@ def load_notionAPI_news_ai():
     source: Dict = loads(response.data.decode('utf-8'))  # 자료형 명시
 
     data = []
-    for r in source['results']:
+    for n, r in enumerate(source['results']):
         try:
             temp = r['properties']['title']['title']
             title = ''
@@ -127,9 +127,11 @@ def load_notionAPI_news_ai():
             for t in temp:
                 pic.append(t['name'])
         except:
-            pic = None
-
-        data_to_html = '<li><h6>' + title + '</h6><ul>'
+            pic = []
+        if len(pic):
+            data_to_html = '<div class="news_have_pic"><li><h6>' + title + '</h6><ul>'
+        else :
+            data_to_html = '<div style="width:100%;"><li><h6>' + title + '</h6><ul>'
         if where != None:
             data_to_html += '<li>' + where + '</li>'
         if participant != None:
@@ -140,11 +142,41 @@ def load_notionAPI_news_ai():
         else :
             for s, r in zip(subject, result) :
                 data_to_html += '<li>' + s + ' - ' + r + '</li>'
-        if pic != None :
-            for p in pic :
-                data_to_html += '<div><img src="../static/image/' + p + '" alt="loading"></div>'
-        data_to_html += '</ul></li>'
+        data_to_html += '</ul></li></div>'
+        
+        if len(pic) :
+            if len(pic) == 1 :
+                for p in pic :
+                    data_to_html += '<div class="news_img"><img src="../static/image/' + p + '" alt="loading"></div>'
+            else :
+                data_to_html += '</ul></li></div>'
+                data_to_html += f'<div id="carouselExampleDark_ai{str(n+1)}" class="carousel carousel-dark slide mx-auto news_have_pic"'
+                data_to_html += 'style="overflow: hidden;"data-bs-ride="carousel">'
+                data_to_html += '<div class="carousel-indicators">'
+                for i, p in enumerate(pic) :
+                    active = 'class="active"'
+                    if i :
+                        active = ''
+                    data_to_html += f'<button type="button" data-bs-target="#carouselExampleDark_ai{str(n+1)}" data-bs-slide-to="{str(i)}" {active}'
+                    data_to_html += f'aria-current="true" aria-label="Slide {str(i+1)}"></button>'
+                data_to_html += '</div><div class="carousel-inner text-center">'
+                for i, p in enumerate(pic) :
+                    active = 'active'
+                    if not i :
+                        active = ''
+                    data_to_html += f'<div class="carousel-item {active}">'
+                    data_to_html += f'<img class="d-block img-fluid w-100" style="width: 80%; height: 400px;"; src="../static/image/{p}" alt="loading">'
+                    data_to_html += '<div class="carousel-caption d-md-block"></div></div>'
+                data_to_html += '</div>'
+                data_to_html += f'<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark_ai{str(n+1)}" data-bs-slide="prev">'
+                data_to_html += '<span class="carousel-control-prev-icon" aria-hidden="true"></span>'
+                data_to_html += '<span class="visually-hidden">Previous</span></button>'
+                data_to_html += f'<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark_ai{str(n+1)}" data-bs-slide="next">'
+                data_to_html += '<span class="carousel-control-next-icon" aria-hidden="true"></span>'
+                data_to_html += '<span class="visually-hidden">Next</span></button></div>'
         data.append({'title' : title, 'date': date, 'htmldata': data_to_html})
+
+        
     return {
         'statusCode': 200,
         'body': data
@@ -212,7 +244,7 @@ def load_notionAPI_news_school():
         except:
             pic = None
 
-        data_to_html = '<li><h6>' + title + '</h6><ul>'
+        data_to_html = '<div class="news_content"><li><h6>' + title + '</h6><ul>'
         if course != None:
             data_to_html += '<li>Courses<ul>'
             for c in course:
@@ -220,10 +252,11 @@ def load_notionAPI_news_school():
             data_to_html += '</ul></li>'
         if period != None:
             data_to_html += '<li>기간: ' + period + '</li>'
+        
+        data_to_html += '</ul></li></div>'
         if pic != None :
             for p in pic :
-                data_to_html += '<div><img src="../static/image/' + p + '" alt="loading"></div>'
-        data_to_html += '</ul></li>'
+                data_to_html += '<div><img  class="news_img" src="../static/image/' + p + '" alt="loading"></div>'
         data.append({'title' : title, 'date': date, 'htmldata': data_to_html})
     return {
         'statusCode': 200,
@@ -296,17 +329,18 @@ def load_notionAPI_news_thesis():
         except:
             pic = None
 
-        data_to_html = '<li><h6>' + title + '</h6><ul>'
+        data_to_html = '<div class="news_content"><li><h6>' + title + '</h6><ul>'
         if thesis_name != None:
             data_to_html += '<li>' + thesis_name + '</li>'
         if participant != None:
             data_to_html += '<li>' + ','.join(participant) + '</li>'
         if participant != None:
             data_to_html += '<li>' + publication + '</li>'
+        
+        data_to_html += '</ul></li></div>'
         if pic != None :
             for p in pic :
-                data_to_html += '<div><img src="../static/image/' + p + '" alt="loading"></div>'
-        data_to_html += '</ul></li>'
+                data_to_html += '<div><img  class="news_img" src="../static/image/' + p + '" alt="loading"></div>'
         data.append({'title' : title, 'date': date, 'htmldata': data_to_html})
     return {
         'statusCode': 200,
@@ -376,17 +410,18 @@ def load_notionAPI_news_work():
         except:
             pic = None
 
-        data_to_html = '<li><h6>' + title + '</h6><ul>'
+        data_to_html = '<div class="news_content"><li><h6>' + title + '</h6><ul>'
         if work_name != None:
             data_to_html += '<li>과제명: ' + work_name + '</li>'
         if period != None:
             data_to_html += '<li>기간: ' + period + '</li>'
         if support != None:
             data_to_html += '<li>지원: ' + support + '</li>'
+        
+        data_to_html += '</ul></li></div>'
         if pic != None :
             for p in pic :
-                data_to_html += '<div><img src="../static/image/' + p + '" alt="loading"></div>'
-        data_to_html += '</ul></li>'
+                data_to_html += '<div><img  class="news_img" src="../static/image/' + p + '" alt="loading"></div>'
         data.append({'title' : title, 'date': date, 'htmldata': data_to_html})
     return {
         'statusCode': 200,
@@ -454,17 +489,18 @@ def load_notionAPI_news_researcher():
         except:
             pic = None
 
-        data_to_html = '<li><h6>' + title + '</h6><ul>'
+        data_to_html = '<div class="news_content"><li><h6>' + title + '</h6><ul>'
         if researcher != None:
             data_to_html += '<li>' + ','.join(researcher)
             if info != None:
                 data_to_html += info + '</li>'
             else:
                 data_to_html += '</li>'
+        
+        data_to_html += '</ul></li></div>'
         if pic != None :
             for p in pic :
-                data_to_html += '<div><img src="../static/image/' + p + '" alt="loading"></div>'
-        data_to_html += '</ul></li>'
+                data_to_html += '<div><img  class="news_img" src="../static/image/' + p + '" alt="loading"></div>'
         data.append({'title' : title, 'date': date, 'htmldata': data_to_html})
     return {
         'statusCode': 200,
@@ -535,15 +571,16 @@ def load_notionAPI_news_etc():
         except:
             pic = None
 
-        data_to_html = '<li><h6>' + title + '</h6><ul>'
+        data_to_html = '<div class="news_content"><li><h6>' + title + '</h6><ul>'
         if info != None:
             data_to_html += '<li>' + info + '</li>'
         if participant != None:
             data_to_html += '<li>' + ','.join(participant) + '</li>'
+        
+        data_to_html += '</ul></li></div>'
         if pic != None :
             for p in pic :
-                data_to_html += '<div><img src="../static/image/' + p + '" alt="loading"></div>'
-        data_to_html += '</ul></li>'
+                data_to_html += '<div><img  class="news_img" src="../static/image/' + p + '" alt="loading"></div>'
         data.append({'title' : title, 'date': date, 'htmldata': data_to_html})
     return {
         'statusCode': 200,

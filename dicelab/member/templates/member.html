@@ -6,35 +6,62 @@
         font-size: 0.8rem;
     }
 
-    .profile-element {
-        display: inline-block;
-    }
-
     .profile-element img {
         width: 100%;
         height: 100%;
-        min-width: 150px;
-        max-width: 150px;
-        min-height: 190px;
-        max-height: 190px;
-
     }
 
     .profile {
-        min-width: 550px;
-        padding: 40px 2%;
+        display: flex;
+        flex-direction: row;
+        min-height: 200px;
+        min-width: 500px;
+        margin: 40px 1%;
+        border: 0;
+        border-radius: 15px;
+        box-shadow: 0 5px 25px 0 rgba(204, 204, 204, .75);
+        align-items: center;
     }
 
     ul li {
         text-align: left;
     }
 
-    .row {
-        padding: 0px 0px 0px 0px;
+    .profile-image {
+        border-radius: 50%;
+        min-width: 150px;
+        max-width: 150px;
+        min-height: 150px;
+        max-height: 150px;
+        background-position: center;
+        background-size: cover;
+        margin-left: 2%;
     }
 
     .Contents {
-        margin: 3% 0%;
+        display: flex;
+        flex-wrap: wrap;
+        margin: 3% 5%;
+        padding: 0px 0px 0px 0px;
+        width: 100%;
+    }
+
+    @media (min-width:400px) {
+        .Contents {
+            justify-content: space-evenly;
+        }
+    }
+
+    @media (min-width:992px) {
+        .Contents {
+            justify-content:space-evenly;
+        }
+    }
+
+    @media (min-width:1500px) {
+        .Contents {
+            justify-content: space-evenly;
+        }
     }
 </style>
 
@@ -43,12 +70,20 @@
         <h4>Graduate Students</h4>
     </div>
     <div class="Contents">
+        
         {% for g in graduated %}
         {% if g.admission_date|length %}
-        {% cycle '<div class="row justify-content-md-center">' '' %}
-        <div class="col-lg-4 col-md-4 col-sm-1 profile">
-            <div class="profile-element" style=" vertical-align:top">
-                <img src="{% get_static_prefix %}image/{{g.pic}}" alt="loading">
+        <!-- <div class="card" style="width: 18rem;">
+            <img src="{% get_static_prefix %}image/{{g.pic}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div> -->
+        <div class=" profile">
+            <div class="profile-element profile-image"
+                style="background-image:url({% get_static_prefix %}image/{{g.pic}})">
             </div>
             <div class="profile-element">
                 <ul style="margin-bottom: 0px;">
@@ -97,7 +132,6 @@
         {% if forloop.last %}
     </div>
     {% else %}
-    {% cycle '' '</div>' %}
     {% endif %}
     {% endif %}
     {% endfor %}
@@ -111,10 +145,9 @@
     <div class="Contents">
         {% for g in graduated %}
         {% if not g.admission_date|length %}
-        {% cycle '<div class="row justify-content-md-center">' '' %}
-        <div class="col-lg-4 col-md-4 col-sm-1 profile">
-            <div class="profile-element" style=" vertical-align:top">
-                <img src="{% get_static_prefix %}image/{{g.pic}}" alt="loading">
+        <div class="profile">
+            <div class="profile-element profile-image"
+                style="background-image: url({% get_static_prefix %}image/{{g.pic}});">
             </div>
             <div class="profile-element">
                 <ul style="margin-bottom: 0px;">
@@ -154,42 +187,42 @@
                 </ul>
             </div>
         </div>
-       
         {% if forloop.last %}
     </div>
     {% else %}
-    {% cycle '' '</div>' %}
     {% endif %}
     {% endif %}
     {% endfor %}
-    <br>
-    <ul>
-        <li>
-            <p>Undergraduate Research Program (URP)</p>
-            <ul>
-                <li>
-                    <p>
-                        4th grade:
-                        {% for a in alumni %}
-                        {% if a.course == '4th grade' %}
-                        {{a}}
-                        {% endif %}
-                        {% endfor %}
-                    </p>
-                </li>
-                <li>
-                    <p>
-                        3th grade:
-                        {% for a in alumni %}
-                        {% if a.course == '3rd grade' %}
-                        {{a}}
-                        {% endif %}
-                        {% endfor %}
-                    </p>
-                </li>
-            </ul>
-        </li>
-    </ul>
+    <div class="Contents" style="justify-content:left">
+        <ul >
+            <li>
+                <p>Undergraduate Research Program (URP)</p>
+                <ul>
+                    <li>
+                        <p>
+                            4th grade:
+                            {% for a in alumni %}
+                            {% if a.course == '4th grade' %}
+                            {{a}}
+                            {% endif %}
+                            {% endfor %}
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            3th grade:
+                            {% for a in alumni %}
+                            {% if a.course == '3rd grade' %}
+                            {{a}}
+                            {% endif %}
+                            {% endfor %}
+                        </p>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
     <br>
 
 </div>
@@ -199,52 +232,55 @@
     <div class="Category">
         <h4>Alumni</h4>
     </div>
-    <div class="Contents">
-        <ul>
-            <li>
-                <p>Graduate Students</p>
-                <ul>
-                    <li>
-                        <p>Coming in 2022!</p>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <p>URP Students</p>
-                <ul>
-                    <li>
-                        <p>
-                            2022:
-                            {% for a in alumni %}
-                            {% if a.graduate_year == '2022' %}
-                            {{a}}
-                            {% endif %}
-                            {% endfor %}
-                        </p>
-                    </li>
-                    <li>
-                        <p>
-                            2021:
-                            {% for a in alumni %}
-                            {% if a.graduate_year == '2021' %}
-                            {{a}}
-                            {% endif %}
-                            {% endfor %}
-                        </p>
-                    </li>
-                    <li>
-                        <p>
-                            2020:
-                            {% for a in alumni %}
-                            {% if a.graduate_year == '2020' %}
-                            {{a}}
-                            {% endif %}
-                            {% endfor %}
-                        </p>
-                    </li>
-                </ul>
-            </li>
-        </ul>
+    <div class="Contents" style="justify-content:left">
+        <div>
+            <ul>
+                <li>
+                    <p>Graduate Students</p>
+                    <ul>
+                        <li>
+                            <p>Coming in 2022!</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p>URP Students</p>
+                    <ul>
+                        <li>
+                            <p>
+                                2022:
+                                {% for a in alumni %}
+                                {% if a.graduate_year == '2022' %}
+                                {{a}}
+                                {% endif %}
+                                {% endfor %}
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                2021:
+                                {% for a in alumni %}
+                                {% if a.graduate_year == '2021' %}
+                                {{a}}
+                                {% endif %}
+                                {% endfor %}
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                2020:
+                                {% for a in alumni %}
+                                {% if a.graduate_year == '2020' %}
+                                {{a}}
+                                {% endif %}
+                                {% endfor %}
+                            </p>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
     </div>
 </div>
 {% endblock %}

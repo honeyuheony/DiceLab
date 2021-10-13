@@ -34,23 +34,113 @@ headers = {
 
 @shared_task
 def set_data():
-    datas = [load_notionAPI_news_ai()['body'], load_notionAPI_news_school()['body'],
-             load_notionAPI_news_thesis()['body'], load_notionAPI_news_work()[
-        'body'],
-        load_notionAPI_news_researcher()['body'], load_notionAPI_news_etc()['body']]
+    data = load_notionAPI_news()['body']
     temp = []
-    for data in datas:
-        for d in data:
-            c, created = News.objects.update_or_create(
-                title=d['title'])
-            c.date = d['date']
-            c.htmldata = d['htmldata']
-            c.save()
-            temp.append(d['title'])
+    for d in data:
+        c, created = News.objects.update_or_create(
+            title=d['title'], date=d['date'], content=json.dumps(d['content']))
+        c.pic = d['pic']
+        c.save()
+        temp.append([d['title'], d['date'], json.dumps(d['content'])])
     # Data Delete
     for db in News.objects.all():
-        if not db.title in temp:
-            News.objects.get(title=db.title).delete()
+        if not [db.title, db.date, db.content] in temp:
+            News.objects.get(title=db.title, date=db.date,
+                             content=db.content).delete()
+
+
+def get_block(id):
+    url = f"https://api.notion.com/v1/blocks/{id}/children?page_size=100"
+    response = http.request('GET',
+                            url,  # json파일로 인코딩
+                            headers=headers,
+                            retries=False)
+    source: Dict = loads(response.data.decode('utf-8'))  # 자료형 명시
+    page = []
+    for r in source['results']:
+        block = {}
+        if 'bulleted_list_item' in r:
+            block['block'] = r['bulleted_list_item']['text'][0]['plain_text']
+        else:
+            continue
+        if r['has_children']:
+            block['child'] = get_block(r['id'])
+        page.append(block)
+    return page
+
+
+def print_block(data):
+    for d in data:
+        print(d['block'])
+        if 'child' in d:
+            print_block(d['child'])
+
+
+def load_notionAPI_news():
+    news_id = '0b092201e9624c479a71b9ea6433a963'
+    url = f"https://api.notion.com/v1/databases/{news_id}/query"
+
+    filter = {  # 가져올 데이터 필터
+        "or": [
+            {
+                "property": "title",
+                "text": {
+                    "is_not_empty": True
+                }
+            }
+        ]
+    }
+    sorts = [  # 정렬
+        {
+            "property": "date",
+            "direction": "ascending"
+        }
+    ]
+    body = {
+        "filter": filter,
+        "sorts": sorts
+    }
+    response = http.request('POST',
+                            url,
+                            body=json.dumps(body),  # json파일로 인코딩
+                            headers=headers,
+                            retries=False)
+
+    source: Dict = loads(response.data.decode('utf-8'))  # 자료형 명시
+    data = []
+    for r in source['results']:
+        temp = r['properties']['title']['title']
+        title = ''
+        for t in temp:
+            title = title + t["plain_text"]
+
+        try:
+            date = r['properties']['date']['date']['start'].replace('/', '.')
+        except:
+            date = ''
+
+        try:
+            column_type = r['properties']['column_type']['name']
+        except:
+            column_type = ''
+
+        try:
+            page_id = r['id']
+            content = get_block(page_id)
+        except:
+            content = ''
+
+        try:
+            pic = r['properties']['pic']['files'][0]['name']
+        except:
+            pic = ''
+
+        data.append({'title': title, 'date': date,
+                    'column_type': column_type, 'content': content, 'pic': pic})
+    return {
+        'statusCode': 200,
+        'body': data
+    }
 
 
 def load_notionAPI_news_ai():

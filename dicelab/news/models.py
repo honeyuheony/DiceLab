@@ -4,9 +4,11 @@ from django.db import models
 
 
 class News(models.Model):
-    title = models.CharField(max_length=100, default='', primary_key=True)
+    title = models.CharField(max_length=100)
     date = models.CharField(max_length=10)
-    htmldata = models.CharField(max_length=1000)
+    column_type = models.CharField(max_length=20, blank=True)
+    content = models.CharField(max_length=100, blank=True)
+    pic = models.CharField(max_length=20, blank=True)
 
     def __str__(self):
-        return self.title
+        return self.title + self.date

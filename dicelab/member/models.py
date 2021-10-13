@@ -3,6 +3,7 @@ from django.db import models
 
 class Research_interests(models.Model):
     title = models.CharField(max_length=20)
+
     def __str__(self):
         return self.title
 
@@ -16,14 +17,14 @@ class Linked(models.Model):
 
 
 class Graduated(models.Model):
-    name = models.CharField(max_length=10)
+    name = models.CharField(max_length=20)
     course = models.CharField(max_length=30, blank=True)
     admission_date = models.CharField(max_length=10, blank=True)
     research_interests = models.ManyToManyField(
-        Research_interests, related_name='research_interests')
+        Research_interests, related_name='research_interests', blank=True)
     email = models.CharField(max_length=30, blank=True)
     pic = models.CharField(max_length=20, blank=True)
-    linked = models.ManyToManyField(Linked, related_name='linked')
+    linked = models.ManyToManyField(Linked, related_name='linked', blank=True)
 
     def __str__(self):
         return self.name

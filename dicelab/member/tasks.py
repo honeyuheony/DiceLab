@@ -164,7 +164,7 @@ def load_notionAPI_member_graduate():
 
 
 def load_notionAPI_member_alumni():
-    url = f"https://api.notion.com/v1/databases/{Member_Urp_Database_ID}/query"
+    url = f"https://api.notion.com/v1/databases/{Member_Alumni_Database_ID}/query"
     filter = {  # 가져올 데이터 필터
         "or": [
                 {

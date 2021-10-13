@@ -22,9 +22,9 @@ class AI_challenge(models.Model):
     date = models.CharField(max_length=20, null=True)
     status = models.CharField(max_length=20, null=True)
     assign = models.CharField(max_length=50, null=True)
-    area = models.CharField(max_length=50, null=True)
+    area = models.CharField(max_length=200, null=True)
     label = models.CharField(max_length=50, null=True)
-    award = models.CharField(max_length=50, null=True)
+    award = models.CharField(max_length=200, null=True)
     link = models.CharField(max_length=50, null=True)
 
     def __str__(self):

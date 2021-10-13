@@ -62,16 +62,16 @@ def load_notionAPI_ai_challenge():
     filter = {
         "or": [
             {
-                "property": "status",
+                "property": "Status",
                 "select": {
-                            "is_not_empty": True
+                            "equals": "Completed"
                 }
             },
         ]
     }
     sorts = [
         {
-            "property": "date",
+            "property": "Due",
             "direction": "descending"
         }
     ]
@@ -89,17 +89,15 @@ def load_notionAPI_ai_challenge():
     data = []
     # 정규화 및 정제 후 json에 담기
     for r in source['results']:
-        title = r['properties']['title']['title'][0]['plain_text']
-        status = r['properties']['status']['select']['name']
-        label = ', '.join([l['name'] for l in r['properties']['label']
-                          ['multi_select']]) if 'label' in r['properties'] else 'None'
-        assign = ', '.join([l['name'] for l in r['properties']['assign']
-                            ['people']]) if 'assign' in r['properties'] else 'None'
-        date = r['properties']['date']['date']['start'] + \
-            " ~ " + r['properties']['date']['date']['end']
-        link = r['properties']['link']['url'] if 'link' in r['properties'] else 'None'
-        award = r['properties']['award']['rich_text'][0]['plain_text']
-        area = r['properties']['area']['rich_text'][0]['plain_text']
+        title = r['properties']['Title']['title'][0]['plain_text']
+        status = r['properties']['Status']['select']['name']
+        label = r['properties']['Area']['select']['name'] if r['properties']['Area']['select'] else ''
+        assign = ', '.join([l['name'] for l in r['properties']['Assign']
+                            ['people']]) if 'Assign' in r['properties'] else ''
+        date = r['properties']['Due']['date']
+        link = r['properties']['Link']['url'] if 'Link' in r['properties'] else ''
+        award = r['properties']['Award']['rich_text'][0]['plain_text'] if r['properties']['Award']['rich_text'] else ''
+        area = r['properties']['Field']['rich_text'][0]['plain_text'] if r['properties']['Field']['rich_text'] else ''
 
         data.append({
             'title': title,
@@ -128,16 +126,17 @@ def load_notionAPI_project():
     filter = {
         "or": [
             {
-                "property": "Status",
-                "select": {
+                "property": "Project",
+                "text": {
                             "is_not_empty": True
                 }
             },
+            
         ]
     }
     sorts = [
         {
-            "property": "Date",
+            "property": "Due",
             "direction": "descending"
         }
     ]
@@ -157,14 +156,11 @@ def load_notionAPI_project():
     for r in source['results']:
         title = r['properties']['Title']['title'][0]['plain_text']
         status = r['properties']['Status']['select']['name']
-        area = ', '.join([l['name'] for l in r['properties']['area']
-                         ['multi_select']]) if 'area' in r['properties'] else 'None'
-        label = ', '.join([l['name'] for l in r['properties']['label']
-                          ['multi_select']]) if 'label' in r['properties'] else 'None'
-        assign = ', '.join([l['name'] for l in r['properties']['assign']
-                            ['people']]) if 'assign' in r['properties'] else 'None'
-        date = r['properties']['Date']['date']['start'] + \
-            " ~ " + r['properties']['Date']['date']['end']
+        area =  r['properties']['Area']['select']['name'] if r['properties']['Area']['select'] else ''
+        label = r['properties']['Label']['select']['name'] if r['properties']['Label']['select'] else ''
+        assign = ', '.join([l['name'] for l in r['properties']['Assign']
+                            ['people']]) if 'Assign' in r['properties'] else 'None'
+        date = f"{r['properties']['Due']['date']['start']} ~ {r['properties']['Due']['date']['end']}"
 
         data.append({
             'title': title,

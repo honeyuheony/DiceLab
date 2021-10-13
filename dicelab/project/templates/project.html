@@ -67,12 +67,24 @@
                         <li>
                             <p>{{ ai.assign }}</p>
                         </li>
+                        {% if ai.area %}
                         <li>
-                            <p>[{{ai.label}}] {{ai.area}}</p>
+                            <p>{{ai.area}}</p>
+                            {% if ai.award %}
                             <ul>
                                 <li>{{ ai.award }}</li>
                             </ul>
+                            {% endif %}
                         </li>
+                        {% else %}
+                        <li>
+                            {% if ai.award %}
+                            <ul>
+                                <li>{{ ai.award }}</li>
+                            </ul>
+                            {% endif %}
+                        </li>
+                        {% endif %}
                     </ul>
                     {% endif %}
                 </li>

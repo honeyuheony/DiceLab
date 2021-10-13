@@ -77,7 +77,7 @@ def load_notionAPI_school():
                for l in r['properties']['url']['rollup']['array']]
         lecture = zip(lecture, url)
         data.append({
-            'title': titl6e,
+            'title': title,
             'lecture': lecture,
         })
     return {

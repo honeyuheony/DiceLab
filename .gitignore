@@ -230,7 +230,17 @@ cython_debug/
 .history
 .ionide
 
+# celerybeat-schedule
+celerybeat-schedule.bak
+celerybeat-schedule.dat
+celerybeat-schedule.db
+celerybeat-schedule.dir
+
 # Json Secret 제외
 *.json
+
+### Redis ###
+# Ignore redis binary dump (dump.rdb) files
+*.rdb
 
 # End of https://www.toptal.com/developers/gitignore/api/python,visualstudiocode,django

@@ -56,8 +56,8 @@ INSTALLED_APPS = [
     'publication.apps.PublicationConfig',
     # School
     'school.apps.SchoolConfig',
-    # Seminal
-    'seminal.apps.SeminalConfig',
+    # Seminar
+    'seminar.apps.SeminarConfig',
     # Main
     'main.apps.MainConfig',
 ]
@@ -244,8 +244,8 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': crontab(minute=13, hour='*/1'),
         'args': ()
     },
-    'seminal_load': {
-        'task': 'seminal.tasks.set_data',
+    'seminar_load': {
+        'task': 'seminar.tasks.set_data',
         'schedule': crontab(minute=15, hour='*/1'),
         'args': ()
     }

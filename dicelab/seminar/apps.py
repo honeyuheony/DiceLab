@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class SeminalConfig(AppConfig):
+class SeminarConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'seminal'
+    name = 'seminar'

@@ -4,12 +4,12 @@ from typing import Dict
 from json import loads
 from django.conf import settings
 from celery import shared_task
-from .models import Seminal
+from .models import Seminar
 import re
 
 http = urllib3.PoolManager()
-Seminal_Database_ID = getattr(
-    settings, 'SEMINAL_DATABASE_ID', 'Seminal_Database_ID')
+Seminar_Database_ID = getattr(
+    settings, 'SEMINAR_DATABASE_ID', 'Seminar_Database_ID')
 Internal_Integration_Token = getattr(
     settings, 'INTERNAL_INTEGRATION_TOKEN', 'Internal_Integration_Token')
 Notion = getattr(settings, 'NOTION_VERSION', 'Notion-version')
@@ -22,10 +22,10 @@ headers = {
 
 @shared_task
 def set_data():
-    data = load_notionAPI_seminal()['body']
+    data = load_notionAPI_seminar()['body']
     temp = []
     for d in data:
-        s, created = Seminal.objects.update_or_create(
+        s, created = Seminar.objects.update_or_create(
             title=d['title'])
         s.date = d['date']
         s.speaker = d['speaker']
@@ -36,13 +36,13 @@ def set_data():
         s.save()
         temp.append(d['title'])
     # Data Delete
-    for db in Seminal.objects.all():
+    for db in Seminar.objects.all():
         if not db.title in temp:
-            Seminal.objects.get(title=db.title).delete()
+            Seminar.objects.get(title=db.title).delete()
 
 
-def load_notionAPI_seminal():
-    url = f"https://api.notion.com/v1/databases/{Seminal_Database_ID}/query"
+def load_notionAPI_seminar():
+    url = f"https://api.notion.com/v1/databases/{Seminar_Database_ID}/query"
     filter = {  # 가져올 데이터 필터
         "or": [
                 {
@@ -118,7 +118,7 @@ def load_notionAPI_seminal():
             'source': r['properties']['Source']['select']['name'] if not source and 'Source' in r['properties'] else source,
             'year': r['properties']['Year']['number'] if not year and 'Year' in r['properties'] else year,
             'area': ', '.join([l['name'] for l in r['properties']['Label']['multi_select']]) if 'Label' in r['properties'] else '-',
-            'slide': r['properties']["Slide link"]['url'] if 'Slide link' in r['properties'] else '',
+            'paper': r['properties']["Slide link"]['url'] if 'Slide link' in r['properties'] else '',
         })
         if paper:
             data[-1]['paper'] = 'https://scholar.google.com/scholar?hl=ko&q=' + \

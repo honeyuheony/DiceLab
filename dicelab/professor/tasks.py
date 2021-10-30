@@ -3,6 +3,7 @@ from django.conf import settings
 import urllib3
 from typing import Dict
 from json import loads
+import json
 
 http = urllib3.PoolManager()
 Page_ID = getattr(
@@ -20,7 +21,8 @@ headers = {
 
 @shared_task
 def set_data():
-    return load_notionAPI_professor()['body']
+    d = {'body' : load_notionAPI_professor()['body'], 'image' : load_notionAPI_professor()['image']}
+    return d
 
 
 def load_notionAPI_professor():
@@ -31,14 +33,22 @@ def load_notionAPI_professor():
                             retries=False)
     source: Dict = loads(response.data.decode('utf-8'))  # 자료형 명시
     page = []
+    image = 0
+    with open("data.json", "w") as f:
+        json.dump(source, f)
     for r in source['results']:
-        if 'paragraph' in r:
+        if 'image' in r:
+            image += 1
+        elif 'paragraph' in r:
             line = r['paragraph']['text'][0]['plain_text']
             page.append({'text': line, 'is_paragraph': True})
         elif 'bulleted_list_item' in r:
             line = r['bulleted_list_item']['text'][0]['plain_text']
             page.append({'text': line, 'is_paragraph': False})
+        else :
+            continue
     return {
         'statusCode': 200,
-        'body': page
+        'body': page,
+        'image' : image
     }

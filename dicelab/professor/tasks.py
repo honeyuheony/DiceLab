@@ -40,11 +40,17 @@ def load_notionAPI_professor():
         if 'image' in r:
             image += 1
         elif 'paragraph' in r:
-            line = r['paragraph']['text'][0]['plain_text']
-            page.append({'text': line, 'is_paragraph': True})
+            try :
+                line = r['paragraph']['text'][0]['plain_text']
+                page.append({'text': line, 'is_paragraph': True})
+            except :
+                continue
         elif 'bulleted_list_item' in r:
-            line = r['bulleted_list_item']['text'][0]['plain_text']
-            page.append({'text': line, 'is_paragraph': False})
+            try :
+                line = r['bulleted_list_item']['text'][0]['plain_text']
+                page.append({'text': line, 'is_paragraph': False})
+            except:
+                continue
         else :
             continue
     return {

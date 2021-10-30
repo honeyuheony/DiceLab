@@ -10,7 +10,11 @@
         <ul>
             {% for n in news %}
             <section style="background-size: cover; display: table; position: relative; table-layout: fixed; width: 100%;">
+                {% if n.pic|length %}
                 <div class="news_content">
+                {% else %}
+                <div>
+                {% endif %}
                     <li>{{n.title}} ({{n.date}})</li>
                     <ul>
                         {% for content in n.content %}

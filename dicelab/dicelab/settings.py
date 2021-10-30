@@ -186,7 +186,7 @@ def get_secret(setting, secrets=secrets):
 
 # Notion-Version 환경변수
 NOTION_VERSION = '2021-08-16'
-
+NEWS_DATABASE_ID = get_secret('news_Database_ID')
 PAGE_ID = get_secret('Professor_Page_ID')
 COURSE_DATABASE_ID = get_secret('course_database_ID')
 SCHOOL_DATABASE_ID = get_secret('School_Database_ID')

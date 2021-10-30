@@ -11,18 +11,8 @@ from .models import News
 http = urllib3.PoolManager()
 Internal_Integration_Token = getattr(
     settings, 'INTERNAL_INTEGRATION_TOKEN', 'Internal_Integration_Token')
-News_AI_Database_ID = getattr(
-    settings, 'NEWS_AI_DATABASE_ID', 'news_ai_database_ID')
-News_School_Database_ID = getattr(
-    settings, 'NEWS_SCHOOL_DATABASE_ID', 'news_school_database_ID')
-News_Thesis_Database_ID = getattr(
-    settings, 'NEWS_THESIS_DATABASE_ID', 'news_thesis_database_ID')
-News_Work_Database_ID = getattr(
-    settings, 'NEWS_WORK_DATABASE_ID', 'news_work_database_ID')
-News_Researcher_Database_ID = getattr(
-    settings, 'NEWS_RESEARCHER_DATABASE_ID', 'news_researcher_database_ID')
-News_Etc_Database_ID = getattr(
-    settings, 'NEWS_ETC_DATABASE_ID', 'news_etc_database_ID')
+News_Database_ID = getattr(
+    settings, 'NEWS_DATABASE_ID', 'news_database_ID')
 Notion = getattr(settings, 'NOTION_VERSION', 'Notion-version')
 
 headers = {
@@ -77,8 +67,7 @@ def print_block(data):
 
 
 def load_notionAPI_news():
-    news_id = '0b092201e9624c479a71b9ea6433a963'
-    url = f"https://api.notion.com/v1/databases/{news_id}/query"
+    url = f"https://api.notion.com/v1/databases/{News_Database_ID}/query"
 
     filter = {  # 가져올 데이터 필터
         "or": [

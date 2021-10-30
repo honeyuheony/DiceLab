@@ -3,5 +3,6 @@ from .tasks import *
 
 
 def professor(request):
-    page = set_data()
-    return render(request, 'professor.html', {'page': page})
+    page = set_data()['body']
+    image = set_data()['image']
+    return render(request, 'professor.html', {'page': page, 'image' : image})

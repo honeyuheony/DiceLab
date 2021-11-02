@@ -149,7 +149,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'project', 'static'),
     os.path.join(BASE_DIR, 'publication', 'static'),
     os.path.join(BASE_DIR, 'school', 'static'),
-    os.path.join(BASE_DIR, 'seminal', 'static'),
+    os.path.join(BASE_DIR, 'seminar', 'static'),
     os.path.join(BASE_DIR, 'main', 'static'),
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')

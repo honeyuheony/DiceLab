@@ -1,102 +1,36 @@
 {% extends 'index.html' %}
 {% load static %}
 {% block content %}
-<style>
-    p {
-        font-size: 0.8rem;
-    }
-
-    .profile-element img {
-        width: 100%;
-        height: 100%;
-    }
-
-    .profile {
-        display: flex;
-        flex-direction: row;
-        min-height: 200px;
-        min-width: 500px;
-        margin: 40px 1%;
-        border: 0;
-        border-radius: 15px;
-        box-shadow: 0 5px 25px 0 rgba(204, 204, 204, .75);
-        align-items: center;
-    }
-
-    ul li {
-        text-align: left;
-    }
-
-    .profile-image {
-        border-radius: 50%;
-        min-width: 150px;
-        max-width: 150px;
-        min-height: 150px;
-        max-height: 150px;
-        background-position: center;
-        background-size: cover;
-        margin-left: 2%;
-    }
-
-    .Contents {
-        display: flex;
-        flex-wrap: wrap;
-        width: 100%;
-    }
-
-    @media (min-width:400px) {
-        .Contents {
-            justify-content: space-evenly;
-        }
-    }
-
-    @media (min-width:992px) {
-        .Contents {
-            justify-content:space-evenly;
-        }
-    }
-
-    @media (min-width:1500px) {
-        .Contents {
-            justify-content: space-evenly;
-        }
-    }
-</style>
+<link rel="stylesheet" type='text/css' href="{% static 'css/member.css' %}">
 
 <div>
     <div class="Category">
         <h4>Graduate Students</h4>
     </div>
     <div class="Contents">
-        
         {% for g in graduated %}
         {% if g.admission_date|length %}
-        <!-- <div class="card" style="width: 18rem;">
-            <img src="{% get_static_prefix %}image/{{g.pic}}" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div> -->
-        <div class=" profile">
-            <div class="profile-element profile-image"
-                style="background-image:url({% get_static_prefix %}image/{{g.pic}})">
-            </div>
-            <div class="profile-element">
-                <ul style="margin-bottom: 0px;">
-                    <li>
-                        <p>
-                            {% if g.course|length and g.admission_date|length %}
-                            <strong>{{g.name}}</strong>, {{g.course}} course, {{g.admission_date}}
-                            {% elif g.course|length %}
-                            <strong>{{g.name}}</strong>, {{g.course}} course
-                            {% elif g.admission_date|length %}
-                            <strong>{{g.name}}</strong>, {{g.admission_date}}
-                            {% else %}
-                            <strong>{{g.name}}</strong>
-                            {% endif %}
-                        </p>
+        <div class="card profile">
+            <div class="card-inner">
+                <div class="card-front">
+
+                    <div class="profile-element profile-image"
+                        style="background-image:url({% get_static_prefix %}image/{{g.pic}})">
+                    </div>
+                    <h6>
+                        {% if g.course|length and g.admission_date|length %}
+                        <strong>{{g.name}}</strong>, {{g.course}} course, {{g.admission_date}}
+                        {% elif g.course|length %}
+                        <strong>{{g.name}}</strong>, {{g.course}} course
+                        {% elif g.admission_date|length %}
+                        <strong>{{g.name}}</strong>, {{g.admission_date}}
+                        {% else %}
+                        <strong>{{g.name}}</strong>
+                        {% endif %}
+                    </h6>
+                </div>
+                <div class="profile-element card-body card-back">
+                    <ul style="margin-bottom: 0px;">
                         <ul>
                             {% if g.research_interests.all|length %}
                             <li>
@@ -120,11 +54,11 @@
                                     <a href="{{l.link}}">[{{l.title}}]</a>
                                     {% endfor %}
                                 </p>
-                            </li>
-                            {% endif %}
+                                {% endif %}
                         </ul>
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
         {% if forloop.last %}
@@ -143,27 +77,36 @@
     <div class="Contents">
         {% for g in graduated %}
         {% if not g.admission_date|length %}
-        <div class="profile">
-            <div class="profile-element profile-image"
-                style="background-image: url({% get_static_prefix %}image/{{g.pic}});">
-            </div>
-            <div class="profile-element">
-                <ul style="margin-bottom: 0px;">
-                    <li>
-                        <p>
-                            {% if g.course|length %}
-                            <strong>{{g.name}}</strong>, {{g.course}}
-                            {% else %}
-                            <strong>{{g.name}}</strong>
-                            {% endif %}
-                        </p>
+        <div class="card profile">
+            <div class="card-inner">
+                <div class="card-front">
+
+                    <div class="profile-element profile-image"
+                        style="background-image:url({% get_static_prefix %}image/{{g.pic}})">
+                    </div>
+                    <h6>
+                        {% if g.course|length and g.admission_date|length %}
+                        <strong>{{g.name}}</strong>, {{g.course}} course, {{g.admission_date}}
+                        {% elif g.course|length %}
+                        <strong>{{g.name}}</strong>, {{g.course}} course
+                        {% elif g.admission_date|length %}
+                        <strong>{{g.name}}</strong>, {{g.admission_date}}
+                        {% else %}
+                        <strong>{{g.name}}</strong>
+                        {% endif %}
+                    </h6>
+                </div>
+                <div class="profile-element card-body card-back">
+                    <ul style="margin-bottom: 0px;">
                         <ul>
                             {% if g.research_interests.all|length %}
                             <li>
                                 <p>Research Interests</p>
                                 <ul>
                                     {% for r in g.research_interests.all %}
-                                    <li>{{r}}</li>
+                                    <li>
+                                        <p>{{r}}</p>
+                                    </li>
                                     {% endfor %}
                                 </ul>
                             </li>
@@ -178,52 +121,52 @@
                                     <a href="{{l.link}}">[{{l.title}}]</a>
                                     {% endfor %}
                                 </p>
-                            </li>
-                            {% endif %}
+                                {% endif %}
                         </ul>
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-        {% if forloop.last %}
-    </div>
-    {% else %}
-    {% endif %}
-    {% endif %}
-    {% endfor %}
-    <div class="Contents" style="justify-content:left">
-        <ul >
-            <li>
-                <p>Undergraduate Research Program (URP)</p>
-                <ul>
-                    <li>
-                        <p>
-                            4th grade:
-                            {% for a in alumni %}
-                            {% if a.course == '4th grade' %}
-                            {{a}}
-                            {% endif %}
-                            {% endfor %}
-                        </p>
-                    </li>
-                    <li>
-                        <p>
-                            3th grade:
-                            {% for a in alumni %}
-                            {% if a.course == '3rd grade' %}
-                            {{a}}
-                            {% endif %}
-                            {% endfor %}
-                        </p>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </div>
+            {% if forloop.last %}
+        </div>
+        {% else %}
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+        <div class="Contents" style="justify-content:left">
+            <ul>
+                <li>
+                    <p>Undergraduate Research Program (URP)</p>
+                    <ul>
+                        <li>
+                            <p>
+                                4th grade:
+                                {% for a in alumni %}
+                                {% if a.course == '4th grade' %}
+                                {{a}}
+                                {% endif %}
+                                {% endfor %}
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                3th grade:
+                                {% for a in alumni %}
+                                {% if a.course == '3rd grade' %}
+                                {{a}}
+                                {% endif %}
+                                {% endfor %}
+                            </p>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
 
-    <br>
+        <br>
 
-</div>
+    </div>
 </div>
 
 <div>

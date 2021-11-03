@@ -7,39 +7,76 @@
         <h4>News</h4>
     </div>
     <div class="Contents">
-        <ul>
-            {% for n in news %}
-            <section style="background-size: cover; display: table; position: relative; table-layout: fixed; width: 100%;">
-                {% if n.pic|length %}
-                <div class="news_content">
-                {% else %}
-                <div>
-                {% endif %}
-                    <li>{{n.title}} ({{n.date}})</li>
-                    <ul>
-                        {% for content in n.content %}
-                        <li>  
-                            {{content.block}}
-                            {% if content.child|length %}
-                            <ul>
-                                {% for c in content.child %}
-                                <li>{{c.block}}</li>
-                                {% endfor %}
-                            </ul>
+        {% for n in news %}
+        <div class="single-tab-content">
+            <div class="single-item">
+                <div class="type-badge">{{n.column_type}}</div>
+                <h6>{{n.title}}<br>({{n.date}})</h6>
+                <div class="item">
+                    <div class="item-content">
+                        <div class="lower-content clearfix">
+                            <div class="text">
+                                <ul>
+                                    {% for content in n.content %}
+                                    <li>  
+                                        {{content.block}}
+                                        {% if content.child|length %}
+                                        <ul>
+                                            {% for c in content.child %}
+                                            <li style= list-style-type:none;>> {{c.block}}</li>
+                                            {% endfor %}
+                                        </ul>
+                                        {% endif %}
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            {% if n.pic|length %}
+                            <div class="news_img">
+                                <img src="{% get_static_prefix %}image/{{n.pic}}" alt="loading">
+                            </div>
                             {% endif %}
-                        </li>
-                        {% endfor %}
-                    </ul>
-                    <br>
+                        </div>
+                    </div>
                 </div>
-                {% if n.pic|length %}
-                <div class="news_img">
-                    <img src="{% get_static_prefix %}image/{{n.pic}}" alt="loading">
-                </div>
-                {% endif %}
-            </section>
-            {% endfor %}
-        </ul>
+            </div>
+        </div>
+        {% endfor %}
     </div>
 </div>
+
 {% endblock %}
+
+<!-- <ul>
+    {% for n in news %}
+    <section style="background-size: cover; display: table; position: relative; table-layout: fixed; width: 100%;">
+        {% if n.pic|length %}
+        <div class="news_content">
+        {% else %}
+        <div>
+        {% endif %}
+            <li>{{n.title}} ({{n.date}})</li>
+            <ul>
+                {% for content in n.content %}
+                <li>  
+                    {{content.block}}
+                    {% if content.child|length %}
+                    <ul>
+                        {% for c in content.child %}
+                        <li>{{c.block}}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+            <br>
+        </div>
+        {% if n.pic|length %}
+        <div class="news_img">
+            <img src="{% get_static_prefix %}image/{{n.pic}}" alt="loading">
+        </div>
+        {% endif %}
+    </section>
+    {% endfor %}
+</ul> -->

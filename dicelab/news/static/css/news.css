@@ -22,7 +22,7 @@
 
 .single-tab-content .single-item {
   position: relative;
-  display: block;
+  display: flex;
   background: #fff;
   padding: 23px 30px 24px 30px;
   margin-bottom: 25px;
@@ -64,21 +64,23 @@ h6 {
 }
 
 .news_img {
-  float: left;
-  width: auto;
+
+}
+.item {
+  position:inherit;
+  width: 100%;
+  margin: 0px;
 }
 
 @media (min-width: 768px) {
   .news_img {
-    width: 35%;
+    max-width: 30%;
     margin-left: 5%;
-    float: right;
   }
   .Contents {
     margin: 5%;
   }
-  .text {
-    float: left;
-    max-width: 60%;
+  .item {
+    width: 60%;
   }
 }

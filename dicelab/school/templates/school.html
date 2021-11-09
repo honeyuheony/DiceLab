@@ -1,6 +1,7 @@
 {% extends 'index.html' %}
 {% load static %}
 {% block content %}
+<link rel="stylesheet" type='text/css' href="{% static 'css/school.css' %}">
 <div>
     <div class="Category">
         <h4>Seasonal Schools</h4>
@@ -9,17 +10,33 @@
         {% for s in school %}
             {% cycle '<div class="row">' '' %}
             <div class="col-lg-6 col-md-6 col-sm-6">
-                <div>
-                    <img src="{% get_static_prefix %}image/{{s.title}}.jpg" alt="loading" width="100%" class="">
+                <div class="single-tab-content">
+                    <div class="single-item">
+                        <div>
+                            <img src="{% get_static_prefix %}image/{{s.title}}.jpg" alt="loading" width="100%" class="">
+                        </div>
+                        <h6>
+                            <p>
+                                {{s.title}}
+                            </p>
+                        </h6>
+                        <div class="item">
+                            <div class="item-content">
+                                <div class="lower-content clearfix">
+                                    <div class="text">
+                                        <ul>
+                                            {% for l in s.lecture.all %}
+                                            <li>
+                                                <p>{{l.name}}<a href="{{l.url}}">[link]</a></p>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <p style="color: rgba(131,2,22,1); font-size: 13pt; font-weight: 700; letter-spacing: 1px; line-height: 1.63;">{{s.title}}</p>
-                <ul>
-                    {% for l in s.lecture.all %}
-                    <li>
-                        <p>{{l.name}}<a href="{{l.url}}">[link]</a></p>
-                    </li>
-                    {% endfor %}
-                </ul>
             </div>
             {% if forloop.last %}
                 </div>

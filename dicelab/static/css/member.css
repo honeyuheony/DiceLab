@@ -1,100 +1,84 @@
+.Contents {
+    width: 100%;
+    padding: 0% 0%;
+}
+
 p {
     font-size: 0.8rem;
 }
 
-.profile-element img {
-    width: 100%;
-    height: 100%;
-}
-
 .profile-element {
-    margin: 3% 3%;
+    padding: 1% 2%;
 }
 
-.profile {
+.card-inner {
     display: flex;
     flex-direction: row;
-    height: 250px;
-    width: 400px;
-    margin: 40px 1%;
+    align-items: center;
+    margin: 2% 0%;
+}
+
+
+.profile {
+    margin: 40px 0%;
     border: 0;
     border-radius: 15px;
     box-shadow: 0 5px 25px 0 rgba(204, 204, 204, .75);
-    align-items: center;
+}
+
+.profile-img {
+    border-radius: 50%;
+    min-width: 100px;
+    max-width: 200px;
+    min-height: 100px;
+    max-height: 200px;
+    margin: 3% 3%;
 }
 
 ul li {
     text-align: left;
 }
 
-.profile-image {
-    display: inline-block;
-    border-radius: 50%;
-    min-width: 200px;
-    max-width: 200px;
-    min-height: 200px;
-    max-height: 200px;
-    background-position: center;
-    background-size: cover;
-    margin-left: 2%;
+li {
+    list-style-type: none;
 }
 
-.Contents {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
+h6 {
+    padding-top: 1.5%;
+    color: #760023;
+    width: auto;
+    display: block;
+    text-align: left;
+    font-weight: 500;
+    margin-bottom: 8px;
+    margin-left: 5px;
+    font-weight: 700;
 }
 
-/* Card Flip */
-.card:hover .card-inner {
-    transform: rotateY(180deg);
+.profile-element h3 {
+    padding-top: 1.5%;
+    color: black;
+    width: auto;
+    text-align: left;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    margin-left: 5px;
+    font-weight: 700;
 }
 
-.card-front,
-.card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    -webkit-backface-visibility: hidden;
-    /* Safari */
-    backface-visibility: hidden;
+.text {
+    margin-bottom: 0;
+    color: #333;
+    float: left;
+    margin-top: 8px;
 }
 
-.card-back {
-    transform: rotateY(180deg);
-}
-
-.card {
-    perspective: 1000px;
-    background-color: transparent;
-    text-align: center;
-}
-
-.card-inner {
-    display: inline-block;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-/* End Card Flip*/
-
-@media (min-width:400px) {
-    .Contents {
-        justify-content: space-evenly;
-    }
-}
-
-@media (min-width:992px) {
-    .Contents {
-        justify-content: space-evenly;
-    }
-}
-
-@media (min-width:1500px) {
-    .Contents {
-        justify-content: space-evenly;
-    }
+.text li {
+    text-align: left;
+    font-weight: 500;
+    margin-bottom: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    margin-left: 12px;
+    list-style-type: circle;
 }

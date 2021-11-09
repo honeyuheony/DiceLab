@@ -43,6 +43,7 @@ h6 {
   float: left;
   margin-top: 8px;
 }
+
 .text li {
   text-align: left;
   font-weight: 500;
@@ -68,9 +69,11 @@ h6 {
     margin-left: 5%;
     float: right;
   }
+
   .Contents {
     margin: 5%;
   }
+
   .text {
     float: left;
     max-width: 60%;

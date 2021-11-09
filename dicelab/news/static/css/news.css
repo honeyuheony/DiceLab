@@ -3,6 +3,12 @@
   margin: 10%;
 }
 
+.mobile-date {
+  margin-top: 6px;
+  color: #888;
+  font-size: 13px;
+}
+
 .type-badge {
   font-weight: 700;
   background: #333;
@@ -32,7 +38,7 @@ h6 {
   display: block;
   text-align: left;
   font-weight: 500;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
   margin-left: 5px;
   font-weight: 700;
 }

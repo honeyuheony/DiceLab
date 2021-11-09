@@ -3,23 +3,6 @@
   margin: 10%;
 }
 
-.mobile-date {
-  margin-top: 6px;
-  color: #888;
-  font-size: 13px;
-}
-
-.type-badge {
-  font-weight: 700;
-  background: #333;
-  display: inline-block;
-  color: #fff;
-  border-radius: 5px;
-  padding: 0 8px;
-  font-size: 13px;
-  margin-bottom: 2px;
-}
-
 .single-tab-content .single-item {
   position: relative;
   display: block;
@@ -49,7 +32,6 @@ h6 {
   float: left;
   margin-top: 8px;
 }
-
 .text li {
   text-align: left;
   font-weight: 500;
@@ -60,31 +42,25 @@ h6 {
   list-style-type: circle;
 }
 
-.news_img img {
+.professor_img img {
   width: 100%;
 }
 
-.news_img {
+.professor_img {
   float: left;
   width: auto;
+  text-align: center;
 }
 
 @media (min-width: 768px) {
-  .news_img {
-    width: 35%;
-    margin-left: 5%;
-    float: right;
+  .professor_img {
+    width: 30%;
+    margin-right: 5%;
+    float: left;
   }
-
   .Contents {
     margin: 5%;
   }
-
-  .text {
-    float: left;
-    max-width: 60%;
-  }
-
   .text {
     float: left;
     max-width: 60%;

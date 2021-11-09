@@ -21,7 +21,8 @@ headers = {
 
 @shared_task
 def set_data():
-    d = {'body' : load_notionAPI_professor()['body'], 'image' : load_notionAPI_professor()['image']}
+    d = {'body': load_notionAPI_professor(
+    )['body'], 'image': load_notionAPI_professor()['image']}
     return d
 
 
@@ -33,6 +34,7 @@ def load_notionAPI_professor():
                             retries=False)
     source: Dict = loads(response.data.decode('utf-8'))  # 자료형 명시
     page = []
+    paragraph = {}
     image = 0
     with open("data.json", "w") as f:
         json.dump(source, f)
@@ -40,21 +42,29 @@ def load_notionAPI_professor():
         if 'image' in r:
             image += 1
         elif 'paragraph' in r:
-            try :
+            try:
                 line = r['paragraph']['text'][0]['plain_text']
-                page.append({'text': line, 'is_paragraph': True})
-            except :
-                continue
-        elif 'bulleted_list_item' in r:
-            try :
-                line = r['bulleted_list_item']['text'][0]['plain_text']
-                page.append({'text': line, 'is_paragraph': False})
+                if len(paragraph):
+                    paragraph['text'] = text
+                    page.append(paragraph)
+                paragraph = {}
+                paragraph['title'] = line
+                text = []
             except:
                 continue
-        else :
+        elif 'bulleted_list_item' in r:
+            try:
+                line = r['bulleted_list_item']['text'][0]['plain_text']
+                text.append(line)
+            except:
+                continue
+        else:
             continue
+    if len(paragraph):
+        paragraph['text'] = text
+        page.append(paragraph)
     return {
         'statusCode': 200,
         'body': page,
-        'image' : image
+        'image': image
     }

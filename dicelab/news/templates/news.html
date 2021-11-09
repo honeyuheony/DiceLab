@@ -10,8 +10,13 @@
         {% for n in news %}
         <div class="single-tab-content">
             <div class="single-item">
-                <div class="type-badge">{{n.column_type}}</div>
-                <h6>{{n.title}}<br>({{n.date}})</h6>
+                <div class="type-badge">{{n.date}}</div>
+                <!-- {% if n.column_type != ".." %}
+                <h6>[{{n.column_type}}]<br>{{n.title}}</h6>
+                {% else %}
+                <h6>{{n.title}}</h6>
+                {% endif %} -->
+                <h6>{{n.title}}</h6>
                 <div class="item">
                     <div class="item-content">
                         <div class="lower-content clearfix">

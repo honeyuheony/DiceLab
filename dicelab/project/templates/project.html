@@ -1,41 +1,42 @@
 {% extends 'index.html' %}
 {% load static %}
 {% block content %}
+<link rel="stylesheet" type='text/css' href="{% static 'css/project.css' %}">
 <div class="Project">
     <div class="Category">
             <h4>Projects</h4>
     </div>
     <div class="Contents">
-        <ol reversed>
-            {% for project in projects %}
-            <li>
-                {% if project.status == 'Doing'  %}
-                <p>
-                    <span>
-                        <strong>{{project.title}}</strong>
-                    </span>
-                    - ongoing
-                </p>
-                <ul>
-                    <li>
-                        <p>{{project.date}}, {{project.label}}, {{project.area}}</p>
-                    </li>
-                </ul>
-                {% else %}
-                <p>
-                    <span>
-                        <strong>{{project.title}}</strong>
-                    </span>
-                </p>
-                <ul>
-                    <li>
-                        <p>{{project.date}}, {{project.label}}, {{project.area}}</p>
-                    </li>
-                </ul>
-                {% endif %}
-            </li>
-            {% endfor %}
-        </ol>
+        {% for project in projects %}
+        <div class="single-tab-content">
+            <div class="single-item">
+                <h6>
+                    {% if project.status == 'Doing'  %}
+                    <p>
+                        {{project.title}} - ongoing
+                    </p>
+                    {% else %}
+                    <p>
+                        {{project.title}}
+                    </p>
+                    {% endif %}
+                </h6>
+                <div class="item">
+                    <div class="item-content">
+                        <div class="lower-content clearfix">
+                            <div class="text">
+                                <ul>
+                                    <li>
+                                        <p>{{project.date}}, {{project.label}}, {{project.area}}</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
     </div>
 </div>
 <div class="AI Challenge">
@@ -43,55 +44,58 @@
             <h4>AI Challenge</h4>
     </div>
     <div class="Contents">
-            <ol reversed>
-                {% for ai in ai_challenges %}
-                <li>
-                    {% if ai.status != 'To Do' %}
+        {% for ai in ai_challenges %}
+        {% if ai.status != 'To Do' %}
+        <div class="single-tab-content">
+            <div class="single-item">
+                <h6>
                     {% if ai.link == 'None'%}
                     <p>
-                        <span>
-                            <strong>{{ai.title}}</strong>
-                        </span>
-
+                        {{ai.title}}
                     </p>
                     {% else %}
                     <p>
-                        <span>
-                            <strong>{{ai.title}}</strong>
-                            <a href={{ ai.link }} target="_blank"> [Link]</a>
-                        </span>
-
+                        {{ai.title}}
+                        <a href={{ ai.link }} target="_blank"> [Link]</a>
                     </p>
                     {% endif %}
-                    <ul>
-                        <li>
-                            <p>{{ ai.assign }}</p>
-                        </li>
-                        {% if ai.area %}
-                        <li>
-                            <p>{{ai.area}}</p>
-                            {% if ai.award %}
-                            <ul>
-                                <li>{{ ai.award }}</li>
-                            </ul>
-                            {% endif %}
-                        </li>
-                        {% else %}
-                        <li>
-                            {% if ai.award %}
-                            <ul>
-                                <li>{{ ai.award }}</li>
-                            </ul>
-                            {% endif %}
-                        </li>
-                        {% endif %}
-                    </ul>
-                    {% endif %}
-                </li>
-                {% endfor %}
-            </ol>
+                </h6>
+                <div class="item">
+                    <div class="item-content">
+                        <div class="lower-content clearfix">
+                            <div class="text">
+                                <ul>
+                                    {% if ai.assign %}
+                                    <li>
+                                        <p>{{ ai.assign }}</p>
+                                    </li>
+                                    {% endif %}
+                                    {% if ai.area %}
+                                    <li>
+                                        <p>{{ai.area}}</p>
+                                        {% if ai.award %}
+                                        <ul>
+                                            <li>{{ ai.award }}</li>
+                                        </ul>
+                                        {% endif %}
+                                    </li>
+                                    {% else %}
+                                        {% if ai.award %}
+                                        <li>{{ ai.award }}</li>
+                                        {% endif %}
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
     </div>
-
 </div>
 
 {% endblock %}
+
+

@@ -1,27 +1,40 @@
 {% extends 'index.html' %}
 {% load static %}
 {% block content %}
+<link rel="stylesheet" type='text/css' href="{% static 'css/Course.css' %}">
 <div class="Course">
     <div class="Category">
         <h4>Course</h4>
     </div>
     <div class="Contents">
-        <ul>
-            {% for semester in semesters %}
-            <li>
-                <strong>{{semester}}</strong>
-                {% for course in courses %}
-                    {% for s in course.semester.all%}
-                <ol>
-                    {% if semester == s %}
-                    <li>{{course.code}},<strong>{{course.name}}</strong></li>
-                    {% endif %}
-                </ol>
-                    {% endfor%}
-                {% endfor %}
-            </li>
-            {% endfor %}
-        </ul>
+        {% for semester in semesters %}
+        <div class="single-tab-content">
+            <div class="single-item">
+                <h6>
+                    <p>
+                        {{semester}}
+                    </p>
+                </h6>
+                <div class="item">
+                    <div class="item-content">
+                        <div class="lower-content clearfix">
+                            <div class="text">
+                                {% for course in courses %}
+                                {% for s in course.semester.all%}
+                                <ol>
+                                    {% if semester == s %}
+                                    <li>{{course.code}},<strong>{{course.name}}</strong></li>
+                                    {% endif %}
+                                </ol>
+                                    {% endfor%}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
     </div>
     <!-- <form method="POST">
         {% csrf_token %}
@@ -30,3 +43,4 @@
     </form> -->
 </div>
 {% endblock %}
+

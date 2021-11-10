@@ -38,12 +38,15 @@
                     </div>
                 </div>
             </div>
+            {% cycle '' '</div>' %}
             {% if forloop.last %}
-                </div>
-            {% else %}
-                {% cycle '' '</div>' %}
+            </div>
             {% endif %}
         {% endfor %}
     </div>
+</div>
+        
+    
+</div>
 </div>
 {% endblock %}

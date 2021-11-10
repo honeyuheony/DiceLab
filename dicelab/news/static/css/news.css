@@ -22,7 +22,7 @@
 
 .single-tab-content .single-item {
   position: relative;
-  display: flex;
+  display: block;
   background: #fff;
   padding: 23px 30px 24px 30px;
   margin-bottom: 25px;
@@ -49,6 +49,7 @@ h6 {
   float: left;
   margin-top: 8px;
 }
+
 .text li {
   text-align: left;
   font-weight: 500;
@@ -77,10 +78,14 @@ h6 {
     max-width: 30%;
     margin-left: 5%;
   }
+
   .Contents {
     margin: 5%;
   }
   .item {
     width: 60%;
+  }
+  .single-tab-content .single-item {
+    display: flex;
   }
 }

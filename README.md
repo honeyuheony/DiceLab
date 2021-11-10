@@ -7,6 +7,11 @@
 연구원들의 활동이 담긴 Notion DB를 주기적으로 Web Server와 동기화하여 최신연구동향을 보여줄 수 있도록 개발했습니다.  
 
 # **⚙️ Development Environment**
+|Part|Version|
+|------|---|
+|**WAS**|Python 3.8.5 + **Django** 3.0 + Redis + Bootstrap(with Django Templates)
+|**Database**|**Sqlite3**
+|**Notion API**|2021-08-16
 
 [제목 없음](https://www.notion.so/268e3507701144f1ad4b7f39fec57f06)
 

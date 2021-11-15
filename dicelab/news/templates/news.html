@@ -10,17 +10,25 @@
         {% for n in news %}
         <div class="single-tab-content">
             <div class="single-item">
-                <div class="type-badge">{{n.date}}</div>
-                <!-- {% if n.column_type != ".." %}
-                <h6>[{{n.column_type}}]<br>{{n.title}}</h6>
-                {% else %}
-                <h6>{{n.title}}</h6>
-                {% endif %} -->
-                <h6>{{n.title}}</h6>
+                {% if n.pic|length %}
                 <div class="item">
+                {% else %}
+                <div class="item_only">
+                {% endif %}
+                    <div class="type-badge">{{n.date}}</div>
+                    <!-- {% if n.column_type != ".." %}
+                    <h6>[{{n.column_type}}]<br>{{n.title}}</h6>
+                    {% else %}
+                    <h6>{{n.title}}</h6>
+                    {% endif %} -->
+                    <h6>{{n.title}}</h6>
                     <div class="item-content">
                         <div class="lower-content clearfix">
+                            {% if n.pic|length %}
                             <div class="text">
+                            {% else %}
+                            <div class="text_whole">
+                            {% endif %}
                                 <ul>
                                     {% for content in n.content %}
                                     <li>  
@@ -36,14 +44,14 @@
                                     {% endfor %}
                                 </ul>
                             </div>
-                            {% if n.pic|length %}
-                            <div class="news_img">
-                                <img src="{% get_static_prefix %}image/{{n.pic}}" alt="loading">
-                            </div>
-                            {% endif %}
                         </div>
                     </div>
                 </div>
+                {% if n.pic|length %}
+                <div class="news_img">
+                    <img src="{% get_static_prefix %}image/{{n.pic}}" alt="loading">
+                </div>
+                {% endif %}
             </div>
         </div>
         {% endfor %}

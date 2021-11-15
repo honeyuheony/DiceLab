@@ -1,8 +1,3 @@
-.Contents {
-  padding: 0% 0%;
-  margin: 10%;
-}
-
 .mobile-date {
   margin-top: 6px;
   color: #888;
@@ -64,11 +59,9 @@ h6 {
   width: 100%;
 }
 
-.news_img {
 
-}
 .item {
-  position:relative;
+  position: relative;
   width: 100%;
   margin: 0px;
 }
@@ -79,12 +72,10 @@ h6 {
     margin-left: 5%;
   }
 
-  .Contents {
-    margin: 5%;
-  }
   .item {
     width: 60%;
   }
+
   .single-tab-content .single-item {
     display: flex;
   }

@@ -16,10 +16,11 @@ h5 {
 
 .Contents {
   padding: 3% 5%;
+  max-width: 1920px;
+  margin: 0% auto;
 }
 
 .container {
-  max-width: 1920px;
   width: 100%;
 }
 

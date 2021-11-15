@@ -18,6 +18,11 @@ h5 {
   padding: 3% 5%;
 }
 
+.container {
+  max-width: 1920px;
+  width: 100%;
+}
+
 .Contents li {
   list-style-type: square;
   line-height: 2;

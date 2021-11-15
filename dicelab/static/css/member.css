@@ -1,5 +1,6 @@
 .Contents {
     width: 100%;
+    margin: 0% auto;
     padding: 0% 0%;
 }
 
@@ -8,6 +9,7 @@ p {
 }
 
 .profile-element {
+    margin-left: 3%;
     padding: 1% 2%;
 }
 
@@ -15,24 +17,33 @@ p {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin: 2% 0%;
 }
 
-
 .profile {
-    margin: 40px 0%;
+    margin: 15px 0px;
     border: 0;
     border-radius: 15px;
     box-shadow: 0 5px 25px 0 rgba(204, 204, 204, .75);
 }
 
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.card {
+    width: 550px;
+}
+
 .profile-img {
     border-radius: 50%;
-    min-width: 100px;
-    max-width: 200px;
-    min-height: 100px;
-    max-height: 200px;
-    margin: 3% 3%;
+    min-width: 150px;
+    max-width: 150px;
+    min-height: 150px;
+    max-height: 150px;
+    margin: 5% 3%;
 }
 
 ul li {
@@ -55,7 +66,7 @@ h6 {
     font-weight: 700;
 }
 
-.profile-element h3 {
+.profile-element h5 {
     padding-top: 1.5%;
     color: black;
     width: auto;
@@ -71,6 +82,18 @@ h6 {
     color: #333;
     float: left;
     margin-top: 8px;
+}
+
+.profile-element p {
+    padding-top: 1.5%;
+    color: #760023;
+    width: auto;
+    display: block;
+    text-align: left;
+    font-weight: 500;
+    margin-bottom: 8px;
+    margin-left: 5px;
+    font-weight: 700;
 }
 
 .text li {

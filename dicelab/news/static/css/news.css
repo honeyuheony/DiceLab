@@ -54,11 +54,19 @@ h6 {
   margin-left: 12px;
   list-style-type: circle;
 }
+.text_whole li {
+  text-align: left;
+  font-weight: 500;
+  margin-bottom: 8px;
+  font-weight: 700;
+  font-size: 14px;
+  margin-left: 12px;
+  list-style-type: circle;
+}
 
 .news_img img {
   width: 100%;
 }
-
 
 .item {
   position: relative;

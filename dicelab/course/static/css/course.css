@@ -1,8 +1,3 @@
-.Contents {
-  padding: 0% 0%;
-  margin: 10%;
-}
-
 .type-badge {
   font-weight: 700;
   background: #333;
@@ -58,9 +53,6 @@ h6 p {
   list-style-type: circle;
 }
 @media (min-width: 768px) {
-  .Contents {
-    margin: 5%;
-  }
   h5 {
     margin: 5%;
   }

@@ -2,7 +2,9 @@
   padding: 0% 0%;
   margin: 10%;
 }
-
+.row {
+  padding: 0px 0px;
+}
 .type-badge {
   font-weight: 700;
   background: #333;
@@ -14,7 +16,8 @@
   margin-bottom: 2px;
 }
 
-.single-tab-content .single-item {
+.single-tab-content {
+  height: auto;
   position: relative;
   display: block;
   background: #fff;
@@ -63,5 +66,12 @@ h6 p {
   }
   h5 {
     margin: 5%;
+  }
+  .single-tab-content {
+    height: 100%;
+  }
+  .row {
+    padding: 12px 0px;
+    margin: 0px 0px;
   }
 }

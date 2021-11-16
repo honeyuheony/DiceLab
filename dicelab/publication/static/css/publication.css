@@ -1,8 +1,3 @@
-.Contents {
-  padding: 0% 0%;
-  margin: 10%;
-}
-
 .type-badge {
   font-weight: 700;
   background: #333;
@@ -24,9 +19,11 @@
   box-shadow: 0 5px 25px 0 rgb(204 204 204 / 55%);
   border-radius: 12px;
 }
+
 h5 {
-  margin: 10%;
+  margin: 20px;
 }
+
 h6 {
   padding-top: 1.5%;
   color: #760023;
@@ -38,6 +35,7 @@ h6 {
   margin-left: 5px;
   font-weight: 700;
 }
+
 h6 p {
   font-size: 14px;
 }
@@ -48,6 +46,7 @@ h6 p {
   float: left;
   margin-top: 8px;
 }
+
 .text li {
   text-align: left;
   font-weight: 500;
@@ -56,12 +55,4 @@ h6 p {
   font-size: 14px;
   margin-left: 12px;
   list-style-type: circle;
-}
-@media (min-width: 768px) {
-  .Contents {
-    margin: 5%;
-  }
-  h5 {
-    margin: 5%;
-  }
 }

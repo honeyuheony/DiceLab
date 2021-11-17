@@ -85,7 +85,8 @@
             <div class="card profile">
                 <div class="card-inner">
                     <div class="profile-element">
-                        <img src="{% get_static_prefix %}image/{{g.pic}}" class="profile-img" alt="...">
+                        <div style="background-image: url({% get_static_prefix %}image/{{g.pic}}); background-position: center;
+                        background-size: cover;", class="profile-img");"></div>
                         <div style="width: 20%; background-color:brown; height:3px; margin:3% 1%;"></div>
                         <div style="display: flex; flex-direction:row; align-items:baseline; width:100%;">
                             <h5 style="width:45%">{{g.name}}</h5>

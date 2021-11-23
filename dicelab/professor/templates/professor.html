@@ -7,34 +7,37 @@
     <div class="Category">
         <h4>Professor</h4>
     </div>
-    <div class="Contents">
-        {% for p in page %}
-        <div class="single-tab-content">
-            <div class="single-item">
-                {% if forloop.counter == 1 %}
-                    <div class="professor_img">
-                        <img src="{% get_static_prefix %}image/Professor_Image.jpg" alt="loading">
-                    </div>
-                {% endif %}
-                <strong>{{p.title}}</strong>
-                <div class="item">
-                    <div class="item-content">
-                        <div class="lower-content clearfix">
-                            <div class="text">
-                                <ul>
-                                    {% for t in p.text %}
-                                    <li>  
-                                        {{t}}
-                                    </li>
-                                    {% endfor %}
-                                </ul>
+    <div class="container">
+        <div class="Contents">
+            {% for p in page %}
+            <div class="single-tab-content">
+                <div class="single-item">
+                    {% if forloop.counter == 1 %}
+                        <div class="professor_img">
+                            <img src="{% get_static_prefix %}image/Professor_Image.jpg" alt="loading">
+                        </div>
+                    {% endif %}
+                    <strong>{{p.title}}</strong>
+                    <div class="item">
+                        <div class="item-content">
+                            <div class="lower-content clearfix">
+                                <div class="text">
+                                    <ul>
+                                        {% for t in p.text %}
+                                        <li>  
+                                            {{t}}
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
+
 </div>
 {% endblock %}

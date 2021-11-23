@@ -8,14 +8,16 @@
     <div class="Category">
         <h4>Seasonal Schools</h4>
     </div>
-    <div class="Contents">
-        {% for s in school %}
+    <div class="container">
+        <div class="Contents">
+            {% for s in school %}
             {% cycle '<div class="row">' '' %}
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="single-tab-content">
                     <div class="single-item">
                         <div>
-                            <img src="{% get_static_prefix %}image/{{s.title}}.jpg" alt="loading" width="100%" class="school_image">
+                            <img src="{% get_static_prefix %}image/{{s.title}}.jpg" alt="loading" width="100%"
+                                class="school_image">
                         </div>
                         <h6>
                             <p>
@@ -47,8 +49,8 @@
         {% endfor %}
     </div>
 </div>
-        
-    
+
+
 </div>
-</div>
+
 {% endblock %}

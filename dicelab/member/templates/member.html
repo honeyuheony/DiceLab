@@ -7,15 +7,16 @@
     <div class="Category">
         <h4>Graduate Students</h4>
     </div>
-    <div class="container">
-        <div class="Contents">
+    <div class="Contents">
+        <div class="container">
             {% for g in graduated %}
-            {% if g.admission_date|length %}
-            <div class="card profile">
+                {% if g.admission_date|length %}
+                    {% cycle '<div class="row">' '' %}
+            <div class="card profile col-lg-6 col-md-6 col-sm-12">
                 <div class="card-inner">
                     <div class="profile-element">
                         <div style="background-image: url({% get_static_prefix %}image/{{g.pic}}); background-position: center;
-                        background-size: cover;" , class="profile-img" );"></div>
+                        background-size: cover;", class="profile-img");"></div>
                         <div style="width: 20%; background-color:brown; height:3px; margin:3% 1%;"></div>
                         <div style="display: flex; flex-direction:row; align-items:baseline; width:100%;">
                             <h5 style="width:45%">{{g.name}}</h5>
@@ -64,10 +65,11 @@
                     </div>
                 </div>
             </div>
-            {% if forloop.last %}
-            {% else %}
-            {% endif %}
-            {% endif %}
+                    {% cycle '' '</div>' %}
+                        {% if forloop.last %}
+        </div>
+                        {% endif %}
+                {% endif %}
             {% endfor %}
 
         </div>
@@ -78,15 +80,15 @@
     <div class="Category">
         <h4>Ungraduate Students</h4>
     </div>
-    <div class="container">
-        <div class="Contents">
+    <div class="Contents">
+        <div class="container">
             {% for g in graduated %}
             {% if not g.admission_date|length %}
             <div class="card profile">
                 <div class="card-inner">
                     <div class="profile-element">
                         <div style="background-image: url({% get_static_prefix %}image/{{g.pic}}); background-position: center;
-                        background-size : cover;" class=profile-img></div>
+                        background-size: cover;", class="profile-img");"></div>
                         <div style="width: 20%; background-color:brown; height:3px; margin:3% 1%;"></div>
                         <div style="display: flex; flex-direction:row; align-items:baseline; width:100%;">
                             <h5 style="width:45%">{{g.name}}</h5>
@@ -180,9 +182,8 @@
     <div class="Category">
         <h4>Alumni</h4>
     </div>
-    <div class="container">
-        <div class="Contents" style="justify-content:left">
-
+    <div class="Contents">
+        <div class="container" style="justify-content:left">
             <ul>
                 <li>
                     <p>Graduate Students</p>

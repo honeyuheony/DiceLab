@@ -2,91 +2,87 @@
 {% load static %}
 {% block content %}
 <link rel="stylesheet" type='text/css' href="{% static 'css/publication.css' %}">
+<link rel="stylesheet" type='text/css' href="{% static 'css/card.css' %}">
 
 <div class="International Papers">
     <div class="Category">
         <h4>International Papers</h4>
     </div>
-    <div class="container">
-        <div class="Contents">
-            <ol reversed>
-                {% for pub in publication %}
-                {% if pub.label == "International Papers" %}
-                <div class="single-tab-content">
-                    <div class="single-item">
-                        <h6>
-                            <p>
-                                {{pub.title}}
-                                <a href={{ pub.paper_link }}>[paper]</a>
-                            </p>
-                        </h6>
-                        <div class="item">
-                            <div class="item-content">
-                                <div class="lower-content clearfix">
-                                    <div class="text">
-                                        <ul>
-                                            <li>
-                                                <p>{{pub.assign}}</p>
-                                            </li>
-                                            <li>
-                                                <p>{{pub.thesis}}, {{pub.year}}</p>
-                                            </li>
-                                        </ul>
-                                    </div>
-
+    <div class="Contents">
+        <ol reversed>
+            {% for pub in publication %}
+            {% if pub.label == "International Papers" %}
+            <div class="single-tab-content">
+                <div class="single-item">
+                    <h6>
+                        <p>
+                            {{pub.title}}
+                            <a href={{ pub.paper_link }}>[paper]</a>
+                        </p>
+                    </h6>
+                    <div class="item">
+                        <div class="item-content">
+                            <div class="lower-content clearfix">
+                                <div class="text">
+                                    <ul>
+                                        <li>
+                                            <p>{{pub.assign}}</p>
+                                        </li>
+                                        <li>
+                                            <p>{{pub.thesis}}, {{pub.year}}</p>
+                                        </li>
+                                    </ul>
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
-                {% endif %}
-                {% endfor %}
-            </ol>
-        </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </ol>
     </div>
-
 
 </div>
 <div class="Domestic Papers">
     <div class="Category">
         <h4>Domestic Papers</h4>
     </div>
-    <div class="container">
-        <div class="Contents">
-            <ol reversed>
-                {% for pub in publication %}
-                {% if pub.label == "Domestic Papers" %}
-                <div class="single-tab-content">
-                    <div class="single-item">
-                        <h6>
-                            <p>
-                                {{pub.title}}
-                                <a href={{ pub.paper_link }}>[paper]</a>
-                            </p>
-                        </h6>
-                        <div class="item">
-                            <div class="item-content">
-                                <div class="lower-content clearfix">
-                                    <div class="text">
-                                        <ul>
-                                            <li>
-                                                <p>{{pub.assign}}</p>
-                                            </li>
-                                            <li>
-                                                <p>{{pub.thesis}}, {{pub.year}}</p>
-                                            </li>
-                                        </ul>
-                                    </div>
-
+    <div class="Contents">
+        <ol reversed>
+            {% for pub in publication %}
+            {% if pub.label == "Domestic Papers" %}
+            <div class="single-tab-content">
+                <div class="single-item">
+                    <h6>
+                        <p>
+                            {{pub.title}}
+                            <a href={{ pub.paper_link }}>[paper]</a>
+                        </p>
+                    </h6>
+                    <div class="item">
+                        <div class="item-content">
+                            <div class="lower-content clearfix">
+                                <div class="text">
+                                    <ul>
+                                        <li>
+                                            <p>{{pub.assign}}</p>
+                                        </li>
+                                        <li>
+                                            <p>{{pub.thesis}}, {{pub.year}}</p>
+                                        </li>
+                                    </ul>
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
-                {% endif %}
-                {% endfor %}
-            </ol>
-        </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </ol>
     </div>
 </div>
 <br>
@@ -94,38 +90,38 @@
     <div class="Category">
         <h4>Patents</h4>
     </div>
-    <div class="container">
-        <div class="Contents">
-            <h5>Granted</h5>
-            <ol reversed>
-                {% for patent in patents %}
-                <div class="single-tab-content">
-                    <div class="single-item">
-                        <h6>
-                            <p>
-                                {{patent.title}}
-                                <br>[{{patent.num}}]
-                            </p>
-                        </h6>
-                        <div class="item">
-                            <div class="item-content">
-                                <div class="lower-content clearfix">
-                                    <div class="text">
-                                        <ul>
-                                            <li>
-                                                <p>{{patent.assign}}, {{patent.country}}, {{patent.year}}</p>
-                                            </li>
-                                        </ul>
-                                    </div>
+    <div class="Contents">
+        <h5>Granted</h5>
+        <ol reversed>
+            {% for patent in patents %}
+            <div class="single-tab-content">
+                <div class="single-item">
+                    <h6>
+                        <p>
+                            {{patent.title}}
+                            <br>[{{patent.num}}]
+                        </p>
+                    </h6>
+                    <div class="item">
+                        <div class="item-content">
+                            <div class="lower-content clearfix">
+                                <div class="text">
+                                    <ul>
+                                        <li>
+                                            <p>{{patent.assign}}, {{patent.country}}, {{patent.year}}</p>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                {% endfor %}
-            </ol>
-        </div>
+            </div>
+            {% endfor %}
+        </ol>
     </div>
-
 </div>
 {% endblock %}
+
+
+

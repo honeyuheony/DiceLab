@@ -5,7 +5,7 @@ import json
 
 
 def news(request):
-    # set_data()
+    set_data()
     news = News.objects.all().order_by('-date')
     news_list = []
     for n in news:

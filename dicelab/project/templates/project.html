@@ -4,11 +4,12 @@
 <link rel="stylesheet" type='text/css' href="{% static 'css/project.css' %}">
 <div class="Project">
     <div class="Category">
-            <h4>Projects</h4>
+        <h4>Projects</h4>
     </div>
-    <div class="Contents">
-        {% for project in projects %}
-        {% cycle '<div class="row">' '' %}
+    <div class="container">
+        <div class="Contents">
+            {% for project in projects %}
+            {% cycle '<div class="row">' '' %}
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="single-tab-content">
                     <div class="single-item">
@@ -40,15 +41,17 @@
                 </div>
             </div>
             {% cycle '' '</div>' %}
-        {% if forloop.last %}
+            {% if forloop.last %}
         </div>
         {% endif %}
         {% endfor %}
     </div>
 </div>
+
+</div>
 <div class="AI Challenge">
     <div class="Category ">
-            <h4>AI Challenge</h4>
+        <h4>AI Challenge</h4>
     </div>
     <div class="Contents">
         {% for ai in ai_challenges %}
@@ -87,9 +90,9 @@
                                         {% endif %}
                                     </li>
                                     {% else %}
-                                        {% if ai.award %}
-                                        <li>{{ ai.award }}</li>
-                                        {% endif %}
+                                    {% if ai.award %}
+                                    <li>{{ ai.award }}</li>
+                                    {% endif %}
                                     {% endif %}
                                 </ul>
                             </div>
@@ -104,5 +107,3 @@
 </div>
 
 {% endblock %}
-
-

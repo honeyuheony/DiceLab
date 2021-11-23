@@ -1,6 +1,5 @@
-.Contents {
-  padding: 0% 0%;
-  margin: 10%;
+.row {
+  padding: 0px 0px;
 }
 
 .type-badge {
@@ -14,7 +13,7 @@
   margin-bottom: 2px;
 }
 .single-tab-content {
-  height: 100%;
+  height: auto;
   position: relative;
   display: block;
   background: #fff;
@@ -59,10 +58,13 @@ h6 p {
   list-style-type: circle;
 }
 @media (min-width: 768px) {
-  .Contents {
-    margin: 5%;
-  }
   h5 {
     margin: 5%;
+  }
+  .single-tab-content {
+    height: 100%;
+  }
+  .row {
+    padding: 12px 0px;
   }
 }

@@ -6,57 +6,63 @@
     <div class="Category">
         <h4>News</h4>
     </div>
-    <div class="Contents">
-        {% for n in news %}
-        <div class="single-tab-content">
-            <div class="single-item">
-                {% if n.pic|length %}
-                <div class="item">
-                {% else %}
-                <div class="item_only">
-                {% endif %}
-                    <div class="type-badge">{{n.date}}</div>
-                    <!-- {% if n.column_type != ".." %}
-                    <h6>[{{n.column_type}}]<br>{{n.title}}</h6>
-                    {% else %}
-                    <h6>{{n.title}}</h6>
-                    {% endif %} -->
-                    <h6>{{n.title}}</h6>
-                    <div class="item-content">
-                        <div class="lower-content clearfix">
-                            {% if n.pic|length %}
-                            <div class="text">
-                            {% else %}
-                            <div class="text_whole">
+    <div class="container">
+        <div class="Contents">
+            {% for n in news %}
+            <div class="single-tab-content">
+                <div class="single-item">
+                    {% if n.pic|length %}
+                    <div class="item">
+                        {% else %}
+                        <div class="item_only">
                             {% endif %}
-                                <ul>
-                                    {% for content in n.content %}
-                                    <li>  
-                                        {{content.block}}
-                                        {% if content.child|length %}
-                                        <ul>
-                                            {% for c in content.child %}
-                                            <li style= list-style-type:none;>> {{c.block}}</li>
-                                            {% endfor %}
-                                        </ul>
-                                        {% endif %}
-                                    </li>
-                                    {% endfor %}
-                                </ul>
+                            <div class="type-badge">{{n.date}}</div>
+                            <!-- {% if n.column_type != ".." %}
+                        <h6>[{{n.column_type}}]<br>{{n.title}}</h6>
+                        {% else %}
+                        <h6>{{n.title}}</h6>
+                        {% endif %} -->
+                            <h6>{{n.title}}</h6>
+                            <div class="item-content">
+                                <div class="lower-content clearfix">
+                                    {% if n.pic|length %}
+                                    <div class="text">
+                                        {% else %}
+                                        <div class="text_whole">
+                                            {% endif %}
+                                            <ul>
+                                                {% for content in n.content %}
+                                                <li>
+                                                    {{content.block}}
+                                                    {% if content.child|length %}
+                                                    <ul>
+                                                        {% for c in content.child %}
+                                                        <li style=list-style-type:none;>> {{c.block}}</li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                    {% endif %}
+                                                </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                            {% if n.pic|length %}
+                            <div class="news_img">
+                                <img src="{% get_static_prefix %}image/{{n.pic}}" alt="loading">
+                            </div>
+                            {% endif %}
                         </div>
                     </div>
+                    {% endfor %}
                 </div>
-                {% if n.pic|length %}
-                <div class="news_img">
-                    <img src="{% get_static_prefix %}image/{{n.pic}}" alt="loading">
-                </div>
-                {% endif %}
             </div>
         </div>
-        {% endfor %}
     </div>
+
 </div>
+
 
 {% endblock %}
 

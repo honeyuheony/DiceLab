@@ -10,8 +10,9 @@
     <div class="container">
         <div class="Contents">
             {% for g in graduated %}
-            {% if g.admission_date|length %}
-            <div class="card profile">
+                {% if g.admission_date|length %}
+                    {% cycle '<div class="row">' '' %}
+            <div class="card profile col-lg-6 col-md-6 col-sm-12">
                 <div class="card-inner">
                     <div class="profile-element">
                         <div style="background-image: url({% get_static_prefix %}image/{{g.pic}}); background-position: center;
@@ -64,10 +65,11 @@
                     </div>
                 </div>
             </div>
-            {% if forloop.last %}
-            {% else %}
-            {% endif %}
-            {% endif %}
+                    {% cycle '' '</div>' %}
+                        {% if forloop.last %}
+        </div>
+                        {% endif %}
+                {% endif %}
             {% endfor %}
 
         </div>

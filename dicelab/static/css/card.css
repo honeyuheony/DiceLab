@@ -1,12 +1,7 @@
 .row {
     padding: 0px 0px;
-  }
+}
 
-.Contents {
-    padding: 0% 0%;
-    margin: 10%;
-  }
-  
 .type-badge {
     font-weight: 700;
     background: #333;
@@ -67,10 +62,6 @@ h6 p {
 }
 
 @media (min-width: 768px) {
-    .Contents {
-        padding: 0% 0%;
-        margin: 5%;
-    }
     .single-tab-content {
         height: 100%;
     }

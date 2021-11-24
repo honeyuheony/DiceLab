@@ -80,12 +80,10 @@ h6 {
     margin-left: 5%;
   }
 
-  .Contents {
-    margin: 5%;
-  }
   .item {
     width: 60%;
   }
+
   .single-tab-content .single-item {
     display: flex;
   }

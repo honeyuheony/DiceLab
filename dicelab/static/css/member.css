@@ -1,7 +1,7 @@
 .Contents {
     width: 100%;
-    margin: 0% auto;
     padding: 0% 0%;
+    margin: 0% 5%;
 }
 
 p {
@@ -17,6 +17,7 @@ p {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
 }
 
 .profile {
@@ -26,15 +27,10 @@ p {
     box-shadow: 0 5px 25px 0 rgba(204, 204, 204, .75);
 }
 
-.container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-
 .card {
-    width: 550px;
+    width: 820px;
+    min-height: 400px;
+    max-height: 400px;
 }
 
 .profile-img {
@@ -104,4 +100,55 @@ h6 {
     font-size: 14px;
     margin-left: 12px;
     list-style-type: circle;
+}
+
+.row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between
+}
+
+@media (min-width: 1660px) {
+    .row {
+        justify-content: space-between;
+        padding: 0% 0%;
+    }
+}
+
+@media (max-width: 1660px) {
+    .row {
+        padding: 0% 0%;
+        justify-content: center;
+    }
+}
+
+@media (min-width: 880px) {
+    .card-inner {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .card {
+        width: 820px;
+        min-height: 400px;
+        max-height: 400px;
+    }
+}
+
+@media (max-width: 880px) {
+    .card-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .card {
+        min-width: 400px;
+        height: 600px;
+    }
 }

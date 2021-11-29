@@ -5,6 +5,6 @@ from .models import Patents, Publication
 
 def publication(request):
     set_data()
-    publication = Publication.objects.all()
-    patents = Patents.objects.all()
+    publication = Publication.objects.order_by('-year')
+    patents = Patents.objects.order_by('-year')
     return render(request, 'publication.html', {'publication': publication, 'patents': patents})

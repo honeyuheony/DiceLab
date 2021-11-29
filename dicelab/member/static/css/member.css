@@ -1,7 +1,5 @@
 .Contents {
     width: 100%;
-    padding: 0% 0%;
-    margin: 0% 0%;
 }
 
 p {
@@ -110,14 +108,12 @@ h6 {
 
 @media (min-width: 1850px) {
     .row {
-        width: 100%;
         justify-content: space-between;
     }
 }
 
 @media (max-width: 1850px) {
     .row {
-        width: 100%;
         justify-content: center;
     }
 }

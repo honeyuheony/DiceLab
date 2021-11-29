@@ -2,6 +2,16 @@
 {% load static %}
 
 {% block introduce %}
+<script type="text/javascript">
+    window.onload = function(){
+        var matches = document.getElementsByClassName("nav-link");
+        for(var i=0; i< matches.length;i++){
+            matches[i].classList.remove('active');
+        }
+        var target = document.getElementById("main").className += ' active';
+    };
+</script>
+
 <section
     style="background: url('{% static 'image/main_bg.jpg' %}'); background-size:cover; background-position:center center;">
     <div class="text-center" style="padding: 25px 48px;">

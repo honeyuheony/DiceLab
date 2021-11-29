@@ -3,7 +3,15 @@
 {% block content %}
 <link rel="stylesheet" type='text/css' href="{% static 'css/publication.css' %}">
 <link rel="stylesheet" type='text/css' href="{% static 'css/card.css' %}">
-
+<script type="text/javascript">
+    window.onload = function(){
+        var matches = document.getElementsByClassName("nav-link");
+        for(var i=0; i< matches.length;i++){
+            matches[i].classList.remove('active');
+        }
+        var target = document.getElementById("publication").className += ' active';
+    };
+</script>
 <div class="International Papers">
     <div class="Category">
         <h4>International Papers</h4>

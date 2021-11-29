@@ -3,7 +3,15 @@
 {% block content %}
 <link rel="stylesheet" type='text/css' href="{% static 'css/school.css' %}">
 <link rel="stylesheet" type='text/css' href="{% static 'css/card.css' %}">
-
+<script type="text/javascript">
+    window.onload = function(){
+        var matches = document.getElementsByClassName("nav-link");
+        for(var i=0; i< matches.length;i++){
+            matches[i].classList.remove('active');
+        }
+        var target = document.getElementById("school").className += ' active';
+    };
+</script>
 <div>
     <div class="Category">
         <h4>Seasonal Schools</h4>

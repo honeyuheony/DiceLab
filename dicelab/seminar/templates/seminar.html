@@ -1,6 +1,15 @@
 {% extends 'index.html' %}
 {% load static %}
 {% block content %}
+<script type="text/javascript">
+    window.onload = function(){
+        var matches = document.getElementsByClassName("nav-link");
+        for(var i=0; i< matches.length;i++){
+            matches[i].classList.remove('active');
+        }
+        var target = document.getElementById("seminar").className += ' active';
+    };
+</script>
 <div class="Category">
     <h4>Seminar</h4>
 </div>

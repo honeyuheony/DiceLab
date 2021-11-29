@@ -12,6 +12,7 @@
   font-size: 14px;
   margin-left: 12px;
   list-style-type: circle;
+  word-break: break-all;
 }
 
 .news_img img {

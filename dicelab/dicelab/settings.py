@@ -24,8 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-3&gq5bmx*t^=x-5u*0u)9yr^^8het2($ijf##z5vt(zzef6up8'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -183,6 +182,8 @@ def get_secret(setting, secrets=secrets):
         error_msg = 'Set the {} Environment variable'.format(setting)
         raise ImproperlyConfigured(error_msg)
 
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = get_secret('SECRET_KEY')
 
 # Notion-Version 환경변수
 NOTION_VERSION = '2021-08-16'

@@ -111,13 +111,17 @@ h6 {
     margin: 0% 0%;
 }
 
-@media (min-width: 1400px) {
+@media (min-width: 1555px) {
     .row {
         justify-content: space-between;
     }
+
+    ul {
+        padding: 0% 0%;
+    }
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1555px) {
     .row {
         justify-content: center;
     }

@@ -21,8 +21,8 @@
             {% for project in projects %}
             {% cycle '<div class="row">' '' %}
             <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="single-tab-content">
-                    <div class="single-item">
+                <div class="card_frame">
+                    <div class="card_item">
                         <h6>
                             {% if project.status == 'Doing'  %}
                             <p>
@@ -34,17 +34,13 @@
                             </p>
                             {% endif %}
                         </h6>
-                        <div class="item">
-                            <div class="item-content">
-                                <div class="lower-content clearfix">
-                                    <div class="text">
-                                        <ul>
-                                            <li>
-                                                <p>{{project.date}}, {{project.label}}, {{project.area}}</p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
+                        <div class="clearfix">
+                            <div class="text">
+                                <ul>
+                                    <li>
+                                        <p>{{project.date}}, {{project.label}}, {{project.area}}</p>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>

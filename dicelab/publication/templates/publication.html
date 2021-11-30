@@ -21,29 +21,24 @@
             <ol reversed>
                 {% for pub in publication %}
                 {% if pub.label == "International Papers" %}
-                <div class="single-tab-content">
-                    <div class="single-item">
+                <div class="card_frame">
+                    <div class="card_item">
                         <h6>
                             <p>
                                 {{pub.title}}
                                 <a href={{ pub.paper_link }}>[paper]</a>
                             </p>
                         </h6>
-                        <div class="item">
-                            <div class="item-content">
-                                <div class="lower-content clearfix">
-                                    <div class="text">
-                                        <ul>
-                                            <li>
-                                                <p>{{pub.assign}}</p>
-                                            </li>
-                                            <li>
-                                                <p>{{pub.thesis}}, {{pub.year}}</p>
-                                            </li>
-                                        </ul>
-                                    </div>
-    
-                                </div>
+                        <div class="clearfix">
+                            <div class="text">
+                                <ul>
+                                    <li>
+                                        <p>{{pub.assign}}</p>
+                                    </li>
+                                    <li>
+                                        <p>{{pub.thesis}}, {{pub.year}}</p>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>

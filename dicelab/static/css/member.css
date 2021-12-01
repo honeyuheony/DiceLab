@@ -5,7 +5,7 @@ html {
 .Contents {
     width: 100%;
     padding: 3% 3%;
-    max-width: 1700px;
+    max-width: 1550px;
 }
 
 p,
@@ -81,6 +81,7 @@ ul li {
     text-align: left;
 }
 
+
 li {
     list-style-type: none;
 }
@@ -147,14 +148,18 @@ h6 {
     margin: 0% 0%;
 }
 
-@media (min-width: 1530px) {
+.card-body>ul>li {
+    list-style-type: none;
+}
+
+@media (min-width: 1500px) {
     .row {
         justify-content: space-between;
     }
 
 }
 
-@media (max-width: 1530px) {
+@media (max-width: 1500px) {
     .row {
         justify-content: center;
     }
@@ -166,14 +171,10 @@ h6 {
     }
 
     .card {
-        min-width: 700px;
-        max-width: 700px;
-        min-height: 380px;
-        max-height: 380px;
-    }
-
-    ul {
-        padding-left: 2rem;
+        min-width: 670px;
+        max-width: 670px;
+        min-height: 330px;
+        max-height: 330px;
     }
 }
 
@@ -184,12 +185,8 @@ h6 {
 
     .card {
         width: 100%;
-        min-width: 600px;
-        max-width: 600px;
+        min-width: 450px;
+        max-width: 450px;
         height: auto;
-    }
-
-    ul {
-        padding: 0% 0%;
     }
 }

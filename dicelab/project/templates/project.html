@@ -1,8 +1,8 @@
 {% extends 'index.html' %}
 {% load static %}
 {% block content %}
-<link rel="stylesheet" type='text/css' href="{% static 'css/project.css' %}">
 <link rel="stylesheet" type='text/css' href="{% static 'css/card.css' %}">
+<link rel="stylesheet" type='text/css' href="{% static 'css/project.css' %}">
 <script type="text/javascript">
     window.onload = function(){
         var matches = document.getElementsByClassName("nav-link");
@@ -63,8 +63,8 @@
         <div class="Contents">
             {% for ai in ai_challenges %}
             {% if ai.status != 'To Do' %}
-            <div class="single-tab-content">
-                <div class="single-item">
+            <div class="card_frame">
+                <div class="card_item">
                     <h6>
                         {% if ai.link == 'None'%}
                         <p>
@@ -77,33 +77,29 @@
                         </p>
                         {% endif %}
                     </h6>
-                    <div class="item">
-                        <div class="item-content">
-                            <div class="lower-content clearfix">
-                                <div class="text">
+                    <div class="clearfix">
+                        <div class="text">
+                            <ul>
+                                {% if ai.assign %}
+                                <li>
+                                    <p>{{ ai.assign }}</p>
+                                </li>
+                                {% endif %}
+                                {% if ai.area %}
+                                <li>
+                                    <p>{{ai.area}}</p>
+                                    {% if ai.award %}
                                     <ul>
-                                        {% if ai.assign %}
-                                        <li>
-                                            <p>{{ ai.assign }}</p>
-                                        </li>
-                                        {% endif %}
-                                        {% if ai.area %}
-                                        <li>
-                                            <p>{{ai.area}}</p>
-                                            {% if ai.award %}
-                                            <ul>
-                                                <li>{{ ai.award }}</li>
-                                            </ul>
-                                            {% endif %}
-                                        </li>
-                                        {% else %}
-                                        {% if ai.award %}
                                         <li>{{ ai.award }}</li>
-                                        {% endif %}
-                                        {% endif %}
                                     </ul>
-                                </div>
-                            </div>
+                                    {% endif %}
+                                </li>
+                                {% else %}
+                                {% if ai.award %}
+                                <li>{{ ai.award }}</li>
+                                {% endif %}
+                                {% endif %}
+                            </ul>
                         </div>
                     </div>
                 </div>

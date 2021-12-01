@@ -4,7 +4,7 @@ from .models import AI_challenge, Project
 
 
 def project(request):
-    set_data()
+    # set_data()
     projects = Project.objects.order_by('-date')
     ai_challenges = AI_challenge.objects.order_by('-date')
 

@@ -5,7 +5,7 @@ html {
 .Contents {
     width: 100%;
     padding: 3% 3%;
-    max-width: 1500px;
+    max-width: 1700px;
 }
 
 p {
@@ -116,14 +116,14 @@ h6 {
     margin: 0% 0%;
 }
 
-@media (min-width: 1555px) {
+@media (min-width: 1530px) {
     .row {
         justify-content: space-between;
     }
 
 }
 
-@media (max-width: 1555px) {
+@media (max-width: 1530px) {
     .row {
         justify-content: center;
     }

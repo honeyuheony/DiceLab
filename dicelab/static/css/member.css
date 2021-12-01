@@ -1,6 +1,11 @@
+html {
+    min-width: 700px;
+}
+
 .Contents {
     width: 100%;
     padding: 3% 3%;
+    max-width: 1500px;
 }
 
 p {
@@ -116,9 +121,6 @@ h6 {
         justify-content: space-between;
     }
 
-    ul {
-        padding: 0% 0%;
-    }
 }
 
 @media (max-width: 1555px) {
@@ -138,6 +140,10 @@ h6 {
         min-height: 380px;
         max-height: 380px;
     }
+
+    ul {
+        padding-left: 2rem;
+    }
 }
 
 @media (max-width: 880px) {
@@ -147,8 +153,12 @@ h6 {
 
     .card {
         width: 100%;
-        min-width: 400px;
+        min-width: 600px;
         max-width: 600px;
         height: auto;
+    }
+
+    ul {
+        padding: 0% 0%;
     }
 }

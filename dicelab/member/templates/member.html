@@ -2,6 +2,7 @@
 {% load static %}
 {% block content %}
 <link rel="stylesheet" type='text/css' href="{% static 'css/member.css' %}">
+<link rel="stylesheet" type='text/css' href="{% static 'css/card.css' %}">
 
 <script type="text/javascript">
     window.onload = function () {
@@ -162,8 +163,45 @@
     {% endif %}
     {% endfor %}
 </div>
-<div class="Contents" style="padding:0% 0%;">
-    <ul>
+<div class="Contents" style="padding:0% 15px;">
+    <div class="card_frame">
+        <div class="card_item">
+            <ul>
+                <li>
+                <h6>Undergraduate Research Program (URP)</h6>
+                </li>
+                <li>
+                    <div class="item">
+                        <div class="text_whole">
+                            <ul>
+                                <li>
+                                    <p>
+                                        4th grade:
+                                        {% for a in alumni %}
+                                        {% if a.course == '4th grade' %}
+                                        {{a}}
+                                        {% endif %}
+                                        {% endfor %}
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        3th grade:
+                                {% for a in alumni %}
+                                {% if a.course == '3rd grade' %}
+                                {{a}}
+                                {% endif %}
+                                {% endfor %}
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- <ul>
         <li>
             <p>Undergraduate Research Program (URP)</p>
             <ul>
@@ -189,8 +227,7 @@
                 </li>
             </ul>
         </li>
-    </ul>
-</div>
+    </ul> -->
 </div>
 
 <div>

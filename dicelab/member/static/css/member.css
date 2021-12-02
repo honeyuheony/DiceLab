@@ -134,6 +134,10 @@ h6 {
     list-style-type: circle;
 }
 
+.card_item>ul>li{
+    list-style-type: none;
+}
+
 .row {
     width: 100%;
     display: flex;

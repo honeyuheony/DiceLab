@@ -1,11 +1,7 @@
-html {
-    min-width: 700px;
-}
-
 .Contents {
     width: 100%;
-    padding: 3% 3%;
-    max-width: 1550px;
+    padding: 0% 0%;
+    max-width: 1410px;
 }
 
 p,
@@ -152,20 +148,20 @@ h6 {
     list-style-type: none;
 }
 
-@media (min-width: 1500px) {
+@media (min-width: 1425px) {
     .row {
         justify-content: space-between;
     }
 
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 1425px) {
     .row {
         justify-content: center;
     }
 }
 
-@media (min-width: 880px) {
+@media (min-width: 700px) {
     .card-inner {
         flex-direction: row;
     }
@@ -178,7 +174,7 @@ h6 {
     }
 }
 
-@media (max-width: 880px) {
+@media (max-width: 700px) {
     .card-inner {
         flex-direction: column;
     }

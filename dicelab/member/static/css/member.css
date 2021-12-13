@@ -171,8 +171,8 @@ h6 {
     }
 
     .card {
-        min-width: 670px;
-        max-width: 670px;
+        min-width: 640px;
+        max-width: 640px;
         min-height: 330px;
         max-height: 330px;
     }

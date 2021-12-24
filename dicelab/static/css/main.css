@@ -1,0 +1,20 @@
+div.carousel-inner img {
+    margin: auto;
+    top: -100%;
+    bottom: -100%;
+    overflow: hidden;
+}
+
+div.carousel-inner h5 {
+    color: azure;
+}
+
+.container {
+    max-width: 1920px;
+    margin: auto auto;
+}
+
+.container p {
+    font-size: 13pt;
+    vertical-align: baseline;
+}

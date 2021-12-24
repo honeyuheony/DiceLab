@@ -1,7 +1,7 @@
 .mobile-date {
   margin-top: 6px;
   color: #888;
-  font-size: 13px;
+  font-size: 1rem;
 }
 
 .text_whole li {
@@ -9,7 +9,7 @@
   font-weight: 500;
   margin-bottom: 8px;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 1rem;
   margin-left: 12px;
   list-style-type: circle;
   word-break: break-all;

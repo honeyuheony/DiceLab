@@ -29,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = True
 # DEBUG = False
 
-# ALLOWED_HOSTS = ['52.78.175.73']
+# ALLOWED_HOSTS = ['13.125.28.69']
 ALLOWED_HOSTS = ['*']
 
 
@@ -60,6 +60,8 @@ INSTALLED_APPS = [
     'seminar.apps.SeminarConfig',
     # Main
     'main.apps.MainConfig',
+    # Demo
+    'demo.apps.DemoConfig'
 ]
 
 MIDDLEWARE = [
@@ -151,6 +153,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'school', 'static'),
     os.path.join(BASE_DIR, 'seminar', 'static'),
     os.path.join(BASE_DIR, 'main', 'static'),
+    os.path.join(BASE_DIR, 'demo', 'demo')
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 

@@ -44,37 +44,3 @@
     </div>
 </div>
 {% endblock %}
-
-<!-- <ul>
-    {% for n in news %}
-    <section style="background-size: cover; display: table; position: relative; table-layout: fixed; width: 100%;">
-        {% if n.pic|length %}
-        <div class="news_content">
-        {% else %}
-        <div>
-        {% endif %}
-            <li>{{n.title}} ({{n.date}})</li>
-            <ul>
-                {% for content in n.content %}
-                <li>  
-                    {{content.block}}
-                    {% if content.child|length %}
-                    <ul>
-                        {% for c in content.child %}
-                        <li>{{c.block}}</li>
-                        {% endfor %}
-                    </ul>
-                    {% endif %}
-                </li>
-                {% endfor %}
-            </ul>
-            <br>
-        </div>
-        {% if n.pic|length %}
-        <div class="news_img">
-            <img src="{% get_static_prefix %}image/{{n.pic}}" alt="loading">
-        </div>
-        {% endif %}
-    </section>
-    {% endfor %}
-</ul> -->

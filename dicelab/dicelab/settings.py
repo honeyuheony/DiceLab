@@ -26,9 +26,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = True
 DEBUG = False
 
 ALLOWED_HOSTS = ['52.78.175.73']
+# ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -180,6 +182,7 @@ def get_secret(setting, secrets=secrets):
     except KeyError:
         error_msg = 'Set the {} Environment variable'.format(setting)
         raise ImproperlyConfigured(error_msg)
+
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = get_secret('SECRET_KEY')

@@ -26,7 +26,8 @@
         <div class="card profile">
             <div class="card-inner">
                 <div class="profile-element">
-                    <div class="profile-img" style="background-image: url({% get_static_prefix %}image/{{g.pic}});"></div>
+                    <div class="profile-img" style="background-image: url({% get_static_prefix %}image/{{g.pic}});">
+                    </div>
                     <div class="line"></div>
                     <div class="name">
                         <h5>{{g.name}}</h5>
@@ -102,7 +103,8 @@
         <div class="card profile">
             <div class="card-inner">
                 <div class="profile-element">
-                    <div style="background-image: url({% get_static_prefix %}image/{{g.pic}});" class="profile-img"></div>
+                    <div style="background-image: url({% get_static_prefix %}image/{{g.pic}});" class="profile-img">
+                    </div>
                     <div class="line"></div>
                     <div class="name">
                         <h5>{{g.name}}</h5>
@@ -168,7 +170,7 @@
         <div class="card_item">
             <ul>
                 <li>
-                <h6>Undergraduate Research Program (URP)</h6>
+                    <h6>Undergraduate Research Program (URP)</h6>
                 </li>
                 <li>
                     <div class="item">
@@ -187,11 +189,11 @@
                                 <li>
                                     <p>
                                         3th grade:
-                                {% for a in alumni %}
-                                {% if a.course == '3rd grade' %}
-                                {{a}}
-                                {% endif %}
-                                {% endfor %}
+                                        {% for a in alumni %}
+                                        {% if a.course == '3rd grade' %}
+                                        {{a}}
+                                        {% endif %}
+                                        {% endfor %}
                                     </p>
                                 </li>
                             </ul>
@@ -209,52 +211,74 @@
             <h4>Alumni</h4>
         </div>
     </div>
-    <div class="Contents" style="justify-content:left">
-        <ul>
-            <li>
-                <p>Graduate Students</p>
+    <div class="Contents" style="padding:0% 15px; justify-content:center">
+        <div class="card_frame">
+            <div class="card_item">
                 <ul>
                     <li>
-                        <p>Coming in 2022!</p>
+                        <h6>Graduate Students</h6>
+                    </li>
+                    <li>
+                        <div class="item">
+                            <div class="text_whole">
+                                <ul>
+                                    <li>
+                                        <p>Coming in 2022!</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </li>
                 </ul>
-            </li>
-            <li>
-                <p>URP Students</p>
+            </div>
+        </div>
+        <div class="card_frame">
+            <div class="card_item">
                 <ul>
                     <li>
-                        <p>
-                            2022:
-                            {% for a in alumni %}
-                            {% if a.graduate_year == '2022' %}
-                            {{a}}
-                            {% endif %}
-                            {% endfor %}
-                        </p>
+                        <h6>URP Students</h6>
                     </li>
                     <li>
-                        <p>
-                            2021:
-                            {% for a in alumni %}
-                            {% if a.graduate_year == '2021' %}
-                            {{a}}
-                            {% endif %}
-                            {% endfor %}
-                        </p>
-                    </li>
-                    <li>
-                        <p>
-                            2020:
-                            {% for a in alumni %}
-                            {% if a.graduate_year == '2020' %}
-                            {{a}}
-                            {% endif %}
-                            {% endfor %}
-                        </p>
+                        <div class="item">
+                            <div class="text_whole">
+                                <ul>
+                                    <li>
+                                        <p>
+                                            2022:
+                                            {% for a in alumni %}
+                                            {% if a.graduate_year == '2022' %}
+                                            {{a}}
+                                            {% endif %}
+                                            {% endfor %}
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            2021:
+                                            {% for a in alumni %}
+                                            {% if a.graduate_year == '2021' %}
+                                            {{a}}
+                                            {% endif %}
+                                            {% endfor %}
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            2020:
+                                            {% for a in alumni %}
+                                            {% if a.graduate_year == '2020' %}
+                                            {{a}}
+                                            {% endif %}
+                                            {% endfor %}
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </li>
                 </ul>
-            </li>
-        </ul>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

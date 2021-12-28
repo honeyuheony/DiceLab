@@ -7,6 +7,7 @@ div.carousel-inner img {
 
 div.carousel-inner h5 {
     color: azure;
+    display: none;
 }
 
 .container {
@@ -17,4 +18,19 @@ div.carousel-inner h5 {
 .container p {
     font-size: 1rem;
     vertical-align: baseline;
+}
+
+@media (min-width: 768px) {
+    div.carousel-inner h5 {
+        display:inherit
+    }
+    .location {
+        display: flex;
+    }
+    .location ul{
+        max-width: 60%;
+    }
+    .location iframe{
+        max-width: 40%;
+    }
 }

@@ -1,0 +1,46 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type='text/css' href="{% static 'css/card.css' %}">
+<link rel="stylesheet" type='text/css' href="{% static 'css/demo.css' %}">
+<script type="text/javascript">
+    window.onload = function(){
+        var matches = document.getElementsByClassName("nav-link");
+        for(var i=0; i< matches.length;i++){
+            matches[i].classList.remove('active');
+        }
+        var target = document.getElementById("demo").className += ' active';
+    };
+</script>
+<div class="Demo">
+    <div class="Category">
+        <div>
+            <h4>Demo</h4>
+        </div>
+    </div>
+    <div class="container">
+        <div class="Contents">
+            {% for d in demo %}
+            <div class="card_frame">
+                <div class="card_item">
+                    <div class="type-badge">{{d.date}}</div>
+                    <h6>{{d.title}}</h6>
+                    <div class="clearfix">
+                        <div class="text">
+                            <ul>
+                                <li>
+                                    {{d.description}}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="demo_video">
+                        <video controls src="{% get_static_prefix %}video/{{d.video}}" alt="loading">
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,16 +1,12 @@
-html {
-    min-width: 700px;
-}
-
 .Contents {
     width: 100%;
-    padding: 3% 3%;
-    max-width: 1550px;
+    padding: 0% 0%;
+    max-width: 1410px;
 }
 
 p,
 a {
-    font-size: 16px;
+    font-size: 1rem;
 }
 
 .profile-element {
@@ -133,9 +129,13 @@ h6 {
     font-weight: 500;
     margin-bottom: 8px;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 1rem;
     margin-left: 12px;
     list-style-type: circle;
+}
+
+.card_item>ul>li {
+    list-style-type: none;
 }
 
 .row {
@@ -152,33 +152,33 @@ h6 {
     list-style-type: none;
 }
 
-@media (min-width: 1500px) {
+@media (min-width: 1425px) {
     .row {
         justify-content: space-between;
     }
 
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 1425px) {
     .row {
         justify-content: center;
     }
 }
 
-@media (min-width: 880px) {
+@media (min-width: 700px) {
     .card-inner {
         flex-direction: row;
     }
 
     .card {
-        min-width: 670px;
-        max-width: 670px;
+        min-width: 640px;
+        max-width: 640px;
         min-height: 330px;
         max-height: 330px;
     }
 }
 
-@media (max-width: 880px) {
+@media (max-width: 700px) {
     .card-inner {
         flex-direction: column;
     }

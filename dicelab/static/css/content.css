@@ -15,12 +15,24 @@ h5 {
 }
 
 .Contents {
-  padding: 3% 5%;
   max-width: 1920px;
   margin: 0% auto;
 }
-.Category div{
-  padding: 3% 5%;
+
+@media (min-width:768px) {
+  .Contents {
+    padding: 3% 5%;
+  }
+}
+
+@media (max-width:768px) {
+  .Contents {
+    padding: 0px 0px;
+  }
+}
+
+.Category div {
+  padding: 0% 5%;
   max-width: 1920px;
   margin: 0% auto;
   width: 100%;

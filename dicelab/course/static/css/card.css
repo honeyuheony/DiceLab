@@ -9,7 +9,7 @@
   color: #fff;
   border-radius: 5px;
   padding: 0 8px;
-  font-size: 13px;
+  font-size: 1rem;
   margin-bottom: 2px;
 }
 
@@ -22,7 +22,7 @@
   position: relative;
   display: block;
   background: #fff;
-  padding: 12px 30px;
+  padding: 0px 12px;
   -webkit-box-shadow: 0 5px 25px 0 rgb(204 204 204 / 55%);
   box-shadow: 0 5px 25px 0 rgb(204 204 204 / 55%);
   border-radius: 12px;
@@ -40,8 +40,12 @@ h6 {
   font-size: 16px;
 }
 
-h6 p {
+h6 {
   font-size: 16px;
+}
+
+p {
+  font-size: 1rem;
 }
 
 .text {

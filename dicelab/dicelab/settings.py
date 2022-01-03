@@ -29,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # DEBUG = True
 DEBUG = False
 
-ALLOWED_HOSTS = ['13.125.28.69']
+ALLOWED_HOSTS = ['13.125.28.69','dicelab.kr','www.dicelab.kr']
 # ALLOWED_HOSTS = ['*']
 
 

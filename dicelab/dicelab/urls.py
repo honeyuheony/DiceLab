@@ -18,14 +18,14 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('member/', include('member.urls')),
-    path('news/', include('news.urls')),
-    path('professor/', include('professor.urls')),
-    path('course/', include('course.urls')),
-    path('project/', include('project.urls')),
-    path('publication/', include('publication.urls')),
-    path('school/', include('school.urls')),
-    path('seminar/', include('seminar.urls')),
-    path('demo/', include('demo.urls')),
+    path('member', include('member.urls')),
+    path('news', include('news.urls')),
+    path('professor', include('professor.urls')),
+    path('course', include('course.urls')),
+    path('project', include('project.urls')),
+    path('publication', include('publication.urls')),
+    path('school', include('school.urls')),
+    path('seminar', include('seminar.urls')),
+    path('demo', include('demo.urls')),
     path('', include('main.urls')),
 ]

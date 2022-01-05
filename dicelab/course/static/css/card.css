@@ -22,7 +22,7 @@
   position: relative;
   display: block;
   background: #fff;
-  padding: 0px 12px;
+  padding: 20px 20px;
   -webkit-box-shadow: 0 5px 25px 0 rgb(204 204 204 / 55%);
   box-shadow: 0 5px 25px 0 rgb(204 204 204 / 55%);
   border-radius: 12px;
@@ -60,7 +60,7 @@ p {
   font-weight: 500;
   margin-bottom: 8px;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 1rem;
   margin-left: 12px;
   list-style-type: circle;
   word-break: break-all;

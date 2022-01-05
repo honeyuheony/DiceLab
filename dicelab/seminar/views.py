@@ -5,7 +5,7 @@ from django.db.models import Q
 
 
 def seminar(request):
-    # set_data()
+    set_data()
     seminar = Seminar.objects.order_by('-date')
     search_key = request.GET.get('key', '')
     search_type = 'all'

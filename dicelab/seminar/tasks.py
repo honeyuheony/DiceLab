@@ -30,6 +30,7 @@ def set_data():
         s.date = d['date']
         s.speaker = d['speaker']
         s.source = d['source']
+        s.slide = d['slide']
         s.year = d['year']
         s.area = d['area']
         s.paper = d['paper']
@@ -109,13 +110,13 @@ def load_notionAPI_seminar():
                 year = p.search(rawtitle).group('year')
             else:
                 title = rawtitle
-                paper = ''
-
+                # paper = ''
         data.append({
             'date': r['properties']['Date']['date']['start'][2:] if 'Date' in r['properties'] else '19-01-01',
             'speaker': r['properties']['Assign']['people'][0]['name'] if 'Assign' in r['properties'] and r['properties']['Assign']['people'] else '-',
             'title': title,
             'source': r['properties']['Source']['select']['name'] if not source and 'Source' in r['properties'] else source,
+            'slide': r['properties']['Slide link']['url'] if 'Slide link' in r['properties'] else '',
             'year': r['properties']['Year']['number'] if not year and 'Year' in r['properties'] else year,
             'area': ', '.join([l['name'] for l in r['properties']['Label']['multi_select']]) if 'Label' in r['properties'] else '-',
             'paper': r['properties']["Slide link"]['url'] if 'Slide link' in r['properties'] else '',

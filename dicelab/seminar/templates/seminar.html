@@ -50,7 +50,11 @@
                         <td class="text-center align-middle fit">{{r.year}}</td>
                         <td class="text-center align-middle fit">{{r.area}}</td>
                         <td class="text-center align-middle fit"><a href="{{r.paper}}" target="_blank">[link]</a></td>
+                        {% if r.slide != None %}
                         <td class="text-center align-middle fit"><a href="{{r.slide}}" target="_blank">[link]</a></td>
+                        {% else %}
+                        <td class="text-center align-middle fit"><a class='disabled'>[link]</a></td>
+                        {% endif %}
                     </tr>
                     {% endfor %}
                 </tbody>

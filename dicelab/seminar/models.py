@@ -10,6 +10,7 @@ class Seminar(models.Model):
     source = models.CharField(max_length=50, null=True)
     year = models.CharField(max_length=50, null=True)
     area = models.CharField(max_length=50, null=True)
+    slide = models.CharField(max_length=50, null=True)
     paper = models.CharField(max_length=50, null=True)
 
     def __str__(self):

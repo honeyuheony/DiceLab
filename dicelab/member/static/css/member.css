@@ -1,7 +1,7 @@
 .Contents {
     width: 100%;
     padding: 0% 0%;
-    max-width: 1340px;
+    max-width: 1240px;
 }
 
 p,
@@ -149,7 +149,7 @@ h6 {
     list-style-type: none;
 }
 
-@media (min-width: 1340px) {
+@media (min-width: 1240px) {
     .row {
         justify-content: space-between;
     }
@@ -159,7 +159,7 @@ h6 {
     }
 }
 
-@media (max-width: 1335px) {
+@media (max-width: 1240px) {
     .row {
         justify-content: center;
     }
@@ -175,8 +175,8 @@ h6 {
     }
 
     .card {
-        min-width: 640px;
-        max-width: 640px;
+        min-width: 590px;
+        max-width: 590px;
         min-height: 330px;
         max-height: 330px;
     }

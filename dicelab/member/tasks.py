@@ -28,9 +28,10 @@ headers = {
 
 @shared_task
 def set_data():
-    data = load_notionAPI_member_graduate()['body']
-    # Data Create or Update
     temp = []
+    # Data Create or Update
+    # Graduate
+    data = load_notionAPI_member_graduate()['body']
     for d in data:
         g, created = Graduated.objects.update_or_create(
             name=d['name'])
@@ -38,10 +39,12 @@ def set_data():
         g.admission_date = d['admission_date']
         g.email = d['email']
         g.pic = d['pic']
+        g.research_interests.clear()
         for r in d['research_interests']:
             obj, created = Research_interests.objects.get_or_create(title=r)
             g.research_interests.add(obj)
             g.save()
+        g.linked.clear()
         if d['linked'] != None:
             for key, value in d['linked'].items():
                 obj, created = Linked.objects.get_or_create(
@@ -49,6 +52,7 @@ def set_data():
                 g.linked.add(obj)
                 g.save()
         temp.append(d['name'])
+    # Alumni
     data = load_notionAPI_member_alumni()['body']
     for d in data:
         a, created = Alumni.objects.update_or_create(
@@ -85,8 +89,12 @@ def load_notionAPI_member_graduate():
     }
     sorts = [  # 정렬
         {
+            "property": "course",
+            "direction": "descending"
+        },
+        {
             "property": "admission_date",
-            "direction": "ascending"
+            "direction": "descending"
         },
         {
             "property": "name",
@@ -178,15 +186,15 @@ def load_notionAPI_member_alumni():
     sorts = [  # 정렬
         {
             "property": "course",
-            "direction": "ascending"
+            "direction": "descending"
         },
         {
             "property": "team",
-            "direction": "ascending"
+            "direction": "descending"
         },
         {
             "property": "name",
-            "direction": "ascending"
+            "direction": "descending"
         }
     ]
     body = {

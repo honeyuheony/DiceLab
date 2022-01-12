@@ -46,7 +46,7 @@
                 <div class="text card-body">
                     <ul>
                         {% if g.research_interests.all|length %}
-                        <li>
+                        <li class="research_interests">
                             <h6>Research Interests</h6>
                             <ul>
                                 {% for r in g.research_interests.all %}
@@ -54,15 +54,10 @@
                                     <p>{{r}}</p>
                                 </li>
                                 {% endfor %}
-                                {% if g.research_interests.all|length == 1 %}
-                                <br><br>
-                                {% elif g.research_interests.all|length == 2 %}
-                                <br>
-                                {% endif %}
                             </ul>
                         </li>
                         {% endif %}
-                        <li>
+                        <li class="contact">
                             <h6>Contact</h6>
                             <ul>
                                 <li>
@@ -74,8 +69,6 @@
                                     <a href="{{l.link}}">[{{l.title}}]</a>
                                     {% endfor %}
                                 </li>
-                                {% else %}
-                                <br><br>
                                 {% endif %}
                             </ul>
                         </li>
@@ -123,7 +116,7 @@
                 <div class="text card-body">
                     <ul>
                         {% if g.research_interests.all|length %}
-                        <li style="list-style-type:none;">
+                        <li class="research_interests">
                             <h6>Research Interests</h6>
                             <ul>
                                 {% for r in g.research_interests.all %}
@@ -131,15 +124,10 @@
                                     <p>{{r}}</p>
                                 </li>
                                 {% endfor %}
-                                {% if g.research_interests.all|length == 1 %}
-                                <br><br>
-                                {% elif g.research_interests.all|length == 2 %}
-                                <br>
-                                {% endif %}
                             </ul>
                         </li>
                         {% endif %}
-                        <li style="list-style-type:none;">
+                        <li class="contact">
                             <h6>Contact</h6>
                             <ul>
                                 <li>
@@ -151,8 +139,6 @@
                                     <a href="{{l.link}}">[{{l.title}}]</a>
                                     {% endfor %}
                                 </li>
-                                {% else %}
-                                <br>
                                 {% endif %}
                             </ul>
                         </li>

@@ -71,8 +71,12 @@ ul li {
 }
 
 
-li {
-    list-style-type: none;
+.research_interests {
+    height: 128px;
+}
+
+.contact {
+    height: 95px;
 }
 
 h6 {

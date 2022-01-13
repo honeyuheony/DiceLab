@@ -4,9 +4,9 @@
 <link rel="stylesheet" type='text/css' href="{% static 'css/course.css' %}">
 <link rel="stylesheet" type='text/css' href="{% static 'css/card.css' %}">
 <script type="text/javascript">
-    window.onload = function(){
+    window.onload = function () {
         var matches = document.getElementsByClassName("nav-link");
-        for(var i=0; i< matches.length;i++){
+        for (var i = 0; i < matches.length; i++) {
             matches[i].classList.remove('active');
         }
         var target = document.getElementById("course").className += ' active';
@@ -34,10 +34,11 @@
                             {% for s in course.semester.all%}
                             <ol>
                                 {% if semester == s %}
-                                <li>{{course.code}},<strong>{{course.name}}</strong></li>
+                                <li>{{course.code}},{{course.name}}
+                                </li>
                                 {% endif %}
                             </ol>
-                                {% endfor%}
+                            {% endfor%}
                             {% endfor %}
                         </div>
                     </div>
@@ -48,4 +49,3 @@
     </div>
 </div>
 {% endblock %}
-

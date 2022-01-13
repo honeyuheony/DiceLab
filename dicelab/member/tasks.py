@@ -4,7 +4,7 @@ import urllib3
 from typing import Dict
 import json
 from json import loads
-from .models import Research_interests, Linked, Graduated, Alumni, Team
+from .models import Research_interests, Linked, Graduated, Alumni, Team, Project
 
 http = urllib3.PoolManager()
 Member_Graduate_Database_ID = getattr(
@@ -65,6 +65,10 @@ def set_data():
         obj, created = Team.objects.get_or_create(title=d['team'])
         a.team.add(obj)
         a.save()
+        if d['project'] != None:
+            obj, created = Project.objects.get_or_create(title=d['project'])
+            a.project.add(obj)
+            a.save()
         temp.append(d['name'])
     # Data Delete
     for db in Graduated.objects.all():
@@ -219,11 +223,13 @@ def load_notionAPI_member_alumni():
             course = None
         team = r['properties']['team']['select']['name']
         graduate_year = r['properties']['graduate_year']['select']['name']
+        project = r['properties']['project']['select']['name'] if r['properties']['project']['select'] else None
         data.append({
             'name': name,
             'course': course,
             'team': team,
-            'graduate_year': graduate_year
+            'graduate_year': graduate_year,
+            'project': project
         })
     return {
         'statusCode': 200,

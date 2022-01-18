@@ -27,7 +27,19 @@
                         <div class="professor_img">
                             <img src="{% get_static_prefix %}image/Professor_Image.jpg" alt="loading">
                         </div>
-                    {% endif %}
+                        <strong>{{p.title}}</strong>
+                        <div class="clearfix">
+                            <div class="professor_text">
+                                <ul>
+                                    {% for t in p.text %}
+                                    <li>  
+                                        {{t}}
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    {% else %}
                     <strong>{{p.title}}</strong>
                     <div class="clearfix">
                         <div class="text">
@@ -40,6 +52,7 @@
                             </ul>
                         </div>
                     </div>
+                    {% endif %}
                 </div>
             </div>
             {% endfor %}

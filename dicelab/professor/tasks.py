@@ -54,7 +54,8 @@ def load_notionAPI_professor():
                 continue
         elif 'bulleted_list_item' in r:
             try:
-                line = r['bulleted_list_item']['text'][0]['plain_text']
+                line = r['bulleted_list_item']['text']
+                line = ''.join([l['plain_text'] for l in line])
                 text.append(line)
             except:
                 continue

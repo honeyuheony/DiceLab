@@ -66,7 +66,8 @@ def set_data():
         a.team.add(obj)
         a.save()
         if d['project'] != None:
-            obj, created = Project.objects.get_or_create(title=d['project'])
+            obj, created = Project.objects.get_or_create(
+                title=d['project'], year=d['graduate_year'])
             a.project.add(obj)
             a.save()
         temp.append(d['name'])

@@ -4,7 +4,7 @@ from .models import *
 
 
 def member(request):
-    # set_data()
+    set_data()
     alumni = {}
     year = [2020, 2021, 2022, 2023]
 

@@ -28,7 +28,13 @@ headers = {
 
 @shared_task
 def set_data():
+
     temp = []
+    research_interests_temp = []
+    linked_temp = []
+    team_temp = []
+    project_temp = []
+
     # Data Create or Update
     # Graduate
     data = load_notionAPI_member_graduate()['body']
@@ -43,6 +49,7 @@ def set_data():
         for r in d['research_interests']:
             obj, created = Research_interests.objects.get_or_create(title=r)
             g.research_interests.add(obj)
+            research_interests_temp.append(r)
             g.save()
         g.linked.clear()
         if d['linked'] != None:
@@ -50,6 +57,7 @@ def set_data():
                 obj, created = Linked.objects.get_or_create(
                     title=key.replace(" : ", ""), link=value)
                 g.linked.add(obj)
+                linked_temp.append(obj.title)
                 g.save()
         temp.append(d['name'])
     # Alumni
@@ -64,11 +72,13 @@ def set_data():
             a.course = ''
         obj, created = Team.objects.get_or_create(title=d['team'])
         a.team.add(obj)
+        team_temp.append(obj.title)
         a.save()
         if d['project'] != None:
             obj, created = Project.objects.get_or_create(
                 title=d['project'], year=d['graduate_year'])
             a.project.add(obj)
+            project_temp.append(obj.title)
             a.save()
         temp.append(d['name'])
     # Data Delete
@@ -78,6 +88,18 @@ def set_data():
     for db in Alumni.objects.all():
         if not db.name in temp:
             Alumni.objects.get(name=db.name).delete()
+    for db in Research_interests.objects.all():
+        if not db.title in research_interests_temp:
+            Research_interests.objects.get(title=db.title).delete()
+    for db in Linked.objects.all():
+        if not db.title in linked_temp:
+            Linked.objects.get(title=db.title).delete()
+    for db in Team.objects.all():
+        if not db.title in team_temp:
+            Team.objects.get(title=db.title).delete()
+    for db in Project.objects.all():
+        if not db.title in project_temp:
+            Project.objects.get(title=db.title).delete()
 
 
 def load_notionAPI_member_graduate():

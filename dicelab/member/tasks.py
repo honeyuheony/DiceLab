@@ -4,7 +4,7 @@ import urllib3
 from typing import Dict
 import json
 from json import loads
-from .models import Research_interests, Linked, Graduated, Alumni, Team
+from .models import Research_interests, Linked, Graduated, Alumni, Team, Project
 
 http = urllib3.PoolManager()
 Member_Graduate_Database_ID = getattr(
@@ -28,9 +28,10 @@ headers = {
 
 @shared_task
 def set_data():
-    data = load_notionAPI_member_graduate()['body']
-    # Data Create or Update
     temp = []
+    # Data Create or Update
+    # Graduate
+    data = load_notionAPI_member_graduate()['body']
     for d in data:
         g, created = Graduated.objects.update_or_create(
             name=d['name'])
@@ -38,10 +39,12 @@ def set_data():
         g.admission_date = d['admission_date']
         g.email = d['email']
         g.pic = d['pic']
+        g.research_interests.clear()
         for r in d['research_interests']:
             obj, created = Research_interests.objects.get_or_create(title=r)
             g.research_interests.add(obj)
             g.save()
+        g.linked.clear()
         if d['linked'] != None:
             for key, value in d['linked'].items():
                 obj, created = Linked.objects.get_or_create(
@@ -49,6 +52,7 @@ def set_data():
                 g.linked.add(obj)
                 g.save()
         temp.append(d['name'])
+    # Alumni
     data = load_notionAPI_member_alumni()['body']
     for d in data:
         a, created = Alumni.objects.update_or_create(
@@ -61,6 +65,10 @@ def set_data():
         obj, created = Team.objects.get_or_create(title=d['team'])
         a.team.add(obj)
         a.save()
+        if d['project'] != None:
+            obj, created = Project.objects.get_or_create(title=d['project'])
+            a.project.add(obj)
+            a.save()
         temp.append(d['name'])
     # Data Delete
     for db in Graduated.objects.all():
@@ -85,8 +93,12 @@ def load_notionAPI_member_graduate():
     }
     sorts = [  # 정렬
         {
+            "property": "course",
+            "direction": "descending"
+        },
+        {
             "property": "admission_date",
-            "direction": "ascending"
+            "direction": "descending"
         },
         {
             "property": "name",
@@ -178,15 +190,15 @@ def load_notionAPI_member_alumni():
     sorts = [  # 정렬
         {
             "property": "course",
-            "direction": "ascending"
+            "direction": "descending"
         },
         {
             "property": "team",
-            "direction": "ascending"
+            "direction": "descending"
         },
         {
             "property": "name",
-            "direction": "ascending"
+            "direction": "descending"
         }
     ]
     body = {
@@ -211,11 +223,13 @@ def load_notionAPI_member_alumni():
             course = None
         team = r['properties']['team']['select']['name']
         graduate_year = r['properties']['graduate_year']['select']['name']
+        project = r['properties']['project']['select']['name'] if r['properties']['project']['select'] else None
         data.append({
             'name': name,
             'course': course,
             'team': team,
-            'graduate_year': graduate_year
+            'graduate_year': graduate_year,
+            'project': project
         })
     return {
         'statusCode': 200,

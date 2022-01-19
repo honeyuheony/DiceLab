@@ -1,6 +1,6 @@
 .Contents {
     width: 100%;
-    padding: 3% 0px 0px 0px;
+    padding: 3% 0px;
     max-width: 1240px;
 }
 
@@ -71,8 +71,12 @@ ul li {
 }
 
 
-li {
-    list-style-type: none;
+.research_interests {
+    height: 128px;
+}
+
+.contact {
+    height: 95px;
 }
 
 h6 {
@@ -115,16 +119,6 @@ h6 {
     margin-bottom: 8px;
     margin-left: 5px;
     font-weight: 700;
-}
-
-.text li {
-    text-align: left;
-    font-weight: 500;
-    margin-bottom: 8px;
-    font-weight: 700;
-    font-size: 1rem;
-    margin-left: 12px;
-    list-style-type: circle;
 }
 
 .card_item>ul>li {

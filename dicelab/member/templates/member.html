@@ -46,7 +46,7 @@
                 <div class="text card-body">
                     <ul>
                         {% if g.research_interests.all|length %}
-                        <li>
+                        <li class="research_interests">
                             <h6>Research Interests</h6>
                             <ul>
                                 {% for r in g.research_interests.all %}
@@ -54,15 +54,10 @@
                                     <p>{{r}}</p>
                                 </li>
                                 {% endfor %}
-                                {% if g.research_interests.all|length == 1 %}
-                                <br><br>
-                                {% elif g.research_interests.all|length == 2 %}
-                                <br>
-                                {% endif %}
                             </ul>
                         </li>
                         {% endif %}
-                        <li>
+                        <li class="contact">
                             <h6>Contact</h6>
                             <ul>
                                 <li>
@@ -74,8 +69,6 @@
                                     <a href="{{l.link}}">[{{l.title}}]</a>
                                     {% endfor %}
                                 </li>
-                                {% else %}
-                                <br><br>
                                 {% endif %}
                             </ul>
                         </li>
@@ -98,7 +91,7 @@
             <h4>Ungraduate Students</h4>
         </div>
     </div>
-    <div class="Contents">
+    <div class="Contents" style="padding: 3% 0px 0px 0px;">
         {% for g in graduated %}
         {% if not g.admission_date|length %}
         {% cycle '<div class="row">' '' %}
@@ -123,7 +116,7 @@
                 <div class="text card-body">
                     <ul>
                         {% if g.research_interests.all|length %}
-                        <li style="list-style-type:none;">
+                        <li class="research_interests">
                             <h6>Research Interests</h6>
                             <ul>
                                 {% for r in g.research_interests.all %}
@@ -131,15 +124,10 @@
                                     <p>{{r}}</p>
                                 </li>
                                 {% endfor %}
-                                {% if g.research_interests.all|length == 1 %}
-                                <br><br>
-                                {% elif g.research_interests.all|length == 2 %}
-                                <br>
-                                {% endif %}
                             </ul>
                         </li>
                         {% endif %}
-                        <li style="list-style-type:none;">
+                        <li class="contact">
                             <h6>Contact</h6>
                             <ul>
                                 <li>
@@ -151,8 +139,6 @@
                                     <a href="{{l.link}}">[{{l.title}}]</a>
                                     {% endfor %}
                                 </li>
-                                {% else %}
-                                <br>
                                 {% endif %}
                             </ul>
                         </li>
@@ -167,7 +153,7 @@
     {% endif %}
     {% endfor %}
 </div>
-<div class="Contents" style="padding:3% 0px 15px 0px;">
+<div class="Contents" style="padding:0px 0px 3% 0px;;">
     <div class="card_frame">
         <div class="card_item">
             <ul>
@@ -206,6 +192,67 @@
         </div>
     </div>
 </div>
+<!-- <div class="Contents" style="padding: 0px 0px 3% 0px;">
+    <div class="card_frame">
+        <div class="card_item">
+            <ul>
+                <li>
+                    <h6>Undergraduate Research Program (URP)</h6>
+                </li>
+                <li>
+                    <div class="item">
+                        <div class="text_whole">
+                            <ul>
+                                <li style="list-style: none;">
+                                    <ul>
+                                        <li>4th grade:</li>
+                                        <ul>
+                                            {% for p in project.all %}
+                                            <li>
+                                                {% for a in alumni %}
+                                                    {% if a.course == '4th grade' %}
+                                                        {% for pro in a.project.all %}
+                                                        <strong> {{pro.title}} - </strong>
+                                                            {% if pro.title == p.title %}
+                                                                {{a}}
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </ul>
+                                </li>
+                                <li style="list-style: none;">
+                                    <ul>
+                                        <li>3rd grade:</li>
+                                        <ul>
+                                            {% for p in project.all %}
+                                            <li>
+                                                {% for a in alumni %}
+                                                    {% if a.course == '3rd grade' %}
+                                                        {% for pro in a.project.all %}
+                                                            {% if pro.title == p.title %}
+                                                                {{a}}
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                {% endfor %}
+                                                <strong> - {{p}}</strong>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div> -->
 
 <div>
     <div class="Category">

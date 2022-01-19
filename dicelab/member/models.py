@@ -37,11 +37,20 @@ class Team(models.Model):
         return self.title
 
 
+class Project(models.Model):
+    title = models.CharField(max_length=40)
+
+    def __str__(self):
+        return self.title
+
+
 class Alumni(models.Model):
     name = models.CharField(max_length=10)
     course = models.CharField(max_length=30, blank=True)
     team = models.ManyToManyField(Team, related_name='team')
     graduate_year = models.CharField(max_length=10, null=True)
+    project = models.ManyToManyField(
+        Project, related_name='project', blank=True)
 
     def __str__(self):
         return self.name

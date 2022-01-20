@@ -49,11 +49,15 @@ def set_data():
         g.email = d['email']
         g.pic = d['pic']
         g.research_interests.clear()
+        count = 0
         for r in d['research_interests']:
-            obj, created = Research_interests.objects.get_or_create(title=r)
-            g.research_interests.add(obj)
-            research_interests_temp.append(r)
-            g.save()
+            if count < 3:
+                obj, created = Research_interests.objects.get_or_create(
+                    title=r)
+                g.research_interests.add(obj)
+                research_interests_temp.append(r)
+                g.save()
+                count += 1
         g.linked.clear()
         if d['linked'] != None:
             for key, value in d['linked'].items():
@@ -94,11 +98,15 @@ def set_data():
         g.pic = d['pic']
         g.paper = d['paper']
         g.research_interests.clear()
+        count = 0
         for r in d['research_interests']:
-            obj, created = Research_interests.objects.get_or_create(title=r)
-            g.research_interests.add(obj)
-            research_interests_temp.append(r)
-            g.save()
+            if count < 3:
+                obj, created = Research_interests.objects.get_or_create(
+                    title=r)
+                g.research_interests.add(obj)
+                research_interests_temp.append(r)
+                g.save()
+                count += 1
         g.linked.clear()
         if d['linked'] != None:
             for key, value in d['linked'].items():
@@ -221,7 +229,6 @@ def load_notionAPI_member_master():
             'pic': pic,
             'paper': paper
         })
-        print(data)
     return {
         'statusCode': 200,
         'body': data

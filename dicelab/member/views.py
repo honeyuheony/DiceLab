@@ -1,22 +1,28 @@
 from django.shortcuts import render
-from django.db.models import Case, Q
+from datetime import datetime
+from django.db.models import Case, Q, When
 from .tasks import *
 from .models import *
 
 
 def member(request):
     # set_data()
-    year = [2020, 2021, 2022, 2023]
+    current_year = datetime.now().year + 1
+    year = [current_year-x for x in range(current_year - 2020 + 1)]
+    print(year)
+    course_list = ['Ph.D. course', 'M.S.-Ph.D. integrated course',
+                   'B.S.-M.S. integrated', 'M.S. course']
     project = {}
+    preserved = Case(*[When(course=course, then=pos)
+                     for pos, course in enumerate(course_list)])
     graduated = Graduated.objects.all().order_by(
-        '-course', 'admission_date', 'name')
-    project_4th = Project.objects.filter(year=year[-2])
-    project_3th = Project.objects.filter(year=year[-1])
+        preserved, 'admission_date', 'name')
+    project_4th = Project.objects.filter(year=year[1])
+    project_3th = Project.objects.filter(year=year[0])
     for y in year:
         project[y] = Project.objects.filter(year=y)
     master = Master.objects.all().order_by('graduate_year', '-name')
-    # alumni_2020 = Alumni.objects.filter(graduate_year="2020").order_by('-team')
     no_project_alumni = Alumni.objects.filter(
         project=None, graduate_year=2020).order_by('graduate_year')
-    # print(no_project_alumni)
+
     return render(request, 'member.html', {'graduated': graduated, 'project_4th': project_4th, 'project_3th': project_3th, 'project': project, 'master': master, 'no_project_alumni': no_project_alumni})

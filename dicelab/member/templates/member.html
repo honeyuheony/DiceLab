@@ -45,11 +45,22 @@
                 </div>
                 <div class="text card-body">
                     <ul>
-                        {% if g.research_interests.all|length %}
+                        {% if g.research_interests.all|length < 4 %}
                         <li class="research_interests">
                             <h6>Research Interests</h6>
                             <ul>
                                 {% for r in g.research_interests.all %}
+                                <li>
+                                    <p>{{r}}</p>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        {% else %}
+                        <li class="research_interests">
+                            <h6>Research Interests</h6>
+                            <ul>
+                                {% for r in g.research_interests %}
                                 <li>
                                     <p>{{r}}</p>
                                 </li>

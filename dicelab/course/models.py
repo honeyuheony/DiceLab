@@ -13,8 +13,8 @@ class Semester(models.Model):
 
 
 class Course(models.Model):
-    code = models.CharField(max_length=10, default='', primary_key=True)
-    name = models.CharField(max_length=100, blank=False, default='')
+    code = models.CharField(max_length=10, default='',blank=True)
+    name = models.CharField(max_length=100, blank=False, default='', primary_key=True)
     semester = models.ManyToManyField(
         Semester, related_name='semester')
 

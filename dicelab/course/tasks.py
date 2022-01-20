@@ -29,8 +29,8 @@ def set_data():
     # Data Create or Update
     for d in data:
         c, created = Course.objects.update_or_create(
-            code=d['code'])
-        c.name = (d['name'])
+            name=d['name'])
+        c.code = d['code']
         c.save()
         for s in d['semester']:
             obj, created = Semester.objects.get_or_create(
@@ -75,7 +75,7 @@ def load_notionAPI_course():
     source: Dict = loads(response.data.decode('utf-8'))  # 자료형 명시
     data = []
     for r in source['results']:
-        code = r['properties']['code']['title'][0]['plain_text']
+        code = r['properties']['code']['title'][0]['plain_text'] if r['properties']['code']['title'] else ""
         name = r['properties']['name']['rich_text'][0]['plain_text']
         semester = ([l['name']
                     for l in r['properties']['semester']['multi_select']]) if 'semester' in r['properties'] else 'None'

@@ -9,7 +9,6 @@ def member(request):
     # set_data()
     current_year = datetime.now().year + 1
     year = [current_year-x for x in range(current_year - 2020 + 1)]
-    print(year)
     course_list = ['Ph.D. course', 'M.S.-Ph.D. integrated course',
                    'B.S.-M.S. integrated', 'M.S. course']
     project = {}

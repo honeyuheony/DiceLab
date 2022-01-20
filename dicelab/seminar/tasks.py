@@ -77,23 +77,22 @@ def load_notionAPI_seminar():
                             headers=headers,
                             retries=False)
     source: Dict = loads(response.data.decode('utf-8'))  # 자료형 명시
-
-    # # 두 번째 100개 데이터 호출
-    # body2 = {
-    #     "filter": filter,
-    #     "sorts": sorts,
-    #     "start_cursor": source['next_cursor']
-    # }
-
-    # response2 = http.request('POST',
-    #                          url,
-    #                          body=json.dumps(body2),
-    #                          headers=headers,
-    #                          retries=False)
-    # source2: Dict = loads(response2.data.decode('utf-8'))
-
-    # source['results'] += source2['results']
-
+    next_cursor = source['next_cursor']
+    # 추가 데이터 호출
+    while next_cursor:
+        body_append = {
+            "filter": filter,
+            "sorts": sorts,
+            "start_cursor": next_cursor
+        }
+        response = http.request('POST',
+                                url,
+                                body=json.dumps(body_append),
+                                headers=headers,
+                                retries=False)
+        source_append: Dict = loads(response.data.decode('utf-8'))
+        next_cursor = source_append['next_cursor']
+        source['results'] += source_append['results']
     data = []
     for r in source['results']:
         title = '-'

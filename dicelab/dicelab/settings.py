@@ -256,5 +256,10 @@ CELERY_BEAT_SCHEDULE = {
         'task': 'seminar.tasks.set_data',
         'schedule': crontab(minute=15, hour='*/1'),
         'args': ()
+    },
+    'seminar_recent_load': {
+        'task': 'seminar.tasks.load_recent_data_seminar',
+        'schedule': crontab(minute='*/10'),
+        'args': ()
     }
 }

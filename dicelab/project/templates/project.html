@@ -67,47 +67,54 @@
         <div class="Contents">
             {% for ai in ai_challenges %}
             {% if ai.status != 'To Do' %}
-            <div class="card_frame">
-                <div class="card_item">
-                    <h6>
-                        {% if ai.link == 'None'%}
-                        <p>
-                            {{ai.title}}
-                        </p>
-                        {% else %}
-                        <p>
-                            {{ai.title}}
-                            <a href={{ ai.link }} target="_blank"> [Link]</a>
-                        </p>
-                        {% endif %}
-                    </h6>
-                    <div class="clearfix">
-                        <div class="text">
-                            <ul>
-                                {% if ai.assign %}
-                                <li>
-                                    <p>{{ ai.assign }}</p>
-                                </li>
-                                {% endif %}
-                                {% if ai.area %}
-                                <li>
-                                    <p>{{ai.area}}</p>
-                                    {% if ai.award %}
-                                    <ul>
-                                        <li>{{ ai.award }}</li>
-                                    </ul>
-                                    {% endif %}
-                                </li>
+            {% cycle '<div class="row">' '' %}
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="card_frame">
+                        <div class="card_item">
+                            <h6>
+                                {% if ai.link == 'None'%}
+                                <p>
+                                    {{ai.title}}
+                                </p>
                                 {% else %}
-                                {% if ai.award %}
-                                <li>{{ ai.award }}</li>
+                                <p>
+                                    {{ai.title}}
+                                    <a href={{ ai.link }} target="_blank"> [Link]</a>
+                                </p>
                                 {% endif %}
-                                {% endif %}
-                            </ul>
+                            </h6>
+                            <div class="clearfix">
+                                <div class="text">
+                                    <ul>
+                                        {% if ai.assign %}
+                                        <li>
+                                            <p>{{ ai.assign }}</p>
+                                        </li>
+                                        {% endif %}
+                                        {% if ai.area %}
+                                        <li>
+                                            <p>{{ai.area}}</p>
+                                            {% if ai.award %}
+                                            <ul>
+                                                <li>{{ ai.award }}</li>
+                                            </ul>
+                                            {% endif %}
+                                        </li>
+                                        {% else %}
+                                        {% if ai.award %}
+                                        <li>{{ ai.award }}</li>
+                                        {% endif %}
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </div> 
                 </div>
+                {% cycle '' '</div>' %}
+            {% if forloop.last %}
             </div>
+            {% endif %}
             {% endif %}
             {% endfor %}
         </div>

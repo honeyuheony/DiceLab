@@ -209,6 +209,8 @@
         </div>
     </div>
 </div>
+</div>
+
 <div>
     <div class="Category">
         <div>
@@ -239,7 +241,7 @@
                             {% endif %}
 
                             {% if m.paper|length %}
-                                <a href="{{m.paper}}">Paper</a>
+                            <a href="{{m.paper}}">Paper</a>
                             {% endif %}
                         </div>
                     </div>
@@ -297,7 +299,7 @@
                                     {% for key, value in project.items %}
                                     <li>
                                         {{key}}:
-                                    {% if value|length %}
+                                        {% if value|length %}
                                         {% for q in value %}
                                         <ul>
                                             <li>
@@ -308,15 +310,15 @@
                                             </li>
                                         </ul>
                                         {% endfor%}
-                                    {% else %}
-                                    <ul>
-                                        <li>
-                                            {% for na in no_project_alumni.all %}
+                                        {% else %}
+                                        <ul>
+                                            <li>
+                                                {% for na in no_project_alumni.all %}
                                                 {{na}}
-                                            {% endfor %}
-                                        </li>
-                                    </ul>
-                                    {% endif %}
+                                                {% endfor %}
+                                            </li>
+                                        </ul>
+                                        {% endif %}
                                     </li>
                                     {% endfor%}
                                 </ul>

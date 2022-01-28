@@ -165,8 +165,8 @@
     {% endfor %}
 </div>
 <div class="Contents" style="padding:0px 0px 3% 0px;;">
-    <div class="card_frame">
-        <div class="card_item">
+    <div class="card_frame ">
+        <div class="card_item profile">
             <ul>
                 <li>
                     <h6>Undergraduate Research Program (URP)</h6>
@@ -218,9 +218,6 @@
         </div>
     </div>
     <div class="Contents" style="padding: 3% 0px 0px 0px;">
-        <div>
-            <h4>M.S.</h4>
-        </div>
         {% for m in master %}
         {% if m.graduate_year|length %}
         {% cycle '<div class="row">' '' %}
@@ -233,33 +230,35 @@
                     <div class="name">
                         <h5>{{m.name}}</h5>
                         <div class="date">
-
+                            <h6 style="text-align: right;">M.S.</h6>
                             {% if m.graduate_year|length %}
                             <p style="margin-bottom:0px">
                                 {{m.graduate_year}}
                             </p>
-                            {% endif %}
-
-                            {% if m.paper|length %}
-                            <a href="{{m.paper}}">Paper</a>
                             {% endif %}
                         </div>
                     </div>
                 </div>
                 <div class="text card-body">
                     <ul>
-                        {% if m.research_interests.all|length %}
-                        <li class="research_interests">
-                            <h6>Research Interests</h6>
+                        <li class="dissertation">
+                            <h6>Dissertation Title</h6>
                             <ul>
-                                {% for r in m.research_interests.all %}
+                                {% for dissertation in m.dissertation.all %}
                                 <li>
-                                    <p>{{r}}</p>
+                                    <p>{{dissertation.title}}</p>
+                                </li>
+                                <li style="text-align: center;list-style: none;">
+                                {% if dissertation.paper_link %}
+                                    <a href="{{dissertation.paper_link}}">[Link]</a>
+                                {% endif %}
+                                {% if dissertation.slide_link %}
+                                    <a href="{{dissertation.slide_link}}">[Slide]</a>
+                                {% endif %}
                                 </li>
                                 {% endfor %}
                             </ul>
                         </li>
-                        {% endif %}
                         <li class="contact">
                             <h6>Contact</h6>
                             <ul>
@@ -287,7 +286,7 @@
     {% endfor %}
     <div class="Contents" style="padding:0px 0px 3% 0px; justify-content:center">
         <div class="card_frame">
-            <div class="card_item">
+            <div class="card_item profile">
                 <ul>
                     <li>
                         <h6>URP Students</h6>

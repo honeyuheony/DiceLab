@@ -1,8 +1,10 @@
+from email.mime import image
 from celery import shared_task
 from django.conf import settings
 import urllib3
 from typing import Dict
 from json import loads
+from .models import Professor_Page_Code
 import json
 
 http = urllib3.PoolManager()
@@ -21,9 +23,11 @@ headers = {
 
 @shared_task
 def set_data():
-    d = {'body': load_notionAPI_professor(
-    )['body'], 'image': load_notionAPI_professor()['image']}
-    return d
+    for db in Professor_Page_Code.objects.all():
+        db.delete()
+    data = load_notionAPI_professor()
+    target = Professor_Page_Code.objects.get_or_create(
+        body=data['body'], image=data['image'])
 
 
 def load_notionAPI_professor():
@@ -36,8 +40,6 @@ def load_notionAPI_professor():
     page = []
     paragraph = {}
     image = 0
-    with open("data.json", "w") as f:
-        json.dump(source, f)
     for r in source['results']:
         if 'image' in r:
             image += 1

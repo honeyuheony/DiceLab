@@ -12,14 +12,12 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='News',
+            name='Professor_Page_Code',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=100)),
-                ('date', models.CharField(max_length=10)),
-                ('column_type', models.CharField(blank=True, max_length=20)),
-                ('content', models.CharField(blank=True, max_length=100)),
-                ('pic', models.CharField(blank=True, max_length=20)),
+                ('image', models.CharField(max_length=100)),
+                ('body', models.CharField(max_length=100000000000)),
+                ('create_date', models.DateTimeField(auto_now_add=True, verbose_name='Created_date')),
             ],
         ),
     ]

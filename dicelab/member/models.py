@@ -46,14 +46,22 @@ class Project(models.Model):
         return self.title
 
 
+class Dissertation(models.Model):
+    title = models.CharField(max_length=20)
+    paper_link = models.CharField(max_length=50, blank=True, null=True)
+    slide_link = models.CharField(max_length=50, blank=True, null=True)
+
+    def __str__(self):
+        return self.title
+
+
 class Master(models.Model):
     name = models.CharField(max_length=20)
     graduate_year = models.CharField(max_length=10, blank=True)
-    research_interests = models.ManyToManyField(
-        Research_interests, related_name='master', blank=True, )
+    dissertation = models.ManyToManyField(
+        Dissertation, related_name='master', blank=True)
     email = models.CharField(max_length=30, blank=True)
     pic = models.CharField(max_length=20, blank=True)
-    paper = models.CharField(max_length=50, blank=True)
     linked = models.ManyToManyField(
         Linked, related_name='master', blank=True)
 

@@ -20,17 +20,26 @@ div.carousel-inner h5 {
     vertical-align: baseline;
 }
 
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+    }
+}
+
 @media (min-width: 768px) {
     div.carousel-inner h5 {
-        display:inherit
+        display: inherit
     }
+
     .location {
         display: flex;
     }
-    .location ul{
+
+    .location ul {
         max-width: 60%;
     }
-    .location iframe{
+
+    .location iframe {
         max-width: 40%;
     }
 }

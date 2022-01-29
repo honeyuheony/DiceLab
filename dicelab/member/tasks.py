@@ -4,7 +4,7 @@ import urllib3
 from typing import Dict
 import json
 from json import loads
-from .models import Master, Research_interests, Linked, Graduated, Alumni, Team, Project
+from .models import Dissertation, Master, Research_interests, Linked, Graduated, Alumni, Team, Project
 
 http = urllib3.PoolManager()
 Member_Graduate_Database_ID = getattr(
@@ -37,6 +37,7 @@ def set_data():
     linked_temp = []
     team_temp = []
     project_temp = []
+    dissertation_temp = []
 
     # Data Create or Update
     # Graduate
@@ -96,17 +97,12 @@ def set_data():
         g.graduate_year = d['graduate_year']
         g.email = d['email']
         g.pic = d['pic']
-        g.paper = d['paper']
-        g.research_interests.clear()
-        count = 0
-        for r in d['research_interests']:
-            if count < 3:
-                obj, created = Research_interests.objects.get_or_create(
-                    title=r)
-                g.research_interests.add(obj)
-                research_interests_temp.append(r)
-                g.save()
-                count += 1
+        if d['dissertation'] != None:
+            obj, created = Dissertation.objects.update_or_create(
+                title=d['dissertation'], paper_link=d['paper_link'], slide_link=d['slide_link'])
+            dissertation_temp.append(obj)
+            g.dissertation.add(obj)
+            g.save()
         g.linked.clear()
         if d['linked'] != None:
             for key, value in d['linked'].items():
@@ -140,6 +136,9 @@ def set_data():
     for db in Project.objects.all():
         if not db.title in project_temp:
             Project.objects.get(title=db.title).delete()
+    for db in Dissertation.objects.all():
+        if not db in dissertation_temp:
+            db.delete()
 
 
 def load_notionAPI_member_master():
@@ -187,10 +186,9 @@ def load_notionAPI_member_master():
         except:
             graduate_year = ''
         try:
-            research_interests = [l['name']
-                                  for l in r['properties']['research_interests']['multi_select']]
+            dissertation = r['properties']['dissertation']['select']['name']
         except:
-            research_interests = []
+            dissertation = ''
         try:
             email = r['properties']['email']['email'].replace("@", "'at'")
         except:
@@ -216,18 +214,22 @@ def load_notionAPI_member_master():
         except:
             pic = ''
         try:
-            paper = r['properties']['paper']['files'][0]['name']
+            paper_link = r['properties']['paper_link']['url']
         except:
-            paper = ''
-
+            paper_link = ''
+        try:
+            slide_link = r['properties']['slide_link']['url']
+        except:
+            slide_link = ''
         data.append({
             'name': name,
             'graduate_year': graduate_year,
-            'research_interests': research_interests,
+            'dissertation': dissertation,
             'email': email,
             'linked': linked,
             'pic': pic,
-            'paper': paper
+            'paper_link': paper_link,
+            'slide_link': slide_link
         })
     return {
         'statusCode': 200,

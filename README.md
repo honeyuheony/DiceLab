@@ -8,20 +8,10 @@
 Notion DB 데이터를 Web Server와 주기적으로 동기화하는 비동기 큐 작업을 구현하여
 최신연구동향을 1시간마다 갱신해 제공할 수 있도록 개발했습니다.
 
-# **✋ Part**
+# **✋ Collaborator**
 
 ### [Woo-yeol](https://github.com/Woo-yeal)
-
-- Design model
-- Design View at Course, Project, Publication, Seminar
-- Design Templates at Main(header, footer), Member, Seminal
-- Make search feature at Seminal
-
 ### [honeyuheony](https://github.com/honeyuheony)
-
-- Synchronize database with Notion api
-- Design View at News, Professor, Member, School
-- Design Templates at News, Professor, School, Project, Publication
 
 # 🖥 Project Example
 <div align="center"><img src="./DiceLab.gif" width='800px'></div>

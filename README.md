@@ -36,7 +36,6 @@ Notion DB 데이터를 Web Server와 주기적으로 동기화하는 비동기 �
   <br>
   <img src="https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white"></a>&nbsp
   <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"></a>&nbsp
-  <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"></a>&nbsp
   <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white"></a>&nbsp
  </p>
 

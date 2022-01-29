@@ -1,10 +1,12 @@
-# 🎲**DICE LAB**
-
+# 🎲**DICE LAB - HomePage**
+2021-08-04 ~ 2022-01-29
 ### DICELAB Introduce Page
 
 한국기술교육대학교 컴퓨터공학부의 DICELAB의 연구 및 활동 현황을 소개하는 페이지입니다.
+연구원들의 활동이 담긴 Notion DB 데이터를 신속하게 전달하기 위해
+Notion DB 데이터를 Web Server와 주기적으로 동기화하는 비동기 큐 작업을 구현하여
+최신연구동향을 1시간마다 갱신해 제공할 수 있도록 개발했습니다.
 
-연구원들의 활동이 담긴 Notion DB를 주기적으로 Web Server와 동기화하여 최신연구동향을 보여줄 수 있도록 개발했습니다.  
 
 # 🖇️Link
 
@@ -13,9 +15,11 @@
 # **⚙️ Development Environment**
 |Part|Version|
 |------|---|
-|**WAS**|Front : Django Templates + Bootstrap<br>Back : Python 3.8.5 + Django 3.0 + Redis  
+|**Front-End**|Django Templates + Bootstrap
+|**Back-End**|Back : Python 3.8.5 + Django 3.0 + Redis  
 |**Database**|Sqlite3
 |**Notion API**|Version : 2021-08-16
+|**Distribution**|AWS-LightSail
 
 # 📖 **Manual**
 
@@ -77,14 +81,14 @@
 
 # **✋ Part**
 
-### Woo-yeol :
+### [Woo-yeol](https://github.com/Woo-yeal)
 
 - Design model
 - Design View at Course, Project, Publication, Seminar
 - Design Templates at Main(header, footer), Member, Seminal
 - Make search feature at Seminal
 
-### honeyuheony :
+### [honeyuheony](https://github.com/honeyuheony)
 
 - Synchronize database with Notion api
 - Design View at News, Professor, Member, School

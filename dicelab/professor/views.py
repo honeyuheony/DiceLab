@@ -1,8 +1,12 @@
+from traceback import print_tb
 from django.shortcuts import render
 from .tasks import *
+from .models import Professor_Page_Code
+import json
 
 
 def professor(request):
-    page = set_data()['body']
-    image = set_data()['image']
-    return render(request, 'professor.html', {'page': page, 'image': image})
+    set_data()
+    db = Professor_Page_Code.objects.all()
+    page = eval(db.values('body')[0]['body'])
+    return render(request, 'professor.html', {'page': page})

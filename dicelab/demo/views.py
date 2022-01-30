@@ -7,7 +7,7 @@ from .tasks import *
 
 
 def demo(request):
-    set_data()
+    # set_data()
     demo = Demo.objects.all().order_by('-date')
     demo_list = []
     for n in demo:

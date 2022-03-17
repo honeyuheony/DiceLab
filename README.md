@@ -52,7 +52,7 @@ Notion DB 데이터를 Web Server와 주기적으로 동기화하는 비동기 �
 ### **Django Web Server**
 1. Git Clone
     
-    `git clone https://github.com/honeyuheony/DiceLab.git`
+    `git clone https://github.com/Woo-Yeol/DiceLab.git`
     
 2. 가상 환경 생성 및 종속 세팅
     
